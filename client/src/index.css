@@ -1,0 +1,201 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  /* LXOLOGY Brand Colors */
+  --lx-purple: #26006B;
+  --lx-orange: #FD6A02;
+  --lx-pink: #F5C2D9;
+  
+  /* Primary colors */
+  --primary: #26006B;
+  --primary-foreground: #ffffff;
+  --sidebar-primary: #26006B;
+  --sidebar-primary-foreground: #ffffff;
+  --chart-1: #FD6A02;
+  --chart-2: #F5C2D9;
+  --chart-3: #26006B;
+  --chart-4: #E8A8C8;
+  --chart-5: #1a0047;
+  
+  --radius: 1rem;
+  --background: oklch(0.98 0.001 286.375);
+  --foreground: #26006B;
+  --card: oklch(1 0 0);
+  --card-foreground: #26006B;
+  --popover: oklch(1 0 0);
+  --popover-foreground: #26006B;
+  --secondary: #F5C2D9;
+  --secondary-foreground: #26006B;
+  --muted: #f0f0f0;
+  --muted-foreground: #666666;
+  --accent: #FD6A02;
+  --accent-foreground: #ffffff;
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: #e0e0e0;
+  --input: #f5f5f5;
+  --ring: #FD6A02;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: #26006B;
+  --sidebar-accent: #F5C2D9;
+  --sidebar-accent-foreground: #26006B;
+  --sidebar-border: #e0e0e0;
+  --sidebar-ring: #FD6A02;
+}
+
+.dark {
+  --primary: #FD6A02;
+  --primary-foreground: #ffffff;
+  --sidebar-primary: #FD6A02;
+  --sidebar-primary-foreground: #ffffff;
+  --background: #0a0015;
+  --foreground: #f5f5f5;
+  --card: #1a0033;
+  --card-foreground: #f5f5f5;
+  --popover: #1a0033;
+  --popover-foreground: #f5f5f5;
+  --secondary: #F5C2D9;
+  --secondary-foreground: #26006B;
+  --muted: #333333;
+  --muted-foreground: #999999;
+  --accent: #FD6A02;
+  --accent-foreground: #ffffff;
+  --destructive: oklch(0.704 0.191 22.216);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: #333333;
+  --input: #1a1a1a;
+  --ring: #FD6A02;
+  --chart-1: #FD6A02;
+  --chart-2: #F5C2D9;
+  --chart-3: #26006B;
+  --chart-4: #E8A8C8;
+  --chart-5: #ff8c42;
+  --sidebar: #1a0033;
+  --sidebar-foreground: #f5f5f5;
+  --sidebar-accent: #F5C2D9;
+  --sidebar-accent-foreground: #26006B;
+  --sidebar-border: #333333;
+  --sidebar-ring: #FD6A02;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  [type="button"]:not(:disabled),
+  [type="submit"]:not(:disabled),
+  [type="reset"]:not(:disabled),
+  a[href],
+  select:not(:disabled),
+  input[type="checkbox"]:not(:disabled),
+  input[type="radio"]:not(:disabled) {
+    @apply cursor-pointer;
+  }
+}
+
+@layer components {
+  .container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .flex {
+    min-height: 0;
+    min-width: 0;
+  }
+
+  /* LXOLOGY Custom Components */
+  .lx-gradient-accent {
+    background: linear-gradient(135deg, #26006B 0%, #F5C2D9 100%);
+  }
+
+  .lx-gradient-warm {
+    background: linear-gradient(135deg, #FD6A02 0%, #F5C2D9 100%);
+  }
+
+  .lx-card {
+    @apply bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 p-6;
+    border: 1px solid #e8e8e8;
+  }
+
+  .lx-button-primary {
+    @apply bg-[#FD6A02] text-white px-8 py-3 rounded-lg font-semibold hover:bg-[#e55a00] transition-all duration-200 active:scale-95;
+  }
+
+  .lx-button-secondary {
+    @apply bg-transparent text-[#26006B] px-8 py-3 rounded-lg font-semibold border-2 border-[#26006B] hover:bg-[#26006B] hover:text-white transition-all duration-200 active:scale-95;
+  }
+
+  .lx-section-title {
+    @apply text-4xl md:text-5xl font-bold text-[#26006B] mb-6;
+  }
+
+  .lx-section-subtitle {
+    @apply text-lg text-gray-600 max-w-2xl mx-auto mb-12;
+  }
+
+  @media (min-width: 640px) {
+    .container {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container {
+      padding-left: 2rem;
+      padding-right: 2rem;
+      max-width: 1280px;
+    }
+  }
+}
