@@ -14,33 +14,28 @@ export default function Footer() {
               <span className="text-2xl font-bold">LXOLOGY</span>
             </div>
             <p className="text-gray-300 text-lg font-semibold">
-              Elevate Learning, Enhance Experience.
+              Elevate Learning. Enhance Experiences.
             </p>
           </div>
 
           {/* Quick Links */}
           <div className="grid grid-cols-2 gap-8">
             <div>
-              <h4 className="font-bold mb-4 text-white">Quick Links</h4>
+              <h4 className="font-bold mb-4 text-white">Offerings</h4>
               <ul className="space-y-2">
                 <li>
-                  <a href="#" className="text-gray-300 hover:text-[#FD6A02] transition-colors">
-                    Shop
+                  <a href="#products" className="text-gray-300 hover:text-[#FD6A02] transition-colors">
+                    Products
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="text-gray-300 hover:text-[#FD6A02] transition-colors">
-                    Programs
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="text-gray-300 hover:text-[#FD6A02] transition-colors">
+                  <a href="#services" className="text-gray-300 hover:text-[#FD6A02] transition-colors">
                     Services
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="text-gray-300 hover:text-[#FD6A02] transition-colors">
-                    Resources
+                  <a href="#tools" className="text-gray-300 hover:text-[#FD6A02] transition-colors">
+                    Tools
                   </a>
                 </li>
               </ul>
@@ -49,12 +44,12 @@ export default function Footer() {
               <h4 className="font-bold mb-4 text-white">Company</h4>
               <ul className="space-y-2">
                 <li>
-                  <a href="#" className="text-gray-300 hover:text-[#FD6A02] transition-colors">
-                    About
+                  <a href="#about" className="text-gray-300 hover:text-[#FD6A02] transition-colors">
+                    About Lxology
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="text-gray-300 hover:text-[#FD6A02] transition-colors">
+                  <a href="#contact" className="text-gray-300 hover:text-[#FD6A02] transition-colors">
                     Contact
                   </a>
                 </li>
@@ -68,7 +63,6 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Divider */}
         <div className="border-t border-gray-700 pt-8">
           <p className="text-gray-400 text-sm text-center">
             &copy; {currentYear} LXOLOGY. All rights reserved.

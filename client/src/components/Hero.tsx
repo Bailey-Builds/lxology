@@ -3,6 +3,10 @@ import { useState } from 'react';
 export default function Hero() {
   const [isHovering, setIsHovering] = useState(false);
 
+  const scrollToThreeWays = () => {
+    document.getElementById('three-ways-we-help')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <section id="home" className="relative bg-white overflow-hidden pt-20 pb-32 md:pt-32 md:pb-40">
       <div className="container mx-auto px-4">
@@ -23,19 +27,19 @@ export default function Hero() {
               Professional learning solutions, training programs, and workplace development resources designed to improve performance and build capability.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <button className="lx-button-primary">
-                🔶 Shop Learning Products
+              <button
+                onClick={scrollToThreeWays}
+                className="lx-button-primary"
+              >
+                Work With Lxology
               </button>
               <button className="lx-button-primary bg-[#26006B] hover:bg-[#1a0047]">
-                🔶 Explore Training Programs
+                Explore Products
               </button>
             </div>
-            <button className="mt-4 text-[#26006B] font-semibold hover:text-[#FD6A02] transition-colors">
-              🔶 Work With Lxology →
-            </button>
           </div>
 
-          {/* Right: Girl Typing Image with Floating Effect */}
+          {/* Right: Image with Floating Effect */}
           <div className="relative h-96 md:h-full min-h-96 flex items-center justify-center">
             <div
               className={`transition-all duration-500 ease-out ${
