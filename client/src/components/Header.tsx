@@ -18,9 +18,7 @@ export default function Header() {
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-gradient-to-br from-[#26006B] to-[#FD6A02] rounded-lg flex items-center justify-center">
-            <span className="text-white font-bold text-lg">LX</span>
-          </div>
+          <img src="/lx-logo.png" alt="Lxology logo" className="w-10 h-10 rounded-lg object-cover" />
           <span className="text-2xl font-bold text-[#26006b]">LXOLOGY</span>
         </div>
 

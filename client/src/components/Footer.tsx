@@ -8,9 +8,7 @@ export default function Footer() {
           {/* Brand Section */}
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 bg-gradient-to-br from-[#FD6A02] to-[#F5C2D9] rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-lg">LX</span>
-              </div>
+              <img src="/lx-logo.png" alt="Lxology logo" className="w-10 h-10 rounded-lg object-cover" />
               <span className="text-2xl font-bold">LXOLOGY</span>
             </div>
             <p className="text-gray-300 text-lg font-semibold">
