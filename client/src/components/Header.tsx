@@ -5,12 +5,12 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
 
   const navLinks = [
-    { label: 'Home', href: '#home' },
-    { label: 'Products', href: '#products' },
-    { label: 'Services', href: '#services' },
-    { label: 'Tools', href: '#tools' },
-    { label: 'About Lxology', href: '#about' },
-    { label: 'Contact', href: '#contact' },
+    { label: 'Home', href: '/' },
+    { label: 'Products', href: '/#products' },
+    { label: 'Services', href: '/services' },
+    { label: 'Tools', href: '/#tools' },
+    { label: 'About Lxology', href: '/about' },
+    { label: 'Contact', href: '/#contact' },
   ];
 
   return (

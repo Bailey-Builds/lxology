@@ -22,17 +22,17 @@ export default function Footer() {
               <h4 className="font-bold mb-4 text-white">Offerings</h4>
               <ul className="space-y-2">
                 <li>
-                  <a href="#products" className="text-gray-300 hover:text-[#FD6A02] transition-colors">
+                  <a href="/#products" className="text-gray-300 hover:text-[#FD6A02] transition-colors">
                     Products
                   </a>
                 </li>
                 <li>
-                  <a href="#services" className="text-gray-300 hover:text-[#FD6A02] transition-colors">
+                  <a href="/services" className="text-gray-300 hover:text-[#FD6A02] transition-colors">
                     Services
                   </a>
                 </li>
                 <li>
-                  <a href="#tools" className="text-gray-300 hover:text-[#FD6A02] transition-colors">
+                  <a href="/#tools" className="text-gray-300 hover:text-[#FD6A02] transition-colors">
                     Tools
                   </a>
                 </li>
@@ -42,12 +42,12 @@ export default function Footer() {
               <h4 className="font-bold mb-4 text-white">Company</h4>
               <ul className="space-y-2">
                 <li>
-                  <a href="#about" className="text-gray-300 hover:text-[#FD6A02] transition-colors">
+                  <a href="/about" className="text-gray-300 hover:text-[#FD6A02] transition-colors">
                     About Lxology
                   </a>
                 </li>
                 <li>
-                  <a href="#contact" className="text-gray-300 hover:text-[#FD6A02] transition-colors">
+                  <a href="/#contact" className="text-gray-300 hover:text-[#FD6A02] transition-colors">
                     Contact
                   </a>
                 </li>
