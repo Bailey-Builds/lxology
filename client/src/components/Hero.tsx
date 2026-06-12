@@ -49,8 +49,8 @@ export default function Hero() {
               onMouseLeave={() => setIsHovering(false)}
             >
               <img
-                src="/manus-storage/2_08e544b3.png"
-                alt="Girl typing on laptop"
+                src="/hero-illustration.png"
+                alt="Person sitting on books with laptop"
                 className="w-full h-auto max-w-md mx-auto drop-shadow-lg"
               />
             </div>
