@@ -37,17 +37,17 @@ export default function Services() {
               {/* Card 1 */}
               <div
                 className="flex flex-col p-8 border border-gray-100 shadow-sm bg-white"
-                style={{ borderRadius: '12px' }}
+                style={{ borderRadius: '6px' }}
               >
                 <div
                   className="w-11 h-11 flex items-center justify-center mb-5"
-                  style={{ backgroundColor: '#D7E7FF', borderRadius: '10px' }}
+                  style={{ backgroundColor: '#D7E7FF', borderRadius: '4px' }}
                 >
                   <Layers className="w-5 h-5 text-[#26006B]" strokeWidth={1.8} />
                 </div>
                 <span
                   className="inline-block self-start text-xs font-bold uppercase tracking-wide text-[#FD6A02] px-3 py-1 mb-4"
-                  style={{ backgroundColor: '#FFF1E8', borderRadius: '6px' }}
+                  style={{ backgroundColor: '#FFF1E8', borderRadius: '4px' }}
                 >
                   Service
                 </span>
@@ -72,17 +72,17 @@ export default function Services() {
               {/* Card 2 */}
               <div
                 className="flex flex-col p-8 border border-gray-100 shadow-sm bg-white"
-                style={{ borderRadius: '12px' }}
+                style={{ borderRadius: '6px' }}
               >
                 <div
                   className="w-11 h-11 flex items-center justify-center mb-5"
-                  style={{ backgroundColor: '#D7E7FF', borderRadius: '10px' }}
+                  style={{ backgroundColor: '#D7E7FF', borderRadius: '4px' }}
                 >
                   <Compass className="w-5 h-5 text-[#26006B]" strokeWidth={1.8} />
                 </div>
                 <span
                   className="inline-block self-start text-xs font-bold uppercase tracking-wide text-[#FD6A02] px-3 py-1 mb-4"
-                  style={{ backgroundColor: '#FFF1E8', borderRadius: '6px' }}
+                  style={{ backgroundColor: '#FFF1E8', borderRadius: '4px' }}
                 >
                   Service
                 </span>
@@ -118,7 +118,7 @@ export default function Services() {
                 <div
                   key={item}
                   className="flex items-start gap-3 bg-white p-5 border border-gray-100 shadow-sm"
-                  style={{ borderRadius: '10px' }}
+                  style={{ borderRadius: '6px' }}
                 >
                   <span className="text-[#FD6A02] font-bold mt-0.5 flex-shrink-0">→</span>
                   <p className="text-gray-700 text-sm leading-relaxed">{item}</p>
@@ -141,7 +141,7 @@ export default function Services() {
             <a
               href="mailto:info@lxology.com"
               className="inline-block bg-[#FD6A02] text-white px-10 py-4 font-bold text-lg hover:bg-[#e55a00] transition-colors duration-200 shadow-lg"
-              style={{ borderRadius: '10px' }}
+              style={{ borderRadius: '4px' }}
             >
               Contact Us
             </a>

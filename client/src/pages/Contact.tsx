@@ -38,7 +38,7 @@ export default function Contact() {
             <a
               href="mailto:info@lxology.com"
               className="inline-block mt-6 bg-[#FD6A02] text-white px-8 py-3 font-semibold hover:bg-[#e55a00] transition-colors duration-200"
-              style={{ borderRadius: '10px' }}
+              style={{ borderRadius: '4px' }}
             >
               Contact Lxology
             </a>
@@ -58,7 +58,7 @@ export default function Contact() {
               {submitted ? (
                 <div
                   className="p-8 text-center border border-gray-100 shadow-sm"
-                  style={{ borderRadius: '12px', backgroundColor: '#F6F9FF' }}
+                  style={{ borderRadius: '6px', backgroundColor: '#F6F9FF' }}
                 >
                   <p className="text-[#26006B] font-semibold text-lg mb-2">Thank you for sharing your request.</p>
                   <p className="text-gray-600 text-sm leading-relaxed">
@@ -76,7 +76,7 @@ export default function Contact() {
                       type="text" name="topic" value={form.topic} onChange={handleChange} required
                       placeholder="What topic do you need?"
                       className="w-full border border-gray-200 px-4 py-3 text-gray-700 text-sm focus:outline-none focus:ring-2 focus:ring-[#26006B]/20 focus:border-[#26006B]"
-                      style={{ borderRadius: '8px' }}
+                      style={{ borderRadius: '4px' }}
                     />
                   </div>
 
@@ -86,7 +86,7 @@ export default function Contact() {
                       type="text" name="audience" value={form.audience} onChange={handleChange}
                       placeholder="Who is this for?"
                       className="w-full border border-gray-200 px-4 py-3 text-gray-700 text-sm focus:outline-none focus:ring-2 focus:ring-[#26006B]/20 focus:border-[#26006B]"
-                      style={{ borderRadius: '8px' }}
+                      style={{ borderRadius: '4px' }}
                     />
                   </div>
 
@@ -96,7 +96,7 @@ export default function Contact() {
                       name="businessChallenge" value={form.businessChallenge} onChange={handleChange}
                       rows={3} placeholder="What business problem are you trying to solve?"
                       className="w-full border border-gray-200 px-4 py-3 text-gray-700 text-sm focus:outline-none focus:ring-2 focus:ring-[#26006B]/20 focus:border-[#26006B] resize-none"
-                      style={{ borderRadius: '8px' }}
+                      style={{ borderRadius: '4px' }}
                     />
                   </div>
 
@@ -105,7 +105,7 @@ export default function Contact() {
                     <select
                       name="preferredFormat" value={form.preferredFormat} onChange={handleChange}
                       className="w-full border border-gray-200 px-4 py-3 text-gray-700 text-sm focus:outline-none focus:ring-2 focus:ring-[#26006B]/20 focus:border-[#26006B]"
-                      style={{ borderRadius: '8px' }}
+                      style={{ borderRadius: '4px' }}
                     >
                       <option value="">Select a format</option>
                       <option>Learning product</option>
@@ -122,7 +122,7 @@ export default function Contact() {
                       type="text" name="name" value={form.name} onChange={handleChange}
                       placeholder="Your name"
                       className="w-full border border-gray-200 px-4 py-3 text-gray-700 text-sm focus:outline-none focus:ring-2 focus:ring-[#26006B]/20 focus:border-[#26006B]"
-                      style={{ borderRadius: '8px' }}
+                      style={{ borderRadius: '4px' }}
                     />
                   </div>
 
@@ -132,7 +132,7 @@ export default function Contact() {
                       type="text" name="organization" value={form.organization} onChange={handleChange}
                       placeholder="Organization or company name"
                       className="w-full border border-gray-200 px-4 py-3 text-gray-700 text-sm focus:outline-none focus:ring-2 focus:ring-[#26006B]/20 focus:border-[#26006B]"
-                      style={{ borderRadius: '8px' }}
+                      style={{ borderRadius: '4px' }}
                     />
                   </div>
 
@@ -144,14 +144,14 @@ export default function Contact() {
                       type="email" name="email" value={form.email} onChange={handleChange} required
                       placeholder="Where should we follow up?"
                       className="w-full border border-gray-200 px-4 py-3 text-gray-700 text-sm focus:outline-none focus:ring-2 focus:ring-[#26006B]/20 focus:border-[#26006B]"
-                      style={{ borderRadius: '8px' }}
+                      style={{ borderRadius: '4px' }}
                     />
                   </div>
 
                   <button
                     type="submit"
                     className="w-full bg-[#FD6A02] text-white py-4 font-bold text-base hover:bg-[#e55a00] transition-colors duration-200"
-                    style={{ borderRadius: '10px' }}
+                    style={{ borderRadius: '4px' }}
                   >
                     Submit Topic Request
                   </button>

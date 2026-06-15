@@ -4,7 +4,7 @@ export default function TopicRequest() {
       <div className="max-w-6xl mx-auto px-8">
         <div
           className="max-w-2xl mx-auto text-center bg-white p-10 border shadow-sm"
-          style={{ borderColor: '#E5EAF3', borderRadius: '12px' }}
+          style={{ borderColor: '#E5EAF3', borderRadius: '6px' }}
         >
           <h2 className="text-3xl font-bold text-[#26006B] mb-4">
             Need a Specific Topic?
@@ -16,7 +16,7 @@ export default function TopicRequest() {
           <a
             href="/contact#topic-request"
             className="inline-block bg-[#FD6A02] text-white px-8 py-3 font-semibold hover:bg-[#e55a00] transition-colors duration-200"
-            style={{ borderRadius: '10px' }}
+            style={{ borderRadius: '4px' }}
           >
             Submit a Topic Request
           </a>

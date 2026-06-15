@@ -93,7 +93,7 @@ export default function About() {
               <h2 className="text-2xl font-bold text-[#26006B] mb-6">Leadership</h2>
               <div
                 className="max-w-2xl p-7 border border-gray-100 shadow-sm bg-white"
-                style={{ borderRadius: '12px' }}
+                style={{ borderRadius: '6px' }}
               >
                 <h3 className="text-lg font-bold text-[#26006B] mb-1">Emily Bailey</h3>
                 <p className="text-[#FD6A02] font-semibold text-sm mb-4">
@@ -133,7 +133,7 @@ export default function About() {
             <a
               href="mailto:info@lxology.com"
               className="inline-block bg-[#FD6A02] text-white px-10 py-4 font-bold text-lg hover:bg-[#e55a00] transition-colors duration-200 shadow-lg"
-              style={{ borderRadius: '10px' }}
+              style={{ borderRadius: '4px' }}
             >
               Contact Us
             </a>

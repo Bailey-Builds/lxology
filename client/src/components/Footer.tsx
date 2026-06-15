@@ -12,7 +12,7 @@ export default function Footer() {
                 src="/lx-logo.png"
                 alt="Lxology logo"
                 className="w-9 h-9 object-cover flex-shrink-0"
-                style={{ borderRadius: '7px' }}
+                style={{ borderRadius: '4px' }}
               />
               <span className="text-xl font-bold">LXOLOGY</span>
             </div>

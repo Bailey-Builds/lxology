@@ -42,12 +42,12 @@ export default function ThreeWaysWeHelp() {
               <div
                 key={way.title}
                 className="bg-white flex flex-col p-7 border border-gray-100 shadow-sm"
-                style={{ borderRadius: '12px' }}
+                style={{ borderRadius: '6px' }}
               >
                 {/* Icon */}
                 <div
                   className="w-11 h-11 flex items-center justify-center mb-5 flex-shrink-0"
-                  style={{ backgroundColor: '#D7E7FF', borderRadius: '10px' }}
+                  style={{ backgroundColor: '#D7E7FF', borderRadius: '4px' }}
                 >
                   <Icon className="w-5 h-5 text-[#26006B]" strokeWidth={1.8} />
                 </div>
@@ -58,7 +58,7 @@ export default function ThreeWaysWeHelp() {
                 <a
                   href={way.href}
                   className="inline-block text-center bg-[#FD6A02] text-white px-6 py-3 font-semibold text-sm hover:bg-[#e55a00] transition-colors duration-200"
-                  style={{ borderRadius: '10px' }}
+                  style={{ borderRadius: '4px' }}
                 >
                   {way.buttonLabel}
                 </a>

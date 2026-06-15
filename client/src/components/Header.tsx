@@ -22,7 +22,7 @@ export default function Header() {
             src="/lx-logo.png"
             alt="Lxology logo"
             className="w-10 h-10 object-cover"
-            style={{ borderRadius: '8px' }}
+            style={{ borderRadius: '4px' }}
           />
           <span className="text-2xl font-bold text-[#26006b]">LXOLOGY</span>
         </a>

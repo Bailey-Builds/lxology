@@ -56,18 +56,18 @@ export default function FeaturedOfferings() {
             <div
               key={offering.title}
               className="flex flex-col p-6 border border-gray-100 shadow-sm bg-white"
-              style={{ borderRadius: '12px' }}
+              style={{ borderRadius: '6px' }}
             >
               <div className="flex items-center justify-between mb-4">
                 <span
                   className="text-xs font-bold uppercase tracking-wide text-[#FD6A02] px-3 py-1"
-                  style={{ backgroundColor: '#FFF1E8', borderRadius: '6px' }}
+                  style={{ backgroundColor: '#FFF1E8', borderRadius: '4px' }}
                 >
                   {offering.label}
                 </span>
                 <span
                   className="text-xs font-semibold text-gray-500 px-3 py-1"
-                  style={{ backgroundColor: '#F3F4F6', borderRadius: '6px' }}
+                  style={{ backgroundColor: '#F3F4F6', borderRadius: '4px' }}
                 >
                   Coming Soon
                 </span>

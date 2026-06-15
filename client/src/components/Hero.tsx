@@ -8,13 +8,13 @@ export default function Hero() {
   };
 
   return (
-    <section id="home" className="bg-white overflow-hidden pt-16 pb-20 md:pt-24 md:pb-28">
-      <div className="max-w-6xl mx-auto px-8">
-        <div className="grid md:grid-cols-2 gap-6 items-center">
+    <section id="home" className="bg-white overflow-hidden">
+      <div className="max-w-7xl mx-auto px-8">
+        <div className="grid md:grid-cols-2 gap-0 items-stretch min-h-[560px]">
           {/* Left: Content */}
-          <div>
+          <div className="flex flex-col justify-center py-16 pr-8">
             <div className="mb-4">
-              <span className="inline-block px-4 py-2 bg-[#FD6A02]/10 rounded-full text-sm font-semibold text-[#FD6A02]">
+              <span className="inline-block px-4 py-2 bg-[#FD6A02]/10 text-sm font-semibold text-[#FD6A02]" style={{ borderRadius: '4px' }}>
                 Welcome to LXOLOGY
               </span>
             </div>
@@ -30,23 +30,23 @@ export default function Hero() {
               <button
                 onClick={scrollToThreeWays}
                 className="bg-[#FD6A02] text-white px-7 py-3 font-semibold text-base hover:bg-[#e55a00] transition-colors duration-200"
-                style={{ borderRadius: '10px' }}
+                style={{ borderRadius: '4px' }}
               >
                 Work With Lxology
               </button>
               <button
                 className="bg-[#26006B] text-white px-7 py-3 font-semibold text-base hover:bg-[#1a0047] transition-colors duration-200"
-                style={{ borderRadius: '10px' }}
+                style={{ borderRadius: '4px' }}
               >
                 Explore Products
               </button>
             </div>
           </div>
 
-          {/* Right: Illustration */}
-          <div className="flex items-center justify-center">
+          {/* Right: Illustration — fills full column height */}
+          <div className="flex items-end justify-center pt-8">
             <div
-              className={`transition-all duration-500 ease-out ${isHovering ? 'translate-y-2' : 'translate-y-0'}`}
+              className={`w-full transition-all duration-500 ease-out ${isHovering ? 'translate-y-1' : 'translate-y-0'}`}
               onMouseEnter={() => setIsHovering(true)}
               onMouseLeave={() => setIsHovering(false)}
             >

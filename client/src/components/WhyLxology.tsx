@@ -46,11 +46,11 @@ export default function WhyLxology() {
               <div
                 key={pillar.title}
                 className="p-6 bg-white border border-gray-100 shadow-sm flex flex-col"
-                style={{ borderRadius: '12px' }}
+                style={{ borderRadius: '6px' }}
               >
                 <div
                   className="w-10 h-10 flex items-center justify-center mb-4 flex-shrink-0"
-                  style={{ backgroundColor: '#D7E7FF', borderRadius: '8px' }}
+                  style={{ backgroundColor: '#D7E7FF', borderRadius: '4px' }}
                 >
                   <Icon className="w-5 h-5 text-[#26006B]" strokeWidth={1.8} />
                 </div>

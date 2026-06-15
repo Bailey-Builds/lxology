@@ -8,7 +8,7 @@ export default function ContactCTA() {
         <a
           href="mailto:info@lxology.com"
           className="inline-block bg-[#FD6A02] text-white px-10 py-4 font-bold text-lg hover:bg-[#e55a00] transition-colors duration-200 shadow-lg"
-          style={{ borderRadius: '10px' }}
+          style={{ borderRadius: '4px' }}
         >
           Contact Us
         </a>
