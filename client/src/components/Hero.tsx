@@ -4,8 +4,8 @@ export default function Hero() {
   };
 
   return (
-    <section id="home" className="bg-white overflow-hidden">
-      <div className="flex flex-col lg:flex-row lg:items-end lg:min-h-[640px]">
+    <section id="home" className="bg-white overflow-hidden pb-10 md:pb-0">
+      <div className="flex flex-col lg:flex-row lg:items-center lg:min-h-[580px]">
 
         {/* Text — full width on mobile/tablet, 40% on desktop */}
         <div className="lg:w-1/2 shrink-0">
