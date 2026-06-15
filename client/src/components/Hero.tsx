@@ -8,8 +8,8 @@ export default function Hero() {
       <div className="flex flex-col md:flex-row md:items-end md:min-h-[640px]">
 
         {/* Left: Content — constrained width, padded from left */}
-        <div className="md:w-[44%] shrink-0 flex items-center">
-          <div className="px-8 md:pl-16 md:pr-10 py-16 w-full">
+        <div className="md:w-[40%] shrink-0 flex items-center">
+          <div className="px-8 md:pl-12 md:pr-2 py-16 w-full">
             <div className="mb-4">
               <span
                 className="inline-block px-4 py-2 bg-[#FD6A02]/10 text-sm font-semibold text-[#FD6A02]"
