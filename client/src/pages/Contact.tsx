@@ -36,7 +36,7 @@ export default function Contact() {
               solution, we'd love to hear from you.
             </p>
             <a
-              href="mailto:info@lxology.com"
+              href="/contact#topic-request"
               className="inline-block mt-6 bg-[#FD6A02] text-white px-8 py-3 font-semibold hover:bg-[#e55a00] transition-colors duration-200"
               style={{ borderRadius: '4px' }}
             >

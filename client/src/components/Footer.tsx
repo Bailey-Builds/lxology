@@ -45,7 +45,7 @@ export default function Footer() {
             <ul className="space-y-2">
               {[
                 { label: 'About Lxology', href: '/about' },
-                { label: 'Contact', href: '/#contact' },
+                { label: 'Contact', href: '/contact#topic-request' },
                 { label: 'Privacy', href: '/privacy' },
               ].map((link) => (
                 <li key={link.label}>

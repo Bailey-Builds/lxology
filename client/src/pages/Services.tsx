@@ -139,7 +139,7 @@ export default function Services() {
               determine the right level of support.
             </p>
             <a
-              href="mailto:info@lxology.com"
+              href="/contact#topic-request"
               className="inline-block bg-[#FD6A02] text-white px-10 py-4 font-bold text-lg hover:bg-[#e55a00] transition-colors duration-200 shadow-lg"
               style={{ borderRadius: '4px' }}
             >

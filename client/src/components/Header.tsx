@@ -10,7 +10,7 @@ export default function Header() {
     { label: 'Products', href: '/#products' },
     { label: 'Services', href: '/services' },
     { label: 'About Lxology', href: '/about' },
-    { label: 'Contact', href: '/#contact' },
+    { label: 'Contact', href: '/contact#topic-request' },
   ];
 
   const handleToolsClick = (e: React.MouseEvent) => {
