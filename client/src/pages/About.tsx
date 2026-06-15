@@ -25,13 +25,12 @@ export default function About() {
 
             {/* What Lxology Means */}
             <div className="max-w-2xl">
-              <h2 className="text-2xl font-bold text-[#26006B] mb-4">What Lxology Means</h2>
+              <h2 className="text-2xl font-bold text-[#26006B] mb-4">Lxology is pronounced L-X-OLOGY</h2>
               <p className="text-gray-600 leading-relaxed mb-3">
-                Lxology combines Learning Experience and Science. The name reflects our belief that
+                <strong>Lxology combines Learning Experience + Science.</strong> The name reflects our belief that
                 effective workplace learning should be thoughtfully designed, grounded in
                 evidence-informed practices, and built to support real-world performance.
               </p>
-              <p className="text-gray-500 text-sm italic">Lxology is pronounced L-X-OLOGY.</p>
             </div>
 
             <div className="border-t border-gray-100" />

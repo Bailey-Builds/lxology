@@ -19,7 +19,7 @@ export default function Services() {
         <section className="py-14 md:py-20" style={{ backgroundColor: '#F6F9FF' }}>
           <div className="max-w-6xl mx-auto px-8">
             <h1 className="text-4xl md:text-5xl font-bold text-[#26006B] mb-5">
-              Strategic Learning Support for Workplace Growth
+              Strategic Learning Support<br />for Workplace Growth
             </h1>
             <p className="text-lg text-gray-600 leading-relaxed max-w-2xl">
               Lxology provides custom learning design, advisory support, and practical workplace

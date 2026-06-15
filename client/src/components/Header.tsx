@@ -3,15 +3,21 @@ import { Menu, X } from 'lucide-react';
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const [showToolsMsg, setShowToolsMsg] = useState(false);
 
   const navLinks = [
     { label: 'Home', href: '/' },
     { label: 'Products', href: '/#products' },
     { label: 'Services', href: '/services' },
-    { label: 'Tools', href: '/#tools' },
     { label: 'About Lxology', href: '/about' },
     { label: 'Contact', href: '/#contact' },
   ];
+
+  const handleToolsClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setShowToolsMsg(true);
+    setTimeout(() => setShowToolsMsg(false), 3000);
+  };
 
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm">
@@ -28,7 +34,7 @@ export default function Header() {
         </a>
 
         {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center gap-8">
+        <nav className="hidden lg:flex items-center gap-8 relative">
           {navLinks.map((link) => (
             <a
               key={link.label}
@@ -38,6 +44,22 @@ export default function Header() {
               {link.label}
             </a>
           ))}
+          <button
+            onClick={handleToolsClick}
+            className="text-gray-400 font-medium cursor-pointer transition-colors duration-200 hover:text-gray-500"
+          >
+            Tools
+          </button>
+
+          {/* Tooltip message */}
+          {showToolsMsg && (
+            <div
+              className="absolute right-0 top-10 bg-[#26006B] text-white text-sm px-4 py-2 shadow-lg whitespace-nowrap"
+              style={{ borderRadius: '4px' }}
+            >
+              Timeline Estimator Beta — Coming Soon
+            </div>
+          )}
         </nav>
 
         {/* Mobile Menu Button */}
@@ -63,6 +85,12 @@ export default function Header() {
                 {link.label}
               </a>
             ))}
+            <button
+              onClick={(e) => { handleToolsClick(e); setIsOpen(false); }}
+              className="text-gray-400 font-medium text-left py-2"
+            >
+              Tools
+            </button>
           </nav>
         </div>
       )}
