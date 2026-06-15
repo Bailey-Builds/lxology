@@ -7,7 +7,8 @@ import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
 import Services from "./pages/Services";
 import About from "./pages/About";
-
+import Contact from "./pages/Contact";
+import Privacy from "./pages/Privacy";
 
 function Router() {
   return (
@@ -15,27 +16,19 @@ function Router() {
       <Route path={"/"} component={Home} />
       <Route path={"/services"} component={Services} />
       <Route path={"/about"} component={About} />
+      <Route path={"/contact"} component={Contact} />
+      <Route path={"/privacy"} component={Privacy} />
+      <Route path={"/privacy-policy"} component={Privacy} />
       <Route path={"/404"} component={NotFound} />
-      {/* Final fallback route */}
       <Route component={NotFound} />
     </Switch>
   );
 }
 
-/**
- * LXOLOGY App
- * 
- * Theme: Light mode with LXOLOGY brand colors
- * - Deep purple (#26006B) as primary text and structure
- * - Bright orange (#FD6A02) for CTAs and accents
- * - Soft blush pink (#F5C2D9) for secondary accents
- */
 function App() {
   return (
     <ErrorBoundary>
-      <ThemeProvider
-        defaultTheme="light"
-      >
+      <ThemeProvider defaultTheme="light">
         <TooltipProvider>
           <Toaster />
           <Router />

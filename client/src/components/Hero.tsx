@@ -8,11 +8,11 @@ export default function Hero() {
   };
 
   return (
-    <section id="home" className="relative bg-white overflow-hidden pt-20 pb-32 md:pt-32 md:pb-40">
-      <div className="container mx-auto px-4">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+    <section id="home" className="bg-white overflow-hidden pt-16 pb-20 md:pt-24 md:pb-28">
+      <div className="max-w-6xl mx-auto px-8">
+        <div className="grid md:grid-cols-2 gap-10 items-center">
           {/* Left: Content */}
-          <div className="z-10">
+          <div>
             <div className="mb-4">
               <span className="inline-block px-4 py-2 bg-[#FD6A02]/10 rounded-full text-sm font-semibold text-[#FD6A02]">
                 Welcome to LXOLOGY
@@ -24,42 +24,41 @@ export default function Hero() {
               Enhance Experiences.
             </h1>
             <p className="text-lg text-gray-600 mb-8 leading-relaxed max-w-lg">
-              Professional learning solutions, training programs, and workplace development resources designed to improve performance and build capability.
+              Professional learning solutions, scalable training programs, and workplace development resources designed to improve performance and build capability.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <button
                 onClick={scrollToThreeWays}
-                className="lx-button-primary"
+                className="bg-[#FD6A02] text-white px-7 py-3 font-semibold text-base hover:bg-[#e55a00] transition-colors duration-200"
+                style={{ borderRadius: '10px' }}
               >
                 Work With Lxology
               </button>
-              <button className="lx-button-primary bg-[#26006B] hover:bg-[#1a0047]">
+              <button
+                className="bg-[#26006B] text-white px-7 py-3 font-semibold text-base hover:bg-[#1a0047] transition-colors duration-200"
+                style={{ borderRadius: '10px' }}
+              >
                 Explore Products
               </button>
             </div>
           </div>
 
-          {/* Right: Image with Floating Effect */}
-          <div className="relative h-96 md:h-full min-h-96 flex items-center justify-center">
+          {/* Right: Illustration */}
+          <div className="flex items-center justify-center">
             <div
-              className={`transition-all duration-500 ease-out ${
-                isHovering ? 'translate-y-8' : 'translate-y-0'
-              }`}
+              className={`transition-all duration-500 ease-out ${isHovering ? 'translate-y-2' : 'translate-y-0'}`}
               onMouseEnter={() => setIsHovering(true)}
               onMouseLeave={() => setIsHovering(false)}
             >
               <img
-                src="/hero-illustration.png"
-                alt="Person sitting on books with laptop"
-                className="w-full h-auto max-w-md mx-auto drop-shadow-lg"
+                src="/hero-team.png"
+                alt="Lxology team illustration"
+                className="w-full h-auto max-w-lg mx-auto"
               />
             </div>
           </div>
         </div>
       </div>
-
-      {/* Decorative bottom accent */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#F5C2D9] to-transparent opacity-20"></div>
     </section>
   );
 }

@@ -15,12 +15,17 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm">
-      <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+      <div className="max-w-6xl mx-auto px-8 py-4 flex items-center justify-between">
         {/* Logo */}
-        <div className="flex items-center gap-3">
-          <img src="/lx-logo.png" alt="Lxology logo" className="w-10 h-10 rounded-lg object-cover" />
+        <a href="/" className="flex items-center gap-3">
+          <img
+            src="/lx-logo.png"
+            alt="Lxology logo"
+            className="w-10 h-10 object-cover"
+            style={{ borderRadius: '8px' }}
+          />
           <span className="text-2xl font-bold text-[#26006b]">LXOLOGY</span>
-        </div>
+        </a>
 
         {/* Desktop Navigation */}
         <nav className="hidden lg:flex items-center gap-8">
@@ -47,7 +52,7 @@ export default function Header() {
       {/* Mobile Navigation */}
       {isOpen && (
         <div className="lg:hidden bg-white border-t border-gray-200 py-4">
-          <nav className="container mx-auto px-4 flex flex-col gap-4">
+          <nav className="max-w-6xl mx-auto px-8 flex flex-col gap-4">
             {navLinks.map((link) => (
               <a
                 key={link.label}

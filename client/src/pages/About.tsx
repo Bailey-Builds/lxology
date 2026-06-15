@@ -1,137 +1,142 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
-const specialtyAreas = [
-  'Learning Design',
-  'Learning Science',
-  'Accessibility',
-  'AI-Enabled Learning',
-  'Workplace Performance',
-  'Specialized Consulting',
-];
-
 export default function About() {
   return (
     <div className="min-h-screen flex flex-col bg-white">
       <Header />
       <main className="flex-1">
 
-        {/* Dictionary-style brand section */}
-        <section className="py-20 md:py-32 bg-white">
-          <div className="container mx-auto px-4 max-w-3xl">
-            <h1 className="text-4xl md:text-5xl font-bold text-[#26006B] mb-16">About Lxology</h1>
-
-            <div className="border-t border-gray-200 pt-12 mb-16">
-              <p className="text-xs uppercase tracking-widest text-gray-400 mb-2">pronunciation</p>
-              <p className="text-2xl font-bold text-[#26006B] mb-1">Lxology</p>
-              <p className="text-gray-500 italic mb-4">(pronounced L-X-OLOGY)</p>
-              <p className="text-gray-600 mb-2">
-                <span className="font-semibold text-gray-700">noun</span> &nbsp;|&nbsp; Learning Experience + Science
-              </p>
-              <p className="text-gray-600 leading-relaxed mt-4">
-                The belief that effective workplace learning is created when engaging learning
-                experiences are combined with evidence-based practices to improve performance,
-                build capability, and drive meaningful results.
-              </p>
-            </div>
-
-            <div className="border-t border-gray-200 pt-12 mb-16">
-              <p className="text-xs uppercase tracking-widest text-gray-400 mb-6">Origin</p>
-              <div className="space-y-3 text-gray-600">
-                <p><span className="font-semibold text-[#26006B]">LX</span> = Learning Experience</p>
-                <p><span className="font-semibold text-[#26006B]">-ology</span> = The study, understanding, and application of knowledge</p>
-                <p className="mt-4 leading-relaxed">
-                  <span className="font-semibold text-[#26006B]">Lxology</span> = The practice of combining learning experience design,
-                  learning science, strategy, and practical application to improve workplace performance.
-                </p>
-              </div>
-            </div>
+        {/* Hero */}
+        <section className="py-14 md:py-20" style={{ backgroundColor: '#F6F9FF' }}>
+          <div className="max-w-6xl mx-auto px-8">
+            <h1 className="text-4xl md:text-5xl font-bold text-[#26006B] mb-5">About Lxology</h1>
+            <p className="text-lg text-gray-600 leading-relaxed max-w-2xl">
+              Lxology is a learning and performance solutions company that creates scalable learning
+              products, custom solutions, practical tools, and strategic support to help organizations
+              build capability, improve performance, and strengthen workplace learning experiences.
+            </p>
           </div>
         </section>
 
-        {/* Who We Are / Mission / What We Do / How We Work */}
-        <section className="py-20 bg-gradient-to-b from-[#F5C2D9]/5 to-white">
-          <div className="container mx-auto px-4 max-w-3xl space-y-16">
+        {/* Content sections */}
+        <section className="py-16 bg-white">
+          <div className="max-w-6xl mx-auto px-8 space-y-14">
 
-            <div className="border-t-2 border-[#FD6A02] pt-10">
+            {/* What Lxology Means */}
+            <div className="max-w-2xl">
+              <h2 className="text-2xl font-bold text-[#26006B] mb-4">What Lxology Means</h2>
+              <p className="text-gray-600 leading-relaxed mb-3">
+                Lxology combines Learning Experience and Science. The name reflects our belief that
+                effective workplace learning should be thoughtfully designed, grounded in
+                evidence-informed practices, and built to support real-world performance.
+              </p>
+              <p className="text-gray-500 text-sm italic">Lxology is pronounced L-X-OLOGY.</p>
+            </div>
+
+            <div className="border-t border-gray-100" />
+
+            {/* Who We Are */}
+            <div className="max-w-2xl">
               <h2 className="text-2xl font-bold text-[#26006B] mb-4">Who We Are</h2>
-              <p className="text-gray-600 leading-relaxed text-lg">
-                Lxology is a learning and performance solutions company dedicated to helping
-                organizations develop people, build capability, and improve workplace performance.
+              <p className="text-gray-600 leading-relaxed">
+                Lxology helps organizations develop people through scalable learning products, custom
+                learning solutions, practical tools, and advisory support. We focus on creating
+                workplace learning that is clear, useful, and connected to performance.
               </p>
             </div>
 
-            <div className="border-t-2 border-[#FD6A02] pt-10">
-              <h2 className="text-2xl font-bold text-[#26006B] mb-4">Our Mission</h2>
-              <p className="text-gray-600 leading-relaxed text-lg">
-                Elevate Learning. Enhance Experiences.
-              </p>
-            </div>
+            <div className="border-t border-gray-100" />
 
-            <div className="border-t-2 border-[#FD6A02] pt-10">
+            {/* What We Do */}
+            <div className="max-w-2xl">
               <h2 className="text-2xl font-bold text-[#26006B] mb-4">What We Do</h2>
-              <p className="text-gray-600 leading-relaxed text-lg">
-                We create practical products, provide expert services, and develop professional
-                tools that help organizations solve learning, performance, project, program, and
-                change-related challenges.
+              <p className="text-gray-600 leading-relaxed mb-5">
+                We design scalable learning products, workplace development resources, custom learning
+                content, and practical tools that help organizations solve learning, performance,
+                project, program, and change-related challenges.
               </p>
-            </div>
-
-            <div className="border-t-2 border-[#FD6A02] pt-10">
-              <h2 className="text-2xl font-bold text-[#26006B] mb-4">How We Work</h2>
-              <p className="text-gray-600 leading-relaxed text-lg">
-                Our approach combines learning experience design, evidence-based practices,
-                business strategy, and practical implementation guidance.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Partnership Network */}
-        <section className="py-20 bg-white">
-          <div className="container mx-auto px-4 max-w-3xl">
-            <div className="border-t-2 border-[#FD6A02] pt-10">
-              <h2 className="text-2xl font-bold text-[#26006B] mb-4">
-                Lxology Learning Specialist Partnership Network
-              </h2>
-              <p className="text-gray-600 leading-relaxed mb-8">
-                Lxology collaborates with a trusted network of experienced learning and performance
-                professionals who provide specialized expertise when needed.
-              </p>
-              <div className="flex flex-wrap gap-3">
-                {specialtyAreas.map((area) => (
-                  <span
-                    key={area}
-                    className="px-4 py-2 bg-gradient-to-br from-[#26006B]/5 to-[#FD6A02]/5 border border-gray-200 rounded-full text-sm font-semibold text-[#26006B]"
-                  >
-                    {area}
-                  </span>
+              <ul className="space-y-2">
+                {[
+                  'Scalable learning products and toolkits',
+                  'Custom learning design and development',
+                  'Advisory support for learning and performance challenges',
+                  'Practical tools for planning, productivity, and workplace capability',
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-2 text-sm text-gray-600">
+                    <span className="text-[#FD6A02] mt-0.5 flex-shrink-0">•</span>
+                    {item}
+                  </li>
                 ))}
+              </ul>
+            </div>
+
+            <div className="border-t border-gray-100" />
+
+            {/* Our Mission */}
+            <div className="max-w-2xl">
+              <h2 className="text-2xl font-bold text-[#26006B] mb-4">Our Mission</h2>
+              <p className="text-gray-600 leading-relaxed mb-3 font-medium">
+                Elevate learning. Enhance experiences.
+              </p>
+              <p className="text-gray-600 leading-relaxed">
+                Our mission is to make workplace learning more practical, accessible, and
+                performance-focused so organizations and professionals can build the capabilities
+                they need to grow.
+              </p>
+            </div>
+
+            <div className="border-t border-gray-100" />
+
+            {/* Leadership */}
+            <div>
+              <h2 className="text-2xl font-bold text-[#26006B] mb-6">Leadership</h2>
+              <div
+                className="max-w-2xl p-7 border border-gray-100 shadow-sm bg-white"
+                style={{ borderRadius: '12px' }}
+              >
+                <h3 className="text-lg font-bold text-[#26006B] mb-1">Emily Bailey</h3>
+                <p className="text-[#FD6A02] font-semibold text-sm mb-4">
+                  Founder &amp; Principal Learning Strategist
+                </p>
+                <p className="text-gray-600 leading-relaxed mb-3 text-sm">
+                  Emily Bailey founded Lxology to help organizations create scalable learning
+                  solutions that build capability, improve performance, and support meaningful
+                  workplace growth.
+                </p>
+                <p className="text-gray-600 leading-relaxed mb-3 text-sm">
+                  With more than 20 years of experience across learning strategy, instructional
+                  design, leadership development, organizational change, and workforce capability
+                  development, Emily brings a practical, research-informed approach to learning and
+                  performance solutions.
+                </p>
+                <p className="text-gray-600 leading-relaxed text-sm">
+                  Her work is also driven by a commitment to helping professionals reach their career
+                  goals, strengthen their confidence, and develop the capabilities they need to move
+                  forward in their work.
+                </p>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Leadership */}
-        <section className="py-20 bg-gradient-to-b from-[#F5C2D9]/5 to-white">
-          <div className="container mx-auto px-4 max-w-3xl">
-            <div className="border-t-2 border-[#FD6A02] pt-10">
-              <h2 className="text-2xl font-bold text-[#26006B] mb-8">Leadership</h2>
-              <div className="lx-card">
-                <h3 className="text-xl font-bold text-[#26006B] mb-1">Emily Bailey</h3>
-                <p className="text-[#FD6A02] font-semibold mb-4">Founder &amp; Principal Learning Strategist</p>
-                <p className="text-gray-600 leading-relaxed mb-4">
-                  Emily founded Lxology to help organizations develop people, build capability,
-                  and improve workplace performance through practical, research-informed solutions.
-                </p>
-                <p className="text-gray-600 leading-relaxed">
-                  With more than 20 years of experience across learning strategy, leadership
-                  development, instructional design, organizational change, and workforce capability
-                  development, she leads the strategic direction of Lxology and its growing network
-                  of specialists.
-                </p>
-              </div>
-            </div>
+        {/* CTA */}
+        <section className="py-20" style={{ backgroundColor: '#26006B' }}>
+          <div className="max-w-6xl mx-auto px-8 text-center">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              Let's Build Better Learning Experiences
+            </h2>
+            <p className="text-gray-300 mb-8 max-w-xl mx-auto">
+              Whether you need a scalable learning product, custom learning solution, practical tool,
+              or strategic support, Lxology can help you move from idea to action.
+            </p>
+            <a
+              href="mailto:info@lxology.com"
+              className="inline-block bg-[#FD6A02] text-white px-10 py-4 font-bold text-lg hover:bg-[#e55a00] transition-colors duration-200 shadow-lg"
+              style={{ borderRadius: '10px' }}
+            >
+              Contact Us
+            </a>
           </div>
         </section>
 
