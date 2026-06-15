@@ -38,6 +38,7 @@ export default function Hero() {
                 Work With Lxology
               </button>
               <button
+                onClick={() => document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' })}
                 className="bg-[#26006B] text-white px-7 py-3 font-semibold text-base hover:bg-[#1a0047] transition-colors duration-200"
                 style={{ borderRadius: '4px' }}
               >
