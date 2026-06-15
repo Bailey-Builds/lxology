@@ -1,7 +1,7 @@
 export default function ContactCTA() {
   return (
-    <section id="contact" className="py-20 md:py-28" style={{ backgroundColor: '#26006B' }}>
-      <div className="max-w-6xl mx-auto px-8 text-center">
+    <section id="contact" className="pt-20 md:pt-28" style={{ backgroundColor: '#26006B' }}>
+      <div className="max-w-6xl mx-auto px-8 text-center pb-20 md:pb-28">
         <h2 className="text-4xl md:text-5xl font-bold text-white mb-10">
           Ready to Elevate Learning and Performance?
         </h2>
@@ -12,8 +12,8 @@ export default function ContactCTA() {
         >
           Contact Us
         </a>
-        <div className="mt-14 border-t" style={{ borderColor: 'rgba(255,255,255,0.2)' }} />
       </div>
+      <div className="border-t border-white" />
     </section>
   );
 }
