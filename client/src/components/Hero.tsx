@@ -18,10 +18,12 @@ export default function Hero() {
                 Welcome to LXOLOGY
               </span>
             </div>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#26006B] mb-5 leading-tight">
-              Elevate Learning.
-              <br />
-              Enhance Experiences.
+            <h1
+              className="font-bold text-[#26006B] mb-5 leading-tight"
+              style={{ fontSize: 'clamp(1.75rem, 4vw, 3.5rem)' }}
+            >
+              <span className="block whitespace-nowrap">Elevate Learning.</span>
+              <span className="block whitespace-nowrap">Enhance Experiences.</span>
             </h1>
             <p className="text-base sm:text-lg text-gray-600 mb-8 leading-relaxed max-w-xl lg:max-w-none">
               Professional learning solutions, scalable training programs, and workplace
