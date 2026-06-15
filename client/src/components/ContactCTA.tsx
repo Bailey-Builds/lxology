@@ -1,8 +1,8 @@
 export default function ContactCTA() {
   return (
     <section id="contact" className="pt-20 md:pt-28" style={{ backgroundColor: '#26006B' }}>
-      <div className="max-w-6xl mx-auto px-8 text-center pb-20 md:pb-28">
-        <h2 className="text-4xl md:text-5xl font-bold text-white mb-10">
+      <div className="max-w-6xl mx-auto px-4 sm:px-8 text-center pb-20 md:pb-28">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-10">
           Ready to Elevate Learning and Performance?
         </h2>
         <a

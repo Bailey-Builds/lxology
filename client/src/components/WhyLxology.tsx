@@ -36,10 +36,10 @@ const pillars = [
 export default function WhyLxology() {
   return (
     <section className="py-16 md:py-24 bg-white">
-      <div className="max-w-6xl mx-auto px-8">
+      <div className="max-w-6xl mx-auto px-4 sm:px-8">
         <h2 className="text-3xl md:text-4xl font-bold text-[#26006B] mb-12">Why Lxology</h2>
 
-        <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-5">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
           {pillars.map((pillar) => {
             const Icon = pillar.icon;
             return (

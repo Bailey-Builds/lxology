@@ -5,11 +5,11 @@ export default function Hero() {
 
   return (
     <section id="home" className="bg-white overflow-hidden">
-      <div className="flex flex-col md:flex-row md:items-end md:min-h-[640px]">
+      <div className="flex flex-col lg:flex-row lg:items-end lg:min-h-[640px]">
 
-        {/* Left: Content — constrained width, padded from left */}
-        <div className="md:w-[40%] shrink-0 flex items-center">
-          <div className="px-8 md:pl-12 md:pr-2 py-16 w-full">
+        {/* Text — full width on mobile/tablet, 40% on desktop */}
+        <div className="lg:w-[40%] shrink-0">
+          <div className="px-6 sm:px-10 lg:pl-12 lg:pr-2 py-10 sm:py-14 lg:py-16">
             <div className="mb-4">
               <span
                 className="inline-block px-4 py-2 bg-[#FD6A02]/10 text-sm font-semibold text-[#FD6A02]"
@@ -18,12 +18,12 @@ export default function Hero() {
                 Welcome to LXOLOGY
               </span>
             </div>
-            <h1 className="text-5xl md:text-6xl font-bold text-[#26006B] mb-6 leading-tight">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#26006B] mb-5 leading-tight">
               Elevate Learning.
               <br />
               Enhance Experiences.
             </h1>
-            <p className="text-lg text-gray-600 mb-8 leading-relaxed">
+            <p className="text-base sm:text-lg text-gray-600 mb-8 leading-relaxed max-w-xl lg:max-w-none">
               Professional learning solutions, scalable training programs, and workplace
               development resources designed to improve performance and build capability.
             </p>
@@ -45,12 +45,12 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Right: Illustration — fills remaining viewport width, bleeds to edge */}
+        {/* Illustration — capped height on mobile, full bleed on desktop */}
         <div className="flex-1 flex items-end">
           <img
             src="/hero-team.png"
             alt="Lxology team illustration"
-            className="w-full h-auto block"
+            className="w-full h-auto block max-h-[320px] sm:max-h-[420px] lg:max-h-none object-contain object-bottom lg:object-fill"
           />
         </div>
 

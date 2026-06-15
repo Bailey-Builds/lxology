@@ -9,7 +9,7 @@ export default function About() {
 
         {/* Hero */}
         <section className="py-14 md:py-20" style={{ backgroundColor: '#F6F9FF' }}>
-          <div className="max-w-6xl mx-auto px-8">
+          <div className="max-w-6xl mx-auto px-4 sm:px-8">
             <h1 className="text-4xl md:text-5xl font-bold text-[#26006B] mb-5">About Lxology</h1>
             <p className="text-lg text-gray-600 leading-relaxed max-w-2xl">
               Lxology is a learning and performance solutions company that creates scalable learning
@@ -21,7 +21,7 @@ export default function About() {
 
         {/* Content sections */}
         <section className="py-16 bg-white">
-          <div className="max-w-6xl mx-auto px-8 space-y-14">
+          <div className="max-w-6xl mx-auto px-4 sm:px-8 space-y-14">
 
             {/* What Lxology Means */}
             <div className="max-w-2xl">
@@ -121,7 +121,7 @@ export default function About() {
 
         {/* CTA */}
         <section className="py-20" style={{ backgroundColor: '#26006B' }}>
-          <div className="max-w-6xl mx-auto px-8 text-center">
+          <div className="max-w-6xl mx-auto px-4 sm:px-8 text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
               Let's Build Better Learning Experiences
             </h2>

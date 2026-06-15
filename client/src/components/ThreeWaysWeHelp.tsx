@@ -30,12 +30,12 @@ const ways = [
 export default function ThreeWaysWeHelp() {
   return (
     <section id="three-ways-we-help" className="py-16 md:py-24" style={{ backgroundColor: '#F6F9FF' }}>
-      <div className="max-w-6xl mx-auto px-8">
+      <div className="max-w-6xl mx-auto px-4 sm:px-8">
         <h2 className="text-3xl md:text-4xl font-bold text-[#26006B] mb-12">
           Three Ways Lxology Supports Growth
         </h2>
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {ways.map((way) => {
             const Icon = way.icon;
             return (

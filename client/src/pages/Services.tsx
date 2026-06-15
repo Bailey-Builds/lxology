@@ -17,7 +17,7 @@ export default function Services() {
 
         {/* Hero */}
         <section className="py-14 md:py-20" style={{ backgroundColor: '#F6F9FF' }}>
-          <div className="max-w-6xl mx-auto px-8">
+          <div className="max-w-6xl mx-auto px-4 sm:px-8">
             <h1 className="text-4xl md:text-5xl font-bold text-[#26006B] mb-5">
               Strategic Learning Support<br />for Workplace Growth
             </h1>
@@ -31,7 +31,7 @@ export default function Services() {
 
         {/* Service Cards */}
         <section className="py-16 bg-white">
-          <div className="max-w-6xl mx-auto px-8">
+          <div className="max-w-6xl mx-auto px-4 sm:px-8">
             <div className="grid md:grid-cols-2 gap-8">
 
               {/* Card 1 */}
@@ -109,7 +109,7 @@ export default function Services() {
 
         {/* Best Fit */}
         <section className="py-14" style={{ backgroundColor: '#F6F9FF' }}>
-          <div className="max-w-6xl mx-auto px-8">
+          <div className="max-w-6xl mx-auto px-4 sm:px-8">
             <h2 className="text-2xl font-bold text-[#26006B] mb-8">
               Best for organizations that need:
             </h2>
@@ -130,7 +130,7 @@ export default function Services() {
 
         {/* CTA */}
         <section className="py-20" style={{ backgroundColor: '#26006B' }}>
-          <div className="max-w-6xl mx-auto px-8 text-center">
+          <div className="max-w-6xl mx-auto px-4 sm:px-8 text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
               Let's Discuss Your Learning Needs
             </h2>

@@ -3,7 +3,7 @@ export default function Footer() {
 
   return (
     <footer style={{ backgroundColor: '#26006B' }} className="text-white pt-12 pb-8">
-      <div className="max-w-6xl mx-auto px-8">
+      <div className="max-w-6xl mx-auto px-4 sm:px-8">
         <div className="grid md:grid-cols-3 gap-10 mb-10">
           {/* Brand */}
           <div>

@@ -1,7 +1,7 @@
 export default function TopicRequest() {
   return (
     <section className="py-16 md:py-24" style={{ backgroundColor: '#F6F9FF' }}>
-      <div className="max-w-6xl mx-auto px-8">
+      <div className="max-w-6xl mx-auto px-4 sm:px-8">
         <div
           className="max-w-2xl mx-auto text-center bg-white p-10 border shadow-sm"
           style={{ borderColor: '#E5EAF3', borderRadius: '6px' }}

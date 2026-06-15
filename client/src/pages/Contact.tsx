@@ -27,7 +27,7 @@ export default function Contact() {
 
         {/* Hero */}
         <section className="py-14 md:py-20" style={{ backgroundColor: '#F6F9FF' }}>
-          <div className="max-w-6xl mx-auto px-8">
+          <div className="max-w-6xl mx-auto px-4 sm:px-8">
             <h1 className="text-4xl md:text-5xl font-bold text-[#26006B] mb-5">
               Let's Start a Conversation
             </h1>
@@ -47,7 +47,7 @@ export default function Contact() {
 
         {/* Topic Request Form */}
         <section id="topic-request" className="py-16 bg-white">
-          <div className="max-w-6xl mx-auto px-8">
+          <div className="max-w-6xl mx-auto px-4 sm:px-8">
             <div className="max-w-2xl">
               <h2 className="text-2xl font-bold text-[#26006B] mb-2">Need a Specific Topic?</h2>
               <p className="text-gray-600 mb-8 leading-relaxed">
