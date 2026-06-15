@@ -5,14 +5,6 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [showToolsMsg, setShowToolsMsg] = useState(false);
 
-  const navLinks = [
-    { label: 'Home', href: '/' },
-    { label: 'Products', href: '/#products' },
-    { label: 'Services', href: '/services' },
-    { label: 'About Lxology', href: '/about' },
-    { label: 'Contact', href: '/contact#topic-request' },
-  ];
-
   const handleToolsClick = (e: React.MouseEvent) => {
     e.preventDefault();
     setShowToolsMsg(true);
@@ -35,26 +27,22 @@ export default function Header() {
 
         {/* Desktop Navigation */}
         <nav className="hidden lg:flex items-center gap-8 relative">
-          {navLinks.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              className="text-gray-700 hover:text-[#FD6A02] transition-colors duration-200 font-medium"
-            >
-              {link.label}
-            </a>
-          ))}
+          <a href="/" className="text-gray-700 hover:text-[#FD6A02] transition-colors duration-200 font-medium">Home</a>
+          <a href="/#products" className="text-gray-700 hover:text-[#FD6A02] transition-colors duration-200 font-medium">Products</a>
+          <a href="/services" className="text-gray-700 hover:text-[#FD6A02] transition-colors duration-200 font-medium">Services</a>
           <button
             onClick={handleToolsClick}
             className="text-gray-400 font-medium cursor-pointer transition-colors duration-200 hover:text-gray-500"
           >
             Tools
           </button>
+          <a href="/about" className="text-gray-700 hover:text-[#FD6A02] transition-colors duration-200 font-medium">About Lxology</a>
+          <a href="/contact#topic-request" className="text-gray-700 hover:text-[#FD6A02] transition-colors duration-200 font-medium">Contact</a>
 
-          {/* Tooltip message */}
+          {/* Tooltip */}
           {showToolsMsg && (
             <div
-              className="absolute right-0 top-10 bg-[#26006B] text-white text-sm px-4 py-2 shadow-lg whitespace-nowrap"
+              className="absolute left-1/2 -translate-x-1/2 top-10 bg-gray-100 text-gray-500 text-xs px-3 py-1.5 shadow-sm whitespace-nowrap border border-gray-200"
               style={{ borderRadius: '4px' }}
             >
               Timeline Estimator Beta — Coming Soon
@@ -75,22 +63,17 @@ export default function Header() {
       {isOpen && (
         <div className="lg:hidden bg-white border-t border-gray-200 py-4">
           <nav className="max-w-6xl mx-auto px-8 flex flex-col gap-4">
-            {navLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                className="text-gray-700 hover:text-[#FD6A02] transition-colors py-2 font-medium"
-                onClick={() => setIsOpen(false)}
-              >
-                {link.label}
-              </a>
-            ))}
+            <a href="/" className="text-gray-700 hover:text-[#FD6A02] transition-colors py-2 font-medium" onClick={() => setIsOpen(false)}>Home</a>
+            <a href="/#products" className="text-gray-700 hover:text-[#FD6A02] transition-colors py-2 font-medium" onClick={() => setIsOpen(false)}>Products</a>
+            <a href="/services" className="text-gray-700 hover:text-[#FD6A02] transition-colors py-2 font-medium" onClick={() => setIsOpen(false)}>Services</a>
             <button
               onClick={(e) => { handleToolsClick(e); setIsOpen(false); }}
               className="text-gray-400 font-medium text-left py-2"
             >
               Tools
             </button>
+            <a href="/about" className="text-gray-700 hover:text-[#FD6A02] transition-colors py-2 font-medium" onClick={() => setIsOpen(false)}>About Lxology</a>
+            <a href="/contact#topic-request" className="text-gray-700 hover:text-[#FD6A02] transition-colors py-2 font-medium" onClick={() => setIsOpen(false)}>Contact</a>
           </nav>
         </div>
       )}
