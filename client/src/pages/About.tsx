@@ -91,7 +91,7 @@ export default function About() {
             <div>
               <h2 className="text-2xl font-bold text-[#26006B] mb-6">Leadership</h2>
               <div
-                className="max-w-2xl p-7 border border-gray-100 shadow-sm bg-white"
+                className="max-w-3xl p-7 border border-gray-100 shadow-sm bg-white"
                 style={{ borderRadius: '6px' }}
               >
                 <h3 className="text-lg font-bold text-[#26006B] mb-1">Emily Bailey</h3>
