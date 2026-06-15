@@ -12,6 +12,7 @@ export default function ContactCTA() {
         >
           Contact Us
         </a>
+        <div className="mt-14 border-t" style={{ borderColor: 'rgba(255,255,255,0.2)' }} />
       </div>
     </section>
   );

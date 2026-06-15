@@ -55,8 +55,8 @@ export default function FeaturedOfferings() {
           {offerings.map((offering) => (
             <div
               key={offering.title}
-              className="flex flex-col p-6 border border-gray-100 shadow-sm bg-white"
-              style={{ borderRadius: '6px' }}
+              className="flex flex-col p-6 border border-gray-100 shadow-sm"
+              style={{ borderRadius: '6px', backgroundColor: offering.title === 'The LX Hub™' ? '#F6F9FF' : '#ffffff' }}
             >
               <div className="flex items-center justify-between mb-4">
                 <span
