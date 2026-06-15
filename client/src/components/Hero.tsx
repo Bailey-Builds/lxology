@@ -1,20 +1,20 @@
-import { useState } from 'react';
-
 export default function Hero() {
-  const [isHovering, setIsHovering] = useState(false);
-
   const scrollToThreeWays = () => {
     document.getElementById('three-ways-we-help')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
     <section id="home" className="bg-white overflow-hidden">
-      <div className="max-w-7xl mx-auto px-8">
-        <div className="grid md:grid-cols-2 gap-0 items-stretch min-h-[560px]">
-          {/* Left: Content */}
-          <div className="flex flex-col justify-center py-16 pr-8">
+      <div className="flex flex-col md:flex-row md:items-end md:min-h-[640px]">
+
+        {/* Left: Content — constrained width, padded from left */}
+        <div className="md:w-[44%] shrink-0 flex items-center">
+          <div className="px-8 md:pl-16 md:pr-10 py-16 w-full">
             <div className="mb-4">
-              <span className="inline-block px-4 py-2 bg-[#FD6A02]/10 text-sm font-semibold text-[#FD6A02]" style={{ borderRadius: '4px' }}>
+              <span
+                className="inline-block px-4 py-2 bg-[#FD6A02]/10 text-sm font-semibold text-[#FD6A02]"
+                style={{ borderRadius: '4px' }}
+              >
                 Welcome to LXOLOGY
               </span>
             </div>
@@ -23,8 +23,9 @@ export default function Hero() {
               <br />
               Enhance Experiences.
             </h1>
-            <p className="text-lg text-gray-600 mb-8 leading-relaxed max-w-lg">
-              Professional learning solutions, scalable training programs, and workplace development resources designed to improve performance and build capability.
+            <p className="text-lg text-gray-600 mb-8 leading-relaxed">
+              Professional learning solutions, scalable training programs, and workplace
+              development resources designed to improve performance and build capability.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <button
@@ -42,22 +43,17 @@ export default function Hero() {
               </button>
             </div>
           </div>
-
-          {/* Right: Illustration — fills full column height */}
-          <div className="flex items-end justify-center pt-8">
-            <div
-              className={`w-full transition-all duration-500 ease-out ${isHovering ? 'translate-y-1' : 'translate-y-0'}`}
-              onMouseEnter={() => setIsHovering(true)}
-              onMouseLeave={() => setIsHovering(false)}
-            >
-              <img
-                src="/hero-team.png"
-                alt="Lxology team illustration"
-                className="w-full h-auto"
-              />
-            </div>
-          </div>
         </div>
+
+        {/* Right: Illustration — fills remaining viewport width, bleeds to edge */}
+        <div className="flex-1 flex items-end">
+          <img
+            src="/hero-team.png"
+            alt="Lxology team illustration"
+            className="w-full h-auto block"
+          />
+        </div>
+
       </div>
     </section>
   );
