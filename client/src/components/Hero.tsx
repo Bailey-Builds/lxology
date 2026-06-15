@@ -10,7 +10,7 @@ export default function Hero() {
   return (
     <section id="home" className="bg-white overflow-hidden pt-16 pb-20 md:pt-24 md:pb-28">
       <div className="max-w-6xl mx-auto px-8">
-        <div className="grid md:grid-cols-2 gap-10 items-center">
+        <div className="grid md:grid-cols-2 gap-6 items-center">
           {/* Left: Content */}
           <div>
             <div className="mb-4">
@@ -53,7 +53,7 @@ export default function Hero() {
               <img
                 src="/hero-team.png"
                 alt="Lxology team illustration"
-                className="w-full h-auto max-w-lg mx-auto"
+                className="w-full h-auto"
               />
             </div>
           </div>
