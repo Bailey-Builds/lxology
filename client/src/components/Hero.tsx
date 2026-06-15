@@ -8,7 +8,7 @@ export default function Hero() {
       <div className="flex flex-col lg:flex-row lg:items-end lg:min-h-[640px]">
 
         {/* Text — full width on mobile/tablet, 40% on desktop */}
-        <div className="lg:w-[40%] shrink-0">
+        <div className="lg:w-1/2 shrink-0">
           <div className="px-6 sm:px-10 lg:pl-12 lg:pr-2 py-10 sm:py-14 lg:py-16">
             <div className="mb-4">
               <span
