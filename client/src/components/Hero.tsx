@@ -5,9 +5,9 @@ export default function Hero() {
 
   return (
     <section id="home" className="bg-white overflow-hidden">
-      <div className="flex flex-col lg:flex-row lg:items-end">
+      <div className="flex flex-col lg:flex-row lg:items-stretch">
 
-        {/* Text — 58% on desktop so the headline fits on two lines */}
+        {/* Text — 58% on desktop so headline fits on two lines */}
         <div className="lg:w-[58%] shrink-0 flex items-center">
           <div className="px-6 sm:px-10 lg:pl-14 lg:pr-10 py-12 sm:py-16 lg:py-20 w-full">
             <div className="mb-5">
@@ -45,12 +45,13 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Image — 42% on desktop, full width stacked on mobile */}
-        <div className="lg:flex-1 flex items-end">
+        {/* Image — overflow hidden clips the blank top portion of the PNG */}
+        <div className="lg:flex-1 overflow-hidden flex items-end"
+          style={{ maxHeight: '520px' }}>
           <img
             src="/hero-team.png"
             alt="Lxology team illustration"
-            className="w-full h-auto block max-h-[360px] sm:max-h-[460px] lg:max-h-none object-contain object-bottom"
+            className="w-full h-auto block"
           />
         </div>
 
