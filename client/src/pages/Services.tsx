@@ -128,25 +128,6 @@ export default function Services() {
           </div>
         </section>
 
-        {/* CTA */}
-        <section className="py-20" style={{ backgroundColor: '#26006B' }}>
-          <div className="max-w-6xl mx-auto px-4 sm:px-8 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Let's Discuss Your Learning Needs
-            </h2>
-            <p className="text-gray-300 mb-8 max-w-xl mx-auto">
-              Tell us what you're trying to build, improve, or solve. Lxology can help you
-              determine the right level of support.
-            </p>
-            <a
-              href="/contact#topic-request"
-              className="inline-block bg-[#FD6A02] text-white px-10 py-4 font-bold text-lg hover:bg-[#e55a00] transition-colors duration-200 shadow-lg"
-              style={{ borderRadius: '4px' }}
-            >
-              Contact Us
-            </a>
-          </div>
-        </section>
       </main>
       <Footer minimal />
     </div>
