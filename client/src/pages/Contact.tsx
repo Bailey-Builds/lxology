@@ -162,7 +162,7 @@ export default function Contact() {
         </section>
 
       </main>
-      <Footer />
+      <Footer minimal />
     </div>
   );
 }

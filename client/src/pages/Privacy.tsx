@@ -150,7 +150,7 @@ export default function Privacy() {
           ))}
         </div>
       </main>
-      <Footer />
+      <Footer minimal />
     </div>
   );
 }
