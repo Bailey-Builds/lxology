@@ -23,7 +23,7 @@ export default function WelcomeScreen({ onStart }: WelcomeScreenProps) {
       <div className="flex flex-col lg:flex-row lg:items-center gap-8 lg:gap-20">
 
         {/* Left 60% — left edge padding lives here */}
-        <div className="lg:w-[60%] flex-shrink-0 space-y-6 py-2 lg:pl-12">
+        <div className="lg:w-[60%] flex-shrink-0 space-y-6 py-2 lg:pl-[8vw]">
           <div>
             <span
               className="inline-block px-4 py-2 bg-[#FD6A02]/10 text-sm font-semibold text-[#FD6A02] mb-4"
@@ -39,10 +39,10 @@ export default function WelcomeScreen({ onStart }: WelcomeScreenProps) {
               <span className="text-[#FD6A02]">Estimator™</span>
             </h1>
           </div>
-          <p className="text-lg text-gray-600 leading-relaxed">
+          <p className="text-lg text-gray-600 leading-relaxed max-w-sm">
             A deadline is not the same thing as a realistic timeline.
           </p>
-          <p className="text-base text-gray-500">
+          <p className="text-base text-gray-500 max-w-[520px]">
             Estimate a realistic planning range for your learning initiative, project,
             program, or change effort before you commit to a deadline.
           </p>
@@ -58,13 +58,14 @@ export default function WelcomeScreen({ onStart }: WelcomeScreenProps) {
           <p className="text-sm text-[#26006B]">
             Takes approximately <strong>5–10 minutes</strong> • No account required • Free to use
           </p>
-          <p className="text-sm text-gray-500 border-t border-gray-100 pt-4">
-            Timeline estimates are directional and intended for planning conversations, not guaranteed delivery dates. This Beta does not calculate team capacity, staffing levels, or organization-specific work velocity.
-          </p>
+          <div className="text-sm text-gray-500 border-t border-gray-100 pt-4 space-y-1 max-w-[520px]">
+            <p>Timeline estimates are directional and intended for planning conversations, not guaranteed delivery dates.</p>
+            <p>This Beta does not calculate team capacity, staffing levels, or organization-specific work velocity.</p>
+          </div>
         </div>
 
         {/* Right 40% — right edge padding lives here */}
-        <div className="flex-1 lg:self-center lg:pr-12">
+        <div className="flex-1 lg:self-center lg:pr-[8vw]">
           <div className="bg-[#26006B]/5 border border-[#26006B]/10 p-8 space-y-6" style={{ borderRadius: '8px' }}>
             <p className="text-sm font-semibold text-[#26006B] uppercase tracking-wide">What you'll get</p>
             <div className="space-y-3">
