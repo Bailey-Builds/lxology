@@ -20,7 +20,7 @@ export default function WelcomeScreen({ onStart }: WelcomeScreenProps) {
   return (
     <div className="space-y-10">
       {/* Two-column layout: columns own their outer edges */}
-      <div className="flex flex-col lg:flex-row lg:items-center gap-8 lg:gap-12">
+      <div className="flex flex-col lg:flex-row lg:items-center gap-8 lg:gap-20">
 
         {/* Left 60% — left edge padding lives here */}
         <div className="lg:w-[60%] flex-shrink-0 space-y-6 py-2 lg:pl-[8vw]">
@@ -58,6 +58,9 @@ export default function WelcomeScreen({ onStart }: WelcomeScreenProps) {
           <p className="text-sm text-[#26006B]">
             Takes approximately <strong>5–10 minutes</strong> • No account required • Free to use
           </p>
+          <p className="text-sm text-gray-500 border-t border-gray-100 pt-4">
+            Timeline estimates are directional and intended for planning conversations, not guaranteed delivery dates. This Beta does not calculate team capacity, staffing levels, or organization-specific work velocity.
+          </p>
         </div>
 
         {/* Right 40% — right edge padding lives here */}
@@ -76,12 +79,6 @@ export default function WelcomeScreen({ onStart }: WelcomeScreenProps) {
         </div>
       </div>
 
-      {/* Disclaimer — matches left column's outer padding on desktop */}
-      <div className="lg:pl-[8vw] lg:pr-[8vw]">
-        <p className="text-sm text-gray-500 border-t border-gray-100 pt-6">
-          Timeline estimates are directional and intended for planning conversations, not guaranteed delivery dates. This Beta does not calculate team capacity, staffing levels, or organization-specific work velocity.
-        </p>
-      </div>
     </div>
   );
 }
