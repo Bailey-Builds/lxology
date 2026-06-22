@@ -7,7 +7,7 @@ export default function TimelineEstimator() {
     <div className="min-h-screen flex flex-col bg-white">
       <Header />
       <main className="flex-1">
-        <div className="px-6 sm:px-10 lg:px-32 xl:px-48 py-10">
+        <div className="px-[5%] sm:px-[7%] lg:px-[8%] py-10">
           <EstimatorWizard />
         </div>
       </main>
