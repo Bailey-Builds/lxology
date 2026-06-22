@@ -22,8 +22,8 @@ export default function WelcomeScreen({ onStart }: WelcomeScreenProps) {
       {/* Hero — text left, panel right, full viewport width */}
       <div className="flex flex-col lg:flex-row lg:items-stretch gap-8 lg:gap-12">
 
-        {/* Left: headline + copy + CTA */}
-        <div className="lg:w-[420px] xl:w-[480px] flex-shrink-0 space-y-6 py-2">
+        {/* Left: headline + copy + CTA — 60% */}
+        <div className="lg:w-[60%] flex-shrink-0 space-y-6 py-2">
           <div>
             <span
               className="inline-block px-4 py-2 bg-[#FD6A02]/10 text-sm font-semibold text-[#FD6A02] mb-4"
@@ -60,7 +60,7 @@ export default function WelcomeScreen({ onStart }: WelcomeScreenProps) {
           </p>
         </div>
 
-        {/* Right: What you'll get — grows to fill all remaining page width */}
+        {/* Right: What you'll get — 40% */}
         <div className="flex-1 bg-[#26006B]/5 border border-[#26006B]/10 p-8 space-y-6" style={{ borderRadius: '8px' }}>
           <p className="text-sm font-semibold text-[#26006B] uppercase tracking-wide">What you'll get</p>
           {/* Two explicit columns so items never wrap mid-label */}
