@@ -71,25 +71,25 @@ export default function InitiativeTypeSelect({
               onClick={() => onSelect(type)}
               className={`w-full text-left p-5 border-2 transition-all duration-150 ${
                 isSelected
-                  ? 'border-[#26006B] bg-[#26006B]/5'
-                  : 'border-gray-200 hover:border-[#26006B]/40 hover:bg-gray-50'
+                  ? 'border-[#FF661E] bg-[#FF661E]/5'
+                  : 'border-[#26006B] hover:border-[#FF661E]/60 hover:bg-gray-50'
               }`}
               style={{ borderRadius: '8px' }}
             >
               <div className="flex items-start gap-4">
                 <FontAwesomeIcon
                   icon={icon}
-                  className={`text-xl mt-0.5 flex-shrink-0 ${isSelected ? 'text-[#26006B]' : 'text-gray-400'}`}
+                  className={`text-xl mt-0.5 flex-shrink-0 ${isSelected ? 'text-[#FF661E]' : 'text-[#26006B]'}`}
                 />
                 <div className="space-y-1 min-w-0 flex-1">
-                  <p className={`font-semibold ${isSelected ? 'text-[#26006B]' : 'text-gray-800'}`}>
+                  <p className={`font-semibold ${isSelected ? 'text-[#FF661E]' : 'text-gray-800'}`}>
                     {label}
                   </p>
                   <p className="text-sm text-gray-600 italic">{question}</p>
                   <p className="text-xs text-gray-400 mt-1">{examples}</p>
                 </div>
                 <div className={`flex-shrink-0 w-5 h-5 rounded-full border-2 mt-0.5 ${
-                  isSelected ? 'border-[#26006B] bg-[#26006B]' : 'border-gray-300'
+                  isSelected ? 'border-[#FF661E] bg-[#FF661E]' : 'border-[#26006B]'
                 }`}>
                   {isSelected && (
                     <svg className="w-full h-full text-white" viewBox="0 0 20 20" fill="currentColor">
