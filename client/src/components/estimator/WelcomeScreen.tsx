@@ -39,10 +39,10 @@ export default function WelcomeScreen({ onStart }: WelcomeScreenProps) {
               <span className="text-[#FD6A02]">Estimator™</span>
             </h1>
           </div>
-          <p className="text-lg text-gray-600 leading-relaxed max-w-sm">
+          <p className="text-lg text-gray-600 leading-relaxed">
             A deadline is not the same thing as a realistic timeline.
           </p>
-          <p className="text-base text-gray-500 max-w-[520px]">
+          <p className="text-base text-gray-500 max-w-[640px]">
             Estimate a realistic planning range for your learning initiative, project,
             program, or change effort before you commit to a deadline.
           </p>
@@ -58,7 +58,7 @@ export default function WelcomeScreen({ onStart }: WelcomeScreenProps) {
           <p className="text-sm text-[#26006B]">
             Takes approximately <strong>5–10 minutes</strong> • No account required • Free to use
           </p>
-          <div className="text-sm text-gray-500 border-t border-gray-100 pt-4 space-y-1 max-w-[520px]">
+          <div className="text-sm text-gray-500 border-t border-gray-100 pt-4 space-y-1">
             <p>Timeline estimates are directional and intended for planning conversations, not guaranteed delivery dates.</p>
             <p>This Beta does not calculate team capacity, staffing levels, or organization-specific work velocity.</p>
           </div>
