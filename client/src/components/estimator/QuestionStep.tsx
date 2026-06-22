@@ -32,13 +32,11 @@ const HELP_PANELS: Record<string, HelpPanel> = {
     definitions: [
       {
         term: 'Deliverable',
-        meaning:
-          'A specific output that can be completed, reviewed, and handed off — a course module, process document, communication plan, training guide, tracker, or similar tangible work product.',
+        meaning: 'A completed, reviewable output — a module, document, guide, tracker, or asset.',
       },
       {
         term: 'Workstream',
-        meaning:
-          'A distinct area of parallel work with its own tasks, owners, or timeline — for example, content development, stakeholder communications, and technology setup each running at the same time.',
+        meaning: 'A parallel area of work with its own tasks and owners running simultaneously.',
       },
     ],
   },
@@ -54,13 +52,11 @@ const HELP_PANELS: Record<string, HelpPanel> = {
     definitions: [
       {
         term: 'Variables',
-        meaning:
-          'Factors that are uncertain, unresolved, or require coordination before you can move forward — undefined scope, pending approvals, unclear decision-makers, unstable content, or technology unknowns.',
+        meaning: 'Unresolved factors requiring coordination before work can move forward.',
       },
       {
         term: 'Open questions',
-        meaning:
-          'Unresolved decisions or missing information that the team still needs to align on — who approves it, what is in scope, which platform to use, or what the expected outcome looks like.',
+        meaning: 'Decisions or information the team still needs to confirm or align on.',
       },
     ],
   },
@@ -217,22 +213,23 @@ export default function QuestionStep({
           {/* Help panel */}
           {helpPanel && (
             <div
-              className="lg:w-64 xl:w-72 flex-shrink-0 p-5 space-y-5"
+              className="lg:w-80 flex-shrink-0 p-4 space-y-3"
               style={{
                 background: 'rgba(215, 231, 255, 0.35)',
                 border: '1px solid rgba(38, 0, 107, 0.12)',
                 borderRadius: '8px',
+                alignSelf: 'flex-start',
               }}
             >
               {/* Scale reference */}
-              <div className="space-y-3">
+              <div className="space-y-2">
                 <p
                   className="text-xs font-semibold uppercase tracking-wide"
                   style={{ color: '#26006B' }}
                 >
                   {helpPanel.title}
                 </p>
-                <div className="space-y-2">
+                <div className="space-y-1">
                   {helpPanel.scale.map((row) => (
                     <div key={row.label} className="flex justify-between gap-4">
                       <span className="text-xs font-semibold text-gray-700 whitespace-nowrap">
@@ -246,15 +243,15 @@ export default function QuestionStep({
 
               {/* Definitions */}
               <div
-                className="space-y-4 pt-4"
+                className="space-y-2 pt-3"
                 style={{ borderTop: '1px solid rgba(38, 0, 107, 0.1)' }}
               >
                 {helpPanel.definitions.map((def) => (
-                  <div key={def.term} className="space-y-1">
-                    <p className="text-xs font-bold" style={{ color: '#26006B' }}>
-                      {def.term}
-                    </p>
-                    <p className="text-xs text-gray-500 leading-relaxed">{def.meaning}</p>
+                  <div key={def.term}>
+                    <span className="text-xs font-bold" style={{ color: '#26006B' }}>
+                      {def.term}:{' '}
+                    </span>
+                    <span className="text-xs text-gray-500">{def.meaning}</span>
                   </div>
                 ))}
               </div>
