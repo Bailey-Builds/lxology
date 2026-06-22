@@ -82,14 +82,14 @@ export default function InitiativeTypeSelect({
                   className={`text-xl mt-0.5 flex-shrink-0 transition-colors duration-150 ${isSelected ? 'text-[#FD6A02]' : 'text-[#26006B] group-hover:text-[#FD6A02]'}`}
                 />
                 <div className="space-y-1 min-w-0 flex-1">
-                  <p className={`font-semibold transition-colors duration-150 ${isSelected ? 'text-[#FD6A02]' : 'text-[#26006B] group-hover:text-[#FD6A02]'}`}>
+                  <p className={`font-semibold transition-colors duration-150 ${isSelected ? 'text-[#26006B]' : 'text-[#26006B] group-hover:text-[#FD6A02]'}`}>
                     {label}
                   </p>
                   <p className="text-sm text-gray-600 italic">{question}</p>
                   <p className="text-xs text-gray-400 mt-1">{examples}</p>
                 </div>
                 <div className={`flex-shrink-0 w-5 h-5 rounded-full border-2 mt-0.5 ${
-                  isSelected ? 'border-[#26006B] bg-[#26006B]' : 'border-gray-300'
+                  isSelected ? 'border-[#FD6A02] bg-[#FD6A02]' : 'border-gray-300'
                 }`}>
                   {isSelected && (
                     <svg className="w-full h-full text-white" viewBox="0 0 20 20" fill="currentColor">
@@ -114,7 +114,7 @@ export default function InitiativeTypeSelect({
         <button
           onClick={onContinue}
           disabled={!selected}
-          className="bg-[#26006B] text-white px-7 py-3 font-semibold text-base hover:bg-[#1a0047] disabled:opacity-40 disabled:cursor-not-allowed transition-colors duration-200"
+          className="bg-[#26006B] text-white px-7 py-3 font-semibold text-base hover:bg-[#FD6A02] disabled:opacity-40 disabled:cursor-not-allowed transition-colors duration-200"
           style={{ borderRadius: '4px' }}
         >
           Continue
