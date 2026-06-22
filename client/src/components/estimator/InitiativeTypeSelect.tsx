@@ -1,3 +1,5 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGraduationCap, faClipboard, faLayerGroup, faArrowsRotate, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { InitiativeType } from '@/lib/estimator/types';
 
 interface InitiativeTypeSelectProps {
@@ -12,35 +14,35 @@ const TYPES: {
   label: string;
   question: string;
   examples: string;
-  icon: string;
+  icon: IconDefinition;
 }[] = [
   {
     type: 'learning',
     label: 'Learning Initiative',
     question: 'How long will it take to design, develop, review, and finalize this learning experience?',
     examples: 'Courses, workshops, eLearning, job aids, microlearning, learning paths',
-    icon: '🎓',
+    icon: faGraduationCap,
   },
   {
     type: 'project',
     label: 'Project',
     question: 'How long will it take to complete this defined deliverable or body of work?',
     examples: 'Documents, reports, trackers, process updates, pilots, resource libraries, campaigns',
-    icon: '📋',
+    icon: faClipboard,
   },
   {
     type: 'program',
     label: 'Program',
     question: 'How long will it take to design, coordinate, develop, and launch a multi-part initiative?',
     examples: 'Capability programs, academies, onboarding, multi-course curricula, transformation programs',
-    icon: '🗂',
+    icon: faLayerGroup,
   },
   {
     type: 'change',
     label: 'Change Initiative',
     question: 'How long will it take to prepare people for this change and support adoption?',
     examples: 'Technology rollouts, process changes, policy changes, operating model changes, culture shifts',
-    icon: '🔄',
+    icon: faArrowsRotate,
   },
 ];
 
@@ -75,7 +77,10 @@ export default function InitiativeTypeSelect({
               style={{ borderRadius: '8px' }}
             >
               <div className="flex items-start gap-4">
-                <span className="text-2xl mt-0.5 flex-shrink-0">{icon}</span>
+                <FontAwesomeIcon
+                  icon={icon}
+                  className={`text-xl mt-0.5 flex-shrink-0 ${isSelected ? 'text-[#26006B]' : 'text-gray-400'}`}
+                />
                 <div className="space-y-1 min-w-0 flex-1">
                   <p className={`font-semibold ${isSelected ? 'text-[#26006B]' : 'text-gray-800'}`}>
                     {label}
