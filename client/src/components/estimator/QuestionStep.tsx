@@ -32,7 +32,7 @@ const HELP_PANELS: Record<string, HelpPanel> = {
     definitions: [
       {
         term: 'Deliverable',
-        meaning: 'A completed, reviewable output — a module, document, guide, tracker, or asset.',
+        meaning: 'A completed, reviewable output: a module, document, guide, tracker, or asset.',
       },
       {
         term: 'Workstream',
@@ -152,112 +152,98 @@ export default function QuestionStep({
         className="transition-opacity duration-200"
         style={{ opacity: fading ? 0 : 1 }}
       >
-        <div className={helpPanel ? 'flex flex-col lg:flex-row lg:items-start gap-8 lg:gap-12' : 'max-w-2xl'}>
-
-          {/* Question column */}
-          <div className={helpPanel ? 'flex-1 max-w-2xl' : undefined}>
-            {currentQ.fieldType === 'text' ? (
-              <div className="space-y-2">
-                <label className="block text-sm font-semibold text-gray-800">
-                  {currentQ.question}
-                  <span className="ml-2 text-xs text-gray-400 font-normal">optional</span>
-                </label>
-                <input
-                  type="text"
-                  value={(responses[currentQ.id] as string) ?? ''}
-                  onChange={(e) => onUpdateResponse(currentQ.id, e.target.value)}
-                  placeholder="e.g., CRM Adoption Rollout"
-                  className="w-full px-4 py-2.5 border border-gray-300 focus:border-[#26006B] focus:outline-none focus:ring-2 focus:ring-[#26006B]/20 text-sm"
-                  style={{ borderRadius: '4px' }}
-                />
-              </div>
-            ) : (
-              <div className="space-y-3">
-                <div>
-                  <label className="block text-sm font-semibold text-gray-800">
-                    {currentQ.question}
-                    {currentQ.required === 'required' && (
-                      <span className="ml-1.5 text-[#FD6A02]">*</span>
-                    )}
-                  </label>
-                  {error && (
-                    <p className="text-xs text-red-500 mt-1">Please select an option to continue.</p>
-                  )}
-                </div>
-                <div className="space-y-2">
-                  {currentQ.options?.map((opt, idx) => {
-                    const selected = responses[currentQ.id] === idx;
-                    return (
-                      <button
-                        key={idx}
-                        onClick={() => { onUpdateResponse(currentQ.id, idx); setError(false); }}
-                        className={`w-full text-left px-4 py-3 border-2 transition-all duration-150 ${
-                          selected
-                            ? 'border-[#26006B] bg-[#26006B]/5 text-[#26006B]'
-                            : 'border-gray-200 hover:border-[#26006B]/40 hover:bg-gray-50 text-gray-700'
-                        }`}
-                        style={{ borderRadius: '4px' }}
-                      >
-                        <span className="text-sm font-medium">{opt.label}</span>
-                        {opt.helperText && (
-                          <span className="block text-xs text-gray-500 mt-0.5">{opt.helperText}</span>
-                        )}
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-            )}
+        {currentQ.fieldType === 'text' ? (
+          <div className="max-w-2xl space-y-2">
+            <label className="block text-sm font-semibold text-gray-800">
+              {currentQ.question}
+              <span className="ml-2 text-xs text-gray-400 font-normal">optional</span>
+            </label>
+            <input
+              type="text"
+              value={(responses[currentQ.id] as string) ?? ''}
+              onChange={(e) => onUpdateResponse(currentQ.id, e.target.value)}
+              placeholder="e.g., CRM Adoption Rollout"
+              className="w-full px-4 py-2.5 border border-gray-300 focus:border-[#26006B] focus:outline-none focus:ring-2 focus:ring-[#26006B]/20 text-sm"
+              style={{ borderRadius: '4px' }}
+            />
           </div>
-
-          {/* Help panel */}
-          {helpPanel && (
-            <div
-              className="lg:w-80 flex-shrink-0 p-4 space-y-3"
-              style={{
-                background: 'rgba(215, 231, 255, 0.35)',
-                border: '1px solid rgba(38, 0, 107, 0.12)',
-                borderRadius: '8px',
-                alignSelf: 'flex-start',
-              }}
-            >
-              {/* Scale reference */}
-              <div className="space-y-2">
-                <p
-                  className="text-xs font-semibold uppercase tracking-wide"
-                  style={{ color: '#26006B' }}
-                >
-                  {helpPanel.title}
-                </p>
-                <div className="space-y-1">
-                  {helpPanel.scale.map((row) => (
-                    <div key={row.label} className="flex justify-between gap-4">
-                      <span className="text-xs font-semibold text-gray-700 whitespace-nowrap">
-                        {row.label}
-                      </span>
-                      <span className="text-xs text-gray-500 text-right">{row.desc}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Definitions */}
-              <div
-                className="space-y-2 pt-3"
-                style={{ borderTop: '1px solid rgba(38, 0, 107, 0.1)' }}
-              >
-                {helpPanel.definitions.map((def) => (
-                  <div key={def.term}>
-                    <span className="text-xs font-bold" style={{ color: '#26006B' }}>
-                      {def.term}:{' '}
-                    </span>
-                    <span className="text-xs text-gray-500">{def.meaning}</span>
-                  </div>
-                ))}
-              </div>
+        ) : (
+          <div className="space-y-3">
+            {/* Question label — always full width, above the options row */}
+            <div className="max-w-2xl">
+              <label className="block text-sm font-semibold text-gray-800">
+                {currentQ.question}
+                {currentQ.required === 'required' && (
+                  <span className="ml-1.5 text-[#FD6A02]">*</span>
+                )}
+              </label>
+              {error && (
+                <p className="text-xs text-red-500 mt-1">Please select an option to continue.</p>
+              )}
             </div>
-          )}
-        </div>
+
+            {/* Options + help panel — panel aligns with first answer choice */}
+            <div className={helpPanel ? 'flex flex-col lg:flex-row lg:items-start gap-6 lg:gap-12' : 'max-w-2xl'}>
+              <div className={helpPanel ? 'flex-1 max-w-2xl space-y-2' : 'space-y-2'}>
+                {currentQ.options?.map((opt, idx) => {
+                  const selected = responses[currentQ.id] === idx;
+                  return (
+                    <button
+                      key={idx}
+                      onClick={() => { onUpdateResponse(currentQ.id, idx); setError(false); }}
+                      className={`w-full text-left px-4 py-3 border-2 transition-all duration-150 ${
+                        selected
+                          ? 'border-[#26006B] bg-[#26006B]/5 text-[#26006B]'
+                          : 'border-gray-200 hover:border-[#26006B]/40 hover:bg-gray-50 text-gray-700'
+                      }`}
+                      style={{ borderRadius: '4px' }}
+                    >
+                      <span className="text-sm font-medium">{opt.label}</span>
+                      {opt.helperText && (
+                        <span className="block text-xs text-gray-500 mt-0.5">{opt.helperText}</span>
+                      )}
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Help panel */}
+              {helpPanel && (
+                <div
+                  className="lg:w-80 flex-shrink-0 p-4 space-y-3"
+                  style={{
+                    background: 'rgba(215, 231, 255, 0.35)',
+                    border: '1px solid rgba(38, 0, 107, 0.12)',
+                    borderRadius: '8px',
+                    alignSelf: 'flex-start',
+                  }}
+                >
+                  <div className="space-y-2">
+                    <p className="text-xs font-semibold uppercase tracking-wide" style={{ color: '#26006B' }}>
+                      {helpPanel.title}
+                    </p>
+                    <div className="space-y-1">
+                      {helpPanel.scale.map((row) => (
+                        <div key={row.label} className="flex justify-between gap-4">
+                          <span className="text-xs font-semibold text-gray-700 whitespace-nowrap">{row.label}</span>
+                          <span className="text-xs text-gray-500 text-right">{row.desc}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="space-y-2 pt-3" style={{ borderTop: '1px solid rgba(38, 0, 107, 0.1)' }}>
+                    {helpPanel.definitions.map((def) => (
+                      <div key={def.term}>
+                        <span className="text-xs font-bold" style={{ color: '#26006B' }}>{def.term}: </span>
+                        <span className="text-xs text-gray-500">{def.meaning}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Navigation */}
