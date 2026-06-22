@@ -21,8 +21,8 @@ export default function WelcomeScreen({ onStart }: WelcomeScreenProps) {
           A deadline is not the same thing as a realistic timeline.
         </p>
         <p className="text-base text-gray-500 max-w-lg mx-auto">
-          Generate a realistic planning timeline for your learning initiative, project,
-          program, or change effort — before you commit to a delivery date.
+          Estimate a realistic planning range for your learning initiative, project,
+          program, or change effort, before you commit to a deadline.
         </p>
       </div>
 
@@ -31,13 +31,13 @@ export default function WelcomeScreen({ onStart }: WelcomeScreenProps) {
         <p className="text-sm font-semibold text-[#26006B] uppercase tracking-wide">What you'll get</p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
           {[
-            'Realistic timeline range',
-            'Planning confidence level',
+            'Estimated timeline range',
             'Main timeline drivers',
-            'Risk factors and assumptions',
             'Recommended next steps',
-            'Phase allocation breakdown',
             'PDF, PowerPoint, and Word downloads',
+            'Estimate confidence level',
+            'Timeline risks and assumptions',
+            'Suggested phase breakdown',
           ].map((item) => (
             <div key={item} className="flex items-center gap-2 text-sm text-gray-700">
               <span className="text-[#FD6A02] font-bold">✓</span>
@@ -48,12 +48,9 @@ export default function WelcomeScreen({ onStart }: WelcomeScreenProps) {
       </div>
 
       {/* Details */}
-      <div className="space-y-2 text-sm text-gray-500">
-        <p>Takes approximately <strong className="text-gray-700">5–10 minutes</strong> · No account required · Free to use</p>
-        <p>
-          Supports four paths: Learning Initiative, Project, Program, and Change Initiative.
-        </p>
-      </div>
+      <p className="text-sm text-gray-500">
+        Takes approximately <strong className="text-gray-700">5–10 minutes</strong> • No account required • Free to use
+      </p>
 
       {/* CTA */}
       <button
@@ -64,10 +61,8 @@ export default function WelcomeScreen({ onStart }: WelcomeScreenProps) {
       </button>
 
       {/* Disclaimer */}
-      <p className="text-xs text-gray-400 max-w-md mx-auto">
-        Timeline estimates are directional and intended for planning conversations, not as guaranteed
-        delivery dates. This Beta version does not calculate team capacity, staffing levels, or
-        organization-specific work velocity.
+      <p className="text-sm text-gray-500 max-w-md mx-auto">
+        Timeline estimates are directional and intended for planning conversations, not guaranteed delivery dates. This Beta does not calculate team capacity, staffing levels, or organization-specific work velocity.
       </p>
     </div>
   );
