@@ -45,21 +45,22 @@ export default function WelcomeScreen({ onStart }: WelcomeScreenProps) {
         </div>
 
         {/* What you'll get */}
-        <div className="lg:w-80 xl:w-96 bg-[#26006B]/5 border border-[#26006B]/10 rounded-lg p-6 space-y-4" style={{ borderRadius: '8px' }}>
+        <div className="lg:w-80 xl:w-96 bg-[#26006B]/5 border border-[#26006B]/10 p-6 space-y-4" style={{ borderRadius: '8px' }}>
           <p className="text-sm font-semibold text-[#26006B] uppercase tracking-wide">What you'll get</p>
-          <div className="space-y-3">
+          <div className="grid grid-cols-2 gap-x-4 gap-y-3">
             {[
               'Estimated timeline range',
+              'Estimate confidence level',
+              'Initiative complexity level',
+              'Timeline risks and assumptions',
               'Main timeline drivers',
+              'Suggested phase breakdown',
               'Recommended next steps',
               'PDF, PowerPoint, and Word downloads',
-              'Estimate confidence level',
-              'Timeline risks and assumptions',
-              'Suggested phase breakdown',
             ].map((item) => (
-              <div key={item} className="flex items-center gap-3 text-sm text-gray-700">
-                <span className="text-[#FD6A02] font-bold flex-shrink-0">✓</span>
-                {item}
+              <div key={item} className="flex items-start gap-2 text-sm text-gray-700">
+                <span className="text-[#FD6A02] font-bold flex-shrink-0 mt-0.5">✓</span>
+                <span>{item}</span>
               </div>
             ))}
           </div>
