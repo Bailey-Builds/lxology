@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircle } from '@fortawesome/free-solid-svg-icons';
 import { ScoringResult } from '@/lib/estimator/types';
 import { PHASE_ALLOCATIONS } from '@/lib/estimator/phases';
 import PhaseBar from './PhaseBar';
@@ -31,7 +33,7 @@ function BulletList({ items }: { items: string[] }) {
     <ul className="space-y-2 pt-2">
       {items.map((item, i) => (
         <li key={i} className="flex gap-2 text-sm text-gray-700">
-          <span className="mt-1 text-[#FD6A02] flex-shrink-0">•</span>
+          <FontAwesomeIcon icon={faCircle} className="mt-1 text-[#FD6A02] flex-shrink-0 text-[6px]" />
           <span>{item}</span>
         </li>
       ))}

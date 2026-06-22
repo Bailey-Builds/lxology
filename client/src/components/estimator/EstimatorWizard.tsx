@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { InitiativeType, Responses, ScoringResult } from '@/lib/estimator/types';
 import { UNIVERSAL_QUESTIONS, getQuestionsForInitiative } from '@/lib/estimator/questions';
 import { calculateScore } from '@/lib/estimator/scoring';
@@ -37,7 +39,7 @@ function StepProgress({ current }: { current: Step }) {
                     : 'bg-gray-100 text-gray-400'
               }`}
             >
-              {done ? '✓' : i + 1}
+              {done ? <FontAwesomeIcon icon={faCheck} className="text-xs" /> : i + 1}
             </div>
             <span
               className={`text-xs font-medium hidden sm:inline ${

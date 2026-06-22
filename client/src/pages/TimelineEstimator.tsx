@@ -7,7 +7,7 @@ export default function TimelineEstimator() {
     <div className="min-h-screen flex flex-col bg-white">
       <Header />
       <main className="flex-1">
-        <div className="px-6 lg:px-0 py-10">
+        <div className="py-10" style={{ paddingLeft: 'clamp(1.5rem, 8vw, 8rem)', paddingRight: 'clamp(1.5rem, 8vw, 8rem)' }}>
           <EstimatorWizard />
         </div>
       </main>

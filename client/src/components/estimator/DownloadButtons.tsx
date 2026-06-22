@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { ScoringResult } from '@/lib/estimator/types';
 import { downloadPDF, downloadPPTX, downloadWord } from '@/lib/estimator/downloads';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFilePdf, faFilePowerpoint, faFileWord, faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 interface DownloadButtonsProps {
   result: ScoringResult;
@@ -27,16 +29,16 @@ export default function DownloadButtons({ result }: DownloadButtonsProps) {
     }
   }
 
-  const buttons: { format: Format; label: string; icon: string; desc: string }[] = [
-    { format: 'pdf', label: 'PDF', icon: '📄', desc: 'Polished 2-page summary' },
-    { format: 'pptx', label: 'PowerPoint', icon: '📊', desc: '5-slide executive deck' },
-    { format: 'word', label: 'Word', icon: '📝', desc: 'Detailed planning record' },
+  const buttons: { format: Format; label: string; faIcon: typeof faFilePdf; desc: string }[] = [
+    { format: 'pdf', label: 'PDF', faIcon: faFilePdf, desc: 'Polished 2-page summary' },
+    { format: 'pptx', label: 'PowerPoint', faIcon: faFilePowerpoint, desc: '5-slide executive deck' },
+    { format: 'word', label: 'Word', faIcon: faFileWord, desc: 'Detailed planning record' },
   ];
 
   return (
     <div className="space-y-4">
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-        {buttons.map(({ format, label, icon, desc }) => (
+        {buttons.map(({ format, label, faIcon, desc }) => (
           <button
             key={format}
             onClick={() => handleDownload(format)}
@@ -44,7 +46,10 @@ export default function DownloadButtons({ result }: DownloadButtonsProps) {
             className="flex flex-col items-center gap-2 p-4 border-2 border-[#26006B]/20 hover:border-[#26006B] hover:bg-[#26006B]/5 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
             style={{ borderRadius: '4px' }}
           >
-            <span className="text-2xl">{loading === format ? '⏳' : icon}</span>
+            <FontAwesomeIcon
+              icon={loading === format ? faSpinner : faIcon}
+              className={`text-2xl text-[#26006B] ${loading === format ? 'animate-spin' : ''}`}
+            />
             <span className="font-semibold text-[#26006B] text-sm">
               {loading === format ? 'Preparing…' : `Download ${label}`}
             </span>
