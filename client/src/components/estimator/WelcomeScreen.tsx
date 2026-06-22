@@ -23,7 +23,7 @@ export default function WelcomeScreen({ onStart }: WelcomeScreenProps) {
       <div className="flex flex-col lg:flex-row lg:items-center gap-8 lg:gap-20">
 
         {/* Left 60% — left edge padding lives here */}
-        <div className="lg:w-[60%] flex-shrink-0 space-y-6 py-2 lg:pl-[8vw]">
+        <div className="lg:w-[60%] flex-shrink-0 space-y-6 py-2 lg:pl-12">
           <div>
             <span
               className="inline-block px-4 py-2 bg-[#FD6A02]/10 text-sm font-semibold text-[#FD6A02] mb-4"
@@ -64,7 +64,7 @@ export default function WelcomeScreen({ onStart }: WelcomeScreenProps) {
         </div>
 
         {/* Right 40% — right edge padding lives here */}
-        <div className="flex-1 lg:self-center lg:pr-[8vw]">
+        <div className="flex-1 lg:self-center lg:pr-12">
           <div className="bg-[#26006B]/5 border border-[#26006B]/10 p-8 space-y-6" style={{ borderRadius: '8px' }}>
             <p className="text-sm font-semibold text-[#26006B] uppercase tracking-wide">What you'll get</p>
             <div className="space-y-3">
