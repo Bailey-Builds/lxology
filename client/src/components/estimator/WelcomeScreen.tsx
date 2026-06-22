@@ -45,23 +45,23 @@ export default function WelcomeScreen({ onStart }: WelcomeScreenProps) {
         </div>
 
         {/* What you'll get */}
-        <div className="lg:w-[520px] xl:w-[560px] flex-shrink-0 bg-[#26006B]/5 border border-[#26006B]/10 p-6 space-y-4" style={{ borderRadius: '8px' }}>
+        <div className="flex-1 bg-[#26006B]/5 border border-[#26006B]/10 p-6 space-y-4" style={{ borderRadius: '8px' }}>
           <p className="text-sm font-semibold text-[#26006B] uppercase tracking-wide">What you'll get</p>
-          <div className="grid grid-cols-2 gap-x-8 gap-y-3">
+          <div className="grid grid-cols-2 gap-x-6 gap-y-3">
             {[
-              ['Estimated timeline range',     'Estimate confidence level'],
-              ['Initiative complexity level',  'Timeline risks and assumptions'],
-              ['Main timeline drivers',        'Suggested phase breakdown'],
-              ['Recommended next steps',       'PDF, PowerPoint, and Word downloads'],
+              ['Estimated timeline range',    'Estimate confidence level'],
+              ['Initiative complexity level', 'Timeline risks and assumptions'],
+              ['Main timeline drivers',       'Suggested phase breakdown'],
+              ['Recommended next steps',      'PDF, PowerPoint, and Word downloads'],
             ].map(([left, right]) => (
               <>
-                <div key={left} className="flex items-center gap-2 text-sm text-gray-700 whitespace-nowrap">
-                  <span className="text-[#FD6A02] font-bold flex-shrink-0">✓</span>
-                  {left}
+                <div key={left} className="flex items-start gap-2 text-sm text-gray-700">
+                  <span className="text-[#FD6A02] font-bold flex-shrink-0 mt-0.5">✓</span>
+                  <span>{left}</span>
                 </div>
-                <div key={right} className="flex items-center gap-2 text-sm text-gray-700 whitespace-nowrap">
-                  <span className="text-[#FD6A02] font-bold flex-shrink-0">✓</span>
-                  {right}
+                <div key={right} className="flex items-start gap-2 text-sm text-gray-700">
+                  <span className="text-[#FD6A02] font-bold flex-shrink-0 mt-0.5">✓</span>
+                  <span>{right}</span>
                 </div>
               </>
             ))}
