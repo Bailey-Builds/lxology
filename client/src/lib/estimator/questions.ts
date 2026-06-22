@@ -42,11 +42,11 @@ export const UNIVERSAL_QUESTIONS: Question[] = [
     required: 'required',
     category: 'Scope size',
     options: [
-      { label: 'Very small', score: 1 },
-      { label: 'Small', score: 2 },
-      { label: 'Medium', score: 3 },
-      { label: 'Large', score: 4 },
-      { label: 'Enterprise / organization-wide', score: 5 },
+      { label: 'Very small: one focused deliverable, narrow scope, or single component', score: 1 },
+      { label: 'Small: a few related deliverables or a well-contained body of work', score: 2 },
+      { label: 'Medium: several components, deliverables, or workstreams requiring coordination', score: 3 },
+      { label: 'Large: many deliverables, multiple teams or workstreams, significant coordination', score: 4 },
+      { label: 'Enterprise / organization-wide: affects the full organization or a major cross-functional audience', score: 5 },
     ],
   },
   {
@@ -56,11 +56,11 @@ export const UNIVERSAL_QUESTIONS: Question[] = [
     required: 'required',
     category: 'Complexity level',
     options: [
-      { label: 'Simple and straightforward', score: 1 },
-      { label: 'Somewhat complex', score: 2 },
-      { label: 'Moderately complex', score: 3 },
-      { label: 'Highly complex', score: 4 },
-      { label: 'Very complex with multiple moving parts', score: 5 },
+      { label: 'Simple: clear requirements, predictable work, low ambiguity', score: 1 },
+      { label: 'Somewhat complex: a few unknowns or variables to work through', score: 2 },
+      { label: 'Moderately complex: multiple variables, some dependencies, requires careful planning', score: 3 },
+      { label: 'Highly complex: many interdependencies, significant planning, or high ambiguity', score: 4 },
+      { label: 'Very complex: multiple moving parts, high uncertainty, or significant coordination challenges', score: 5 },
     ],
   },
   {
