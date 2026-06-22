@@ -42,11 +42,11 @@ export const UNIVERSAL_QUESTIONS: Question[] = [
     required: 'required',
     category: 'Scope size',
     options: [
-      { label: 'Very small: one focused deliverable, narrow scope, or single component', score: 1 },
-      { label: 'Small: a few related deliverables or a well-contained body of work', score: 2 },
-      { label: 'Medium: several components, deliverables, or workstreams requiring coordination', score: 3 },
-      { label: 'Large: many deliverables, multiple teams or workstreams, significant coordination', score: 4 },
-      { label: 'Enterprise / organization-wide: affects the full organization or a major cross-functional audience', score: 5 },
+      { label: 'Very small: 1–2 deliverables, 1 workstream', score: 1 },
+      { label: 'Small: 3–5 deliverables, 1–2 workstreams', score: 2 },
+      { label: 'Medium: 6–15 deliverables, 2–4 workstreams', score: 3 },
+      { label: 'Large: 16–30 deliverables, 4+ workstreams across multiple teams', score: 4 },
+      { label: 'Enterprise / organization-wide: 30+ deliverables spanning 5+ functions or the full organization', score: 5 },
     ],
   },
   {
@@ -56,11 +56,11 @@ export const UNIVERSAL_QUESTIONS: Question[] = [
     required: 'required',
     category: 'Complexity level',
     options: [
-      { label: 'Simple: clear requirements, predictable work, low ambiguity', score: 1 },
-      { label: 'Somewhat complex: a few unknowns or variables to work through', score: 2 },
-      { label: 'Moderately complex: multiple variables, some dependencies, requires careful planning', score: 3 },
-      { label: 'Highly complex: many interdependencies, significant planning, or high ambiguity', score: 4 },
-      { label: 'Very complex: multiple moving parts, high uncertainty, or significant coordination challenges', score: 5 },
+      { label: 'Simple: 0–2 open questions, clear scope, 1 team executing', score: 1 },
+      { label: 'Somewhat complex: 3–5 open questions or variables to resolve', score: 2 },
+      { label: 'Moderately complex: 6–10 variables, 2–3 teams, some dependencies to manage', score: 3 },
+      { label: 'Highly complex: 10–15 variables, 3–5 teams, significant ambiguity or interdependencies', score: 4 },
+      { label: 'Very complex: 15+ variables, 5+ teams, or major unknowns across multiple risk areas', score: 5 },
     ],
   },
   {
