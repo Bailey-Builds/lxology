@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGraduationCap, faClipboard, faLayerGroup, faArrowsRotate, IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { faGraduationCap, faClipboard, faLayerGroup, faArrowsRotate, faArrowLeft, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { InitiativeType } from '@/lib/estimator/types';
 
 interface InitiativeTypeSelectProps {
@@ -106,9 +106,9 @@ export default function InitiativeTypeSelect({
       <div className="flex gap-4 pt-2">
         <button
           onClick={onBack}
-          className="px-7 py-3 border border-gray-300 text-sm font-semibold text-gray-600 hover:bg-gray-50 transition-colors duration-200"
-          style={{ borderRadius: '4px' }}
+          className="flex items-center gap-1.5 text-sm text-gray-500 hover:text-[#26006B] transition-colors duration-200"
         >
+          <FontAwesomeIcon icon={faArrowLeft} className="text-xs" />
           Back
         </button>
         <button

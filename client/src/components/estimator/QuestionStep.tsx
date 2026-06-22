@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { Question, Responses, InitiativeType } from '@/lib/estimator/types';
 
 interface QuestionStepProps {
@@ -141,9 +143,9 @@ export default function QuestionStep({
       <div className="flex gap-4 pt-4 border-t border-gray-100">
         <button
           onClick={onBack}
-          className="px-7 py-3 border border-gray-300 text-sm font-semibold text-gray-600 hover:bg-gray-50 transition-colors duration-200"
-          style={{ borderRadius: '4px' }}
+          className="flex items-center gap-1.5 text-sm text-gray-500 hover:text-[#26006B] transition-colors duration-200"
         >
+          <FontAwesomeIcon icon={faArrowLeft} className="text-xs" />
           Back
         </button>
         <button
