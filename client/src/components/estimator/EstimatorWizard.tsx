@@ -22,14 +22,14 @@ const PROGRESS_STEPS: Step[] = ['type', 'universal', 'path', 'results'];
 function StepProgress({ current }: { current: Step }) {
   const idx = PROGRESS_STEPS.indexOf(current);
   return (
-    <div className="flex items-center justify-center gap-1 mb-8">
+    <div className="flex items-center gap-1 mb-10 max-w-lg">
       {PROGRESS_STEPS.map((step, i) => {
         const done = i < idx;
         const active = i === idx;
         return (
           <div key={step} className="flex items-center gap-1">
             <div
-              className={`flex items-center justify-center w-7 h-7 rounded-full text-xs font-bold transition-colors ${
+              className={`flex items-center justify-center w-7 h-7 rounded-full text-xs font-bold transition-colors flex-shrink-0 ${
                 active
                   ? 'bg-[#26006B] text-white'
                   : done

@@ -51,38 +51,39 @@ export default function InitiativeTypeSelect({
   onContinue,
 }: InitiativeTypeSelectProps) {
   return (
-    <div className="max-w-2xl mx-auto space-y-6 pb-12">
-      <div className="space-y-2">
-        <h2 className="text-xl font-bold text-[#26006B]">What type of timeline do you need to estimate?</h2>
+    <div className="space-y-6">
+      <div className="space-y-2 max-w-2xl">
+        <h2 className="text-2xl font-bold text-[#26006B]">What type of timeline do you need to estimate?</h2>
         <p className="text-sm text-gray-500">
           Select the option that best describes the work you are planning. Each path uses different
           timeline factors to create a more relevant estimate.
         </p>
       </div>
 
-      <div className="space-y-3">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {TYPES.map(({ type, label, question, examples, icon }) => {
           const isSelected = selected === type;
           return (
             <button
               key={type}
               onClick={() => onSelect(type)}
-              className={`w-full text-left p-5 rounded-2xl border-2 transition-all duration-150 ${
+              className={`w-full text-left p-5 border-2 transition-all duration-150 ${
                 isSelected
                   ? 'border-[#26006B] bg-[#26006B]/5'
                   : 'border-gray-200 hover:border-[#26006B]/40 hover:bg-gray-50'
               }`}
+              style={{ borderRadius: '8px' }}
             >
               <div className="flex items-start gap-4">
                 <span className="text-2xl mt-0.5 flex-shrink-0">{icon}</span>
-                <div className="space-y-1 min-w-0">
+                <div className="space-y-1 min-w-0 flex-1">
                   <p className={`font-semibold ${isSelected ? 'text-[#26006B]' : 'text-gray-800'}`}>
                     {label}
                   </p>
                   <p className="text-sm text-gray-600 italic">{question}</p>
-                  <p className="text-xs text-gray-400">{examples}</p>
+                  <p className="text-xs text-gray-400 mt-1">{examples}</p>
                 </div>
-                <div className={`ml-auto flex-shrink-0 w-5 h-5 rounded-full border-2 mt-1 ${
+                <div className={`flex-shrink-0 w-5 h-5 rounded-full border-2 mt-0.5 ${
                   isSelected ? 'border-[#26006B] bg-[#26006B]' : 'border-gray-300'
                 }`}>
                   {isSelected && (
@@ -97,17 +98,19 @@ export default function InitiativeTypeSelect({
         })}
       </div>
 
-      <div className="flex gap-3 pt-2">
+      <div className="flex gap-4 pt-2">
         <button
           onClick={onBack}
-          className="px-5 py-2.5 rounded-xl border border-gray-300 text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors"
+          className="px-7 py-3 border border-gray-300 text-sm font-semibold text-gray-600 hover:bg-gray-50 transition-colors duration-200"
+          style={{ borderRadius: '4px' }}
         >
           Back
         </button>
         <button
           onClick={onContinue}
           disabled={!selected}
-          className="flex-1 sm:flex-none sm:min-w-[140px] px-6 py-2.5 bg-[#26006B] hover:bg-[#3d0099] disabled:opacity-40 disabled:cursor-not-allowed text-white font-semibold rounded-xl text-sm transition-colors"
+          className="bg-[#26006B] text-white px-7 py-3 font-semibold text-base hover:bg-[#1a0047] disabled:opacity-40 disabled:cursor-not-allowed transition-colors duration-200"
+          style={{ borderRadius: '4px' }}
         >
           Continue
         </button>

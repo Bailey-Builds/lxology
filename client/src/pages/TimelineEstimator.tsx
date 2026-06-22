@@ -6,7 +6,7 @@ export default function TimelineEstimator() {
     <div className="min-h-screen bg-white">
       {/* Minimal header */}
       <header className="border-b border-gray-100 bg-white sticky top-0 z-40">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
+        <div className="max-w-6xl mx-auto px-4 sm:px-8 py-3 flex items-center justify-between">
           <Link href="/">
             <a className="text-[#26006B] font-bold text-lg tracking-tight hover:opacity-80 transition-opacity">
               Lxology
@@ -17,13 +17,13 @@ export default function TimelineEstimator() {
       </header>
 
       {/* Tool */}
-      <main className="max-w-3xl mx-auto px-4 sm:px-6 py-10">
+      <main className="max-w-6xl mx-auto px-4 sm:px-8 py-10">
         <EstimatorWizard />
       </main>
 
       {/* Minimal footer */}
       <footer className="border-t border-gray-100 py-6">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-gray-400">
+        <div className="max-w-6xl mx-auto px-4 sm:px-8 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-gray-400">
           <span>© {new Date().getFullYear()} Lxology. All rights reserved.</span>
           <div className="flex gap-4">
             <Link href="/privacy">

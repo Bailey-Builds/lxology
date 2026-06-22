@@ -4,64 +4,70 @@ interface WelcomeScreenProps {
 
 export default function WelcomeScreen({ onStart }: WelcomeScreenProps) {
   return (
-    <div className="max-w-2xl mx-auto text-center space-y-8 py-8">
-      {/* Badge */}
-      <div className="inline-flex items-center gap-2 bg-[#D7E7FF] text-[#26006B] text-xs font-semibold px-3 py-1.5 rounded-full">
-        <span className="w-1.5 h-1.5 rounded-full bg-[#FD6A02] animate-pulse" />
-        Beta — Free Planning Tool
-      </div>
-
+    <div className="space-y-10">
       {/* Hero */}
-      <div className="space-y-4">
-        <h1 className="text-4xl sm:text-5xl font-bold text-[#26006B] leading-tight">
-          Lxology Timeline<br />
-          <span className="text-[#FD6A02]">Estimator™</span>
-        </h1>
-        <p className="text-lg text-gray-600 leading-relaxed">
-          A deadline is not the same thing as a realistic timeline.
-        </p>
-        <p className="text-base text-gray-500 max-w-lg mx-auto">
-          Estimate a realistic planning range for your learning initiative, project,
-          program, or change effort, before you commit to a deadline.
-        </p>
-      </div>
+      <div className="flex flex-col lg:flex-row lg:items-center lg:gap-16 gap-8">
+        <div className="flex-1 space-y-6">
+          <div>
+            <span
+              className="inline-block px-4 py-2 bg-[#FD6A02]/10 text-sm font-semibold text-[#FD6A02] mb-4"
+              style={{ borderRadius: '4px' }}
+            >
+              Beta — Free Planning Tool
+            </span>
+            <h1
+              className="font-bold text-[#26006B] leading-tight"
+              style={{ fontSize: 'clamp(2rem, 4vw, 3.25rem)' }}
+            >
+              Lxology Timeline<br />
+              <span className="text-[#FD6A02]">Estimator™</span>
+            </h1>
+          </div>
+          <p className="text-lg text-gray-600 leading-relaxed max-w-xl">
+            A deadline is not the same thing as a realistic timeline.
+          </p>
+          <p className="text-base text-gray-500 max-w-xl">
+            Estimate a realistic planning range for your learning initiative, project,
+            program, or change effort, before you commit to a deadline.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 pt-2">
+            <button
+              onClick={onStart}
+              className="bg-[#FD6A02] text-white px-7 py-3 font-semibold text-base hover:bg-[#e55a00] transition-colors duration-200"
+              style={{ borderRadius: '4px' }}
+            >
+              Start My Estimate
+            </button>
+          </div>
+          <p className="text-sm text-gray-500">
+            Takes approximately <strong className="text-gray-700">5–10 minutes</strong> • No account required • Free to use
+          </p>
+        </div>
 
-      {/* What you'll get */}
-      <div className="bg-[#26006B]/5 border border-[#26006B]/10 rounded-2xl p-6 text-left space-y-3">
-        <p className="text-sm font-semibold text-[#26006B] uppercase tracking-wide">What you'll get</p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-          {[
-            'Estimated timeline range',
-            'Main timeline drivers',
-            'Recommended next steps',
-            'PDF, PowerPoint, and Word downloads',
-            'Estimate confidence level',
-            'Timeline risks and assumptions',
-            'Suggested phase breakdown',
-          ].map((item) => (
-            <div key={item} className="flex items-center gap-2 text-sm text-gray-700">
-              <span className="text-[#FD6A02] font-bold">✓</span>
-              {item}
-            </div>
-          ))}
+        {/* What you'll get */}
+        <div className="lg:w-80 xl:w-96 bg-[#26006B]/5 border border-[#26006B]/10 rounded-lg p-6 space-y-4" style={{ borderRadius: '8px' }}>
+          <p className="text-sm font-semibold text-[#26006B] uppercase tracking-wide">What you'll get</p>
+          <div className="space-y-3">
+            {[
+              'Estimated timeline range',
+              'Main timeline drivers',
+              'Recommended next steps',
+              'PDF, PowerPoint, and Word downloads',
+              'Estimate confidence level',
+              'Timeline risks and assumptions',
+              'Suggested phase breakdown',
+            ].map((item) => (
+              <div key={item} className="flex items-center gap-3 text-sm text-gray-700">
+                <span className="text-[#FD6A02] font-bold flex-shrink-0">✓</span>
+                {item}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
-      {/* Details */}
-      <p className="text-sm text-gray-500">
-        Takes approximately <strong className="text-gray-700">5–10 minutes</strong> • No account required • Free to use
-      </p>
-
-      {/* CTA */}
-      <button
-        onClick={onStart}
-        className="px-10 py-4 bg-[#FD6A02] hover:bg-[#e05a00] text-white font-bold text-lg rounded-2xl transition-colors shadow-lg shadow-[#FD6A02]/30"
-      >
-        Start My Estimate
-      </button>
-
       {/* Disclaimer */}
-      <p className="text-sm text-gray-500 max-w-md mx-auto">
+      <p className="text-sm text-gray-500 border-t border-gray-100 pt-6 max-w-3xl">
         Timeline estimates are directional and intended for planning conversations, not guaranteed delivery dates. This Beta does not calculate team capacity, staffing levels, or organization-specific work velocity.
       </p>
     </div>

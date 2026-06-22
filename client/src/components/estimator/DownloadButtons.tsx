@@ -41,7 +41,8 @@ export default function DownloadButtons({ result }: DownloadButtonsProps) {
             key={format}
             onClick={() => handleDownload(format)}
             disabled={loading !== null}
-            className="flex flex-col items-center gap-2 p-4 rounded-xl border-2 border-[#26006B]/20 hover:border-[#26006B] hover:bg-[#26006B]/5 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed group"
+            className="flex flex-col items-center gap-2 p-4 border-2 border-[#26006B]/20 hover:border-[#26006B] hover:bg-[#26006B]/5 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+            style={{ borderRadius: '4px' }}
           >
             <span className="text-2xl">{loading === format ? '⏳' : icon}</span>
             <span className="font-semibold text-[#26006B] text-sm">
