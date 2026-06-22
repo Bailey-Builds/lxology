@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { ScoringResult } from '@/lib/estimator/types';
 import { downloadPDF, downloadPPTX, downloadWord } from '@/lib/estimator/downloads';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFilePdf, faFilePowerpoint, faFileWord, faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { faFilePdf, faFilePowerpoint, faFileWord } from '@fortawesome/free-regular-svg-icons';
 
 interface DownloadButtonsProps {
   result: ScoringResult;
