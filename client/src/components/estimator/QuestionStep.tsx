@@ -13,6 +13,59 @@ interface QuestionStepProps {
   sectionTitle: string;
 }
 
+interface HelpPanel {
+  title: string;
+  scale: { label: string; desc: string }[];
+  definitions: { term: string; meaning: string }[];
+}
+
+const HELP_PANELS: Record<string, HelpPanel> = {
+  UQ4: {
+    title: 'Size reference',
+    scale: [
+      { label: 'Very small', desc: '1–2 deliverables, 1 workstream' },
+      { label: 'Small', desc: '3–5 deliverables, 1–2 workstreams' },
+      { label: 'Medium', desc: '6–15 deliverables, 2–4 workstreams' },
+      { label: 'Large', desc: '16–30 deliverables, 4+ workstreams' },
+      { label: 'Enterprise', desc: '30+ deliverables, 5+ functions' },
+    ],
+    definitions: [
+      {
+        term: 'Deliverable',
+        meaning:
+          'A specific output that can be completed, reviewed, and handed off — a course module, process document, communication plan, training guide, tracker, or similar tangible work product.',
+      },
+      {
+        term: 'Workstream',
+        meaning:
+          'A distinct area of parallel work with its own tasks, owners, or timeline — for example, content development, stakeholder communications, and technology setup each running at the same time.',
+      },
+    ],
+  },
+  UQ5: {
+    title: 'Complexity reference',
+    scale: [
+      { label: 'Simple', desc: '0–2 open questions, 1 team' },
+      { label: 'Somewhat complex', desc: '3–5 open questions or variables' },
+      { label: 'Moderately complex', desc: '6–10 variables, 2–3 teams' },
+      { label: 'Highly complex', desc: '10–15 variables, 3–5 teams' },
+      { label: 'Very complex', desc: '15+ variables, 5+ teams' },
+    ],
+    definitions: [
+      {
+        term: 'Variables',
+        meaning:
+          'Factors that are uncertain, unresolved, or require coordination before you can move forward — undefined scope, pending approvals, unclear decision-makers, unstable content, or technology unknowns.',
+      },
+      {
+        term: 'Open questions',
+        meaning:
+          'Unresolved decisions or missing information that the team still needs to align on — who approves it, what is in scope, which platform to use, or what the expected outcome looks like.',
+      },
+    ],
+  },
+};
+
 function isVisible(q: Question, responses: Responses): boolean {
   if (q.required !== 'conditional' || !q.showWhen || q.showWhen.length === 0) return true;
   return q.showWhen.some(({ questionId, answerIndices }) => {
@@ -41,6 +94,7 @@ export default function QuestionStep({
   const currentQ = questionsInOrder[safeIdx];
   const isLast = safeIdx === questionsInOrder.length - 1;
   const progress = questionsInOrder.length > 0 ? (safeIdx + 1) / questionsInOrder.length : 0;
+  const helpPanel = currentQ ? HELP_PANELS[currentQ.id] : null;
 
   function transition(nextIdx: number) {
     setFading(true);
@@ -97,63 +151,116 @@ export default function QuestionStep({
         </div>
       </div>
 
-      {/* Question — fades between transitions */}
+      {/* Question + optional help panel — fades together on transition */}
       <div
-        className="max-w-2xl transition-opacity duration-200"
+        className="transition-opacity duration-200"
         style={{ opacity: fading ? 0 : 1 }}
       >
-        {currentQ.fieldType === 'text' ? (
-          <div className="space-y-2">
-            <label className="block text-sm font-semibold text-gray-800">
-              {currentQ.question}
-              <span className="ml-2 text-xs text-gray-400 font-normal">optional</span>
-            </label>
-            <input
-              type="text"
-              value={(responses[currentQ.id] as string) ?? ''}
-              onChange={(e) => onUpdateResponse(currentQ.id, e.target.value)}
-              placeholder="e.g., CRM Adoption Rollout"
-              className="w-full px-4 py-2.5 border border-gray-300 focus:border-[#26006B] focus:outline-none focus:ring-2 focus:ring-[#26006B]/20 text-sm"
-              style={{ borderRadius: '4px' }}
-            />
-          </div>
-        ) : (
-          <div className="space-y-3">
-            <div>
-              <label className="block text-sm font-semibold text-gray-800">
-                {currentQ.question}
-                {currentQ.required === 'required' && (
-                  <span className="ml-1.5 text-[#FD6A02]">*</span>
-                )}
-              </label>
-              {error && (
-                <p className="text-xs text-red-500 mt-1">Please select an option to continue.</p>
-              )}
-            </div>
-            <div className="space-y-2">
-              {currentQ.options?.map((opt, idx) => {
-                const selected = responses[currentQ.id] === idx;
-                return (
-                  <button
-                    key={idx}
-                    onClick={() => { onUpdateResponse(currentQ.id, idx); setError(false); }}
-                    className={`w-full text-left px-4 py-3 border-2 transition-all duration-150 ${
-                      selected
-                        ? 'border-[#26006B] bg-[#26006B]/5 text-[#26006B]'
-                        : 'border-gray-200 hover:border-[#26006B]/40 hover:bg-gray-50 text-gray-700'
-                    }`}
-                    style={{ borderRadius: '4px' }}
-                  >
-                    <span className="text-sm font-medium">{opt.label}</span>
-                    {opt.helperText && (
-                      <span className="block text-xs text-gray-500 mt-0.5">{opt.helperText}</span>
+        <div className={helpPanel ? 'flex flex-col lg:flex-row lg:items-start gap-8 lg:gap-12' : 'max-w-2xl'}>
+
+          {/* Question column */}
+          <div className={helpPanel ? 'flex-1 max-w-2xl' : undefined}>
+            {currentQ.fieldType === 'text' ? (
+              <div className="space-y-2">
+                <label className="block text-sm font-semibold text-gray-800">
+                  {currentQ.question}
+                  <span className="ml-2 text-xs text-gray-400 font-normal">optional</span>
+                </label>
+                <input
+                  type="text"
+                  value={(responses[currentQ.id] as string) ?? ''}
+                  onChange={(e) => onUpdateResponse(currentQ.id, e.target.value)}
+                  placeholder="e.g., CRM Adoption Rollout"
+                  className="w-full px-4 py-2.5 border border-gray-300 focus:border-[#26006B] focus:outline-none focus:ring-2 focus:ring-[#26006B]/20 text-sm"
+                  style={{ borderRadius: '4px' }}
+                />
+              </div>
+            ) : (
+              <div className="space-y-3">
+                <div>
+                  <label className="block text-sm font-semibold text-gray-800">
+                    {currentQ.question}
+                    {currentQ.required === 'required' && (
+                      <span className="ml-1.5 text-[#FD6A02]">*</span>
                     )}
-                  </button>
-                );
-              })}
-            </div>
+                  </label>
+                  {error && (
+                    <p className="text-xs text-red-500 mt-1">Please select an option to continue.</p>
+                  )}
+                </div>
+                <div className="space-y-2">
+                  {currentQ.options?.map((opt, idx) => {
+                    const selected = responses[currentQ.id] === idx;
+                    return (
+                      <button
+                        key={idx}
+                        onClick={() => { onUpdateResponse(currentQ.id, idx); setError(false); }}
+                        className={`w-full text-left px-4 py-3 border-2 transition-all duration-150 ${
+                          selected
+                            ? 'border-[#26006B] bg-[#26006B]/5 text-[#26006B]'
+                            : 'border-gray-200 hover:border-[#26006B]/40 hover:bg-gray-50 text-gray-700'
+                        }`}
+                        style={{ borderRadius: '4px' }}
+                      >
+                        <span className="text-sm font-medium">{opt.label}</span>
+                        {opt.helperText && (
+                          <span className="block text-xs text-gray-500 mt-0.5">{opt.helperText}</span>
+                        )}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
           </div>
-        )}
+
+          {/* Help panel */}
+          {helpPanel && (
+            <div
+              className="lg:w-64 xl:w-72 flex-shrink-0 p-5 space-y-5"
+              style={{
+                background: 'rgba(215, 231, 255, 0.35)',
+                border: '1px solid rgba(38, 0, 107, 0.12)',
+                borderRadius: '8px',
+              }}
+            >
+              {/* Scale reference */}
+              <div className="space-y-3">
+                <p
+                  className="text-xs font-semibold uppercase tracking-wide"
+                  style={{ color: '#26006B' }}
+                >
+                  {helpPanel.title}
+                </p>
+                <div className="space-y-2">
+                  {helpPanel.scale.map((row) => (
+                    <div key={row.label} className="flex justify-between gap-4">
+                      <span className="text-xs font-semibold text-gray-700 whitespace-nowrap">
+                        {row.label}
+                      </span>
+                      <span className="text-xs text-gray-500 text-right">{row.desc}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Definitions */}
+              <div
+                className="space-y-4 pt-4"
+                style={{ borderTop: '1px solid rgba(38, 0, 107, 0.1)' }}
+              >
+                {helpPanel.definitions.map((def) => (
+                  <div key={def.term} className="space-y-1">
+                    <p className="text-xs font-bold" style={{ color: '#26006B' }}>
+                      {def.term}
+                    </p>
+                    <p className="text-xs text-gray-500 leading-relaxed">{def.meaning}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
       </div>
 
       {/* Navigation */}
