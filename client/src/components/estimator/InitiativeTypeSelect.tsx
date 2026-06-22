@@ -69,20 +69,20 @@ export default function InitiativeTypeSelect({
             <button
               key={type}
               onClick={() => onSelect(type)}
-              className={`w-full text-left p-5 border-2 transition-all duration-150 ${
+              className={`w-full text-left p-5 border-2 transition-all duration-150 group ${
                 isSelected
-                  ? 'border-[#26006B] bg-[#26006B]/5'
-                  : 'border-gray-200 hover:border-[#26006B]/40 hover:bg-gray-50'
+                  ? 'border-[#FD6A02] bg-[#26006B]/5'
+                  : 'border-[#26006B] hover:border-[#FD6A02] hover:bg-gray-50'
               }`}
               style={{ borderRadius: '8px' }}
             >
               <div className="flex items-start gap-4">
                 <FontAwesomeIcon
                   icon={icon}
-                  className={`text-xl mt-0.5 flex-shrink-0 ${isSelected ? 'text-[#26006B]' : 'text-gray-400'}`}
+                  className={`text-xl mt-0.5 flex-shrink-0 transition-colors duration-150 ${isSelected ? 'text-[#FD6A02]' : 'text-[#26006B] group-hover:text-[#FD6A02]'}`}
                 />
                 <div className="space-y-1 min-w-0 flex-1">
-                  <p className={`font-semibold ${isSelected ? 'text-[#26006B]' : 'text-gray-800'}`}>
+                  <p className={`font-semibold transition-colors duration-150 ${isSelected ? 'text-[#FD6A02]' : 'text-[#26006B] group-hover:text-[#FD6A02]'}`}>
                     {label}
                   </p>
                   <p className="text-sm text-gray-600 italic">{question}</p>
