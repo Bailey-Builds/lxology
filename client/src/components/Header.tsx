@@ -1,15 +1,9 @@
 import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
+import { Link } from 'wouter';
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
-  const [showToolsMsg, setShowToolsMsg] = useState(false);
-
-  const handleToolsClick = (e: React.MouseEvent) => {
-    e.preventDefault();
-    setShowToolsMsg(true);
-    setTimeout(() => setShowToolsMsg(false), 3000);
-  };
 
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm">
@@ -30,24 +24,12 @@ export default function Header() {
           <a href="/" className="text-gray-700 hover:text-[#FD6A02] transition-colors duration-200 font-medium">Home</a>
           <a href="/#products" className="text-gray-700 hover:text-[#FD6A02] transition-colors duration-200 font-medium">Products</a>
           <a href="/services" className="text-gray-700 hover:text-[#FD6A02] transition-colors duration-200 font-medium">Services</a>
-          <button
-            onClick={handleToolsClick}
-            className="text-gray-400 font-medium cursor-pointer transition-colors duration-200 hover:text-gray-500"
-          >
-            Tools
-          </button>
+          <Link href="/timeline-estimator">
+            <a className="text-gray-700 hover:text-[#FD6A02] transition-colors duration-200 font-medium">Tools</a>
+          </Link>
           <a href="/about" className="text-gray-700 hover:text-[#FD6A02] transition-colors duration-200 font-medium">About Lxology</a>
           <a href="/contact#topic-request" className="text-gray-700 hover:text-[#FD6A02] transition-colors duration-200 font-medium">Contact</a>
 
-          {/* Tooltip */}
-          {showToolsMsg && (
-            <div
-              className="absolute left-1/2 -translate-x-1/2 top-10 bg-gray-100 text-gray-500 text-xs px-3 py-1.5 shadow-sm whitespace-nowrap border border-gray-200"
-              style={{ borderRadius: '4px' }}
-            >
-              Timeline Estimator Beta — Coming Soon
-            </div>
-          )}
         </nav>
 
         {/* Mobile Menu Button */}
@@ -66,12 +48,9 @@ export default function Header() {
             <a href="/" className="text-gray-700 hover:text-[#FD6A02] transition-colors py-2 font-medium" onClick={() => setIsOpen(false)}>Home</a>
             <a href="/#products" className="text-gray-700 hover:text-[#FD6A02] transition-colors py-2 font-medium" onClick={() => setIsOpen(false)}>Products</a>
             <a href="/services" className="text-gray-700 hover:text-[#FD6A02] transition-colors py-2 font-medium" onClick={() => setIsOpen(false)}>Services</a>
-            <button
-              onClick={(e) => { handleToolsClick(e); setIsOpen(false); }}
-              className="text-gray-400 font-medium text-left py-2"
-            >
-              Tools
-            </button>
+            <Link href="/timeline-estimator">
+              <a className="text-gray-700 hover:text-[#FD6A02] transition-colors py-2 font-medium" onClick={() => setIsOpen(false)}>Tools</a>
+            </Link>
             <a href="/about" className="text-gray-700 hover:text-[#FD6A02] transition-colors py-2 font-medium" onClick={() => setIsOpen(false)}>About Lxology</a>
             <a href="/contact#topic-request" className="text-gray-700 hover:text-[#FD6A02] transition-colors py-2 font-medium" onClick={() => setIsOpen(false)}>Contact</a>
           </nav>
