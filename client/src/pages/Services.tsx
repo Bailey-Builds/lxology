@@ -129,7 +129,7 @@ export default function Services() {
         </section>
 
       </main>
-      <Footer minimal />
+      <Footer />
     </div>
   );
 }

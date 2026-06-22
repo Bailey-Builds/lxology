@@ -120,7 +120,7 @@ export default function About() {
         </section>
 
       </main>
-      <Footer minimal />
+      <Footer />
     </div>
   );
 }
