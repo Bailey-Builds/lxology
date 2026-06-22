@@ -42,7 +42,7 @@ export default function WelcomeScreen({ onStart }: WelcomeScreenProps) {
           <p className="text-lg text-gray-600 leading-relaxed">
             A deadline is not the same thing as a realistic timeline.
           </p>
-          <p className="text-base text-gray-500 max-w-[640px]">
+          <p className="text-base text-gray-500" style={{ maxWidth: '640px' }}>
             Estimate a realistic planning range for your learning initiative, project,
             program, or change effort before you commit to a deadline.
           </p>
