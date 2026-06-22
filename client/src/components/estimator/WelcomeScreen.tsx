@@ -61,7 +61,7 @@ export default function WelcomeScreen({ onStart }: WelcomeScreenProps) {
         </div>
 
         {/* Right: What you'll get — 40% */}
-        <div className="flex-1 bg-[#26006B]/5 border border-[#26006B]/10 p-8 space-y-6" style={{ borderRadius: '8px' }}>
+        <div className="flex-1 lg:self-center bg-[#26006B]/5 border border-[#26006B]/10 p-8 space-y-6" style={{ borderRadius: '8px' }}>
           <p className="text-sm font-semibold text-[#26006B] uppercase tracking-wide">What you'll get</p>
           {/* Two explicit columns so items never wrap mid-label */}
           <div className="flex gap-8">
