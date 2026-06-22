@@ -82,7 +82,7 @@ export default function InitiativeTypeSelect({
                   className={`text-xl mt-0.5 flex-shrink-0 transition-colors duration-150 ${isSelected ? 'text-[#FD6A02]' : 'text-[#26006B] group-hover:text-[#FD6A02]'}`}
                 />
                 <div className="space-y-1 min-w-0 flex-1">
-                  <p className={`font-semibold transition-colors duration-150 ${isSelected ? 'text-[#26006B]' : 'text-[#26006B] group-hover:text-[#FD6A02]'}`}>
+                  <p className="font-semibold text-gray-800">
                     {label}
                   </p>
                   <p className="text-sm text-gray-600 italic">{question}</p>
