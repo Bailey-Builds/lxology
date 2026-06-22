@@ -13,7 +13,7 @@ const WHAT_RIGHT = [
   'Estimate confidence level',
   'Timeline risks and assumptions',
   'Suggested phase breakdown',
-  'PDF, PowerPoint, and Word downloads',
+  'PDF, PowerPoint, and Word summaries',
 ];
 
 export default function WelcomeScreen({ onStart }: WelcomeScreenProps) {
@@ -44,7 +44,7 @@ export default function WelcomeScreen({ onStart }: WelcomeScreenProps) {
           </p>
           <p className="text-base text-gray-500">
             Estimate a realistic planning range for your learning initiative, project,
-            program, or change effort, before you commit to a deadline.
+            program, or change effort before you commit to a deadline.
           </p>
           <div>
             <button
