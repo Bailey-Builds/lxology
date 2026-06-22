@@ -20,7 +20,7 @@ export default function WelcomeScreen({ onStart }: WelcomeScreenProps) {
   return (
     <div className="space-y-10">
       {/* Hero — text left, panel right, full viewport width */}
-      <div className="flex flex-col lg:flex-row lg:items-stretch gap-8 lg:gap-12">
+      <div className="flex flex-col lg:flex-row lg:items-start gap-8 lg:gap-12">
 
         {/* Left: headline + copy + CTA — 60% */}
         <div className="lg:w-[60%] flex-shrink-0 space-y-6 py-2">
