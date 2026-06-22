@@ -64,23 +64,13 @@ export default function WelcomeScreen({ onStart }: WelcomeScreenProps) {
         <div className="flex-1 lg:self-center lg:pr-[8vw]">
           <div className="bg-[#26006B]/5 border border-[#26006B]/10 p-8 space-y-6" style={{ borderRadius: '8px' }}>
             <p className="text-sm font-semibold text-[#26006B] uppercase tracking-wide">What you'll get</p>
-            <div className="flex gap-8">
-              <div className="flex-1 space-y-4">
-                {WHAT_LEFT.map((item) => (
-                  <div key={item} className="flex items-center gap-3 text-sm text-gray-700 whitespace-nowrap">
-                    <span className="text-[#FD6A02] font-bold flex-shrink-0">✓</span>
-                    {item}
-                  </div>
-                ))}
-              </div>
-              <div className="flex-1 space-y-4">
-                {WHAT_RIGHT.map((item) => (
-                  <div key={item} className="flex items-center gap-3 text-sm text-gray-700 whitespace-nowrap">
-                    <span className="text-[#FD6A02] font-bold flex-shrink-0">✓</span>
-                    {item}
-                  </div>
-                ))}
-              </div>
+            <div className="space-y-3">
+              {[...WHAT_LEFT, ...WHAT_RIGHT].map((item) => (
+                <div key={item} className="flex items-center gap-3 text-sm text-gray-700">
+                  <span className="text-[#FD6A02] font-bold flex-shrink-0">✓</span>
+                  {item}
+                </div>
+              ))}
             </div>
           </div>
         </div>
