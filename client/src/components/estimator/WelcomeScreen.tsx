@@ -2,12 +2,28 @@ interface WelcomeScreenProps {
   onStart: () => void;
 }
 
+const WHAT_LEFT = [
+  'Estimated timeline range',
+  'Initiative complexity level',
+  'Main timeline drivers',
+  'Recommended next steps',
+];
+
+const WHAT_RIGHT = [
+  'Estimate confidence level',
+  'Timeline risks and assumptions',
+  'Suggested phase breakdown',
+  'PDF, PowerPoint, and Word downloads',
+];
+
 export default function WelcomeScreen({ onStart }: WelcomeScreenProps) {
   return (
     <div className="space-y-10">
-      {/* Hero */}
-      <div className="flex flex-col lg:flex-row lg:items-center lg:gap-16 gap-8">
-        <div className="flex-1 space-y-6">
+      {/* Hero — text left, panel right, full viewport width */}
+      <div className="flex flex-col lg:flex-row lg:items-stretch gap-8 lg:gap-12">
+
+        {/* Left: headline + copy + CTA */}
+        <div className="lg:w-[420px] xl:w-[480px] flex-shrink-0 space-y-6 py-2">
           <div>
             <span
               className="inline-block px-4 py-2 bg-[#FD6A02]/10 text-sm font-semibold text-[#FD6A02] mb-4"
@@ -17,20 +33,20 @@ export default function WelcomeScreen({ onStart }: WelcomeScreenProps) {
             </span>
             <h1
               className="font-bold text-[#26006B] leading-tight"
-              style={{ fontSize: 'clamp(2rem, 4vw, 3.25rem)' }}
+              style={{ fontSize: 'clamp(2rem, 3.5vw, 3.25rem)' }}
             >
               Lxology Timeline<br />
               <span className="text-[#FD6A02]">Estimator™</span>
             </h1>
           </div>
-          <p className="text-lg text-gray-600 leading-relaxed max-w-xl">
+          <p className="text-lg text-gray-600 leading-relaxed">
             A deadline is not the same thing as a realistic timeline.
           </p>
-          <p className="text-base text-gray-500 max-w-xl">
+          <p className="text-base text-gray-500">
             Estimate a realistic planning range for your learning initiative, project,
             program, or change effort, before you commit to a deadline.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 pt-2">
+          <div>
             <button
               onClick={onStart}
               className="bg-[#FD6A02] text-white px-7 py-3 font-semibold text-base hover:bg-[#e55a00] transition-colors duration-200"
@@ -44,33 +60,33 @@ export default function WelcomeScreen({ onStart }: WelcomeScreenProps) {
           </p>
         </div>
 
-        {/* What you'll get */}
-        <div className="flex-1 bg-[#26006B]/5 border border-[#26006B]/10 p-6 space-y-4" style={{ borderRadius: '8px' }}>
+        {/* Right: What you'll get — grows to fill all remaining page width */}
+        <div className="flex-1 bg-[#26006B]/5 border border-[#26006B]/10 p-8 space-y-6" style={{ borderRadius: '8px' }}>
           <p className="text-sm font-semibold text-[#26006B] uppercase tracking-wide">What you'll get</p>
-          <div className="grid grid-cols-2 gap-x-6 gap-y-3">
-            {[
-              ['Estimated timeline range',    'Estimate confidence level'],
-              ['Initiative complexity level', 'Timeline risks and assumptions'],
-              ['Main timeline drivers',       'Suggested phase breakdown'],
-              ['Recommended next steps',      'PDF, PowerPoint, and Word downloads'],
-            ].map(([left, right]) => (
-              <>
-                <div key={left} className="flex items-start gap-2 text-sm text-gray-700">
-                  <span className="text-[#FD6A02] font-bold flex-shrink-0 mt-0.5">✓</span>
-                  <span>{left}</span>
+          {/* Two explicit columns so items never wrap mid-label */}
+          <div className="flex gap-8">
+            <div className="flex-1 space-y-4">
+              {WHAT_LEFT.map((item) => (
+                <div key={item} className="flex items-center gap-3 text-sm text-gray-700 whitespace-nowrap">
+                  <span className="text-[#FD6A02] font-bold flex-shrink-0">✓</span>
+                  {item}
                 </div>
-                <div key={right} className="flex items-start gap-2 text-sm text-gray-700">
-                  <span className="text-[#FD6A02] font-bold flex-shrink-0 mt-0.5">✓</span>
-                  <span>{right}</span>
+              ))}
+            </div>
+            <div className="flex-1 space-y-4">
+              {WHAT_RIGHT.map((item) => (
+                <div key={item} className="flex items-center gap-3 text-sm text-gray-700 whitespace-nowrap">
+                  <span className="text-[#FD6A02] font-bold flex-shrink-0">✓</span>
+                  {item}
                 </div>
-              </>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </div>
 
       {/* Disclaimer */}
-      <p className="text-sm text-gray-500 border-t border-gray-100 pt-6 max-w-3xl">
+      <p className="text-sm text-gray-500 border-t border-gray-100 pt-6">
         Timeline estimates are directional and intended for planning conversations, not guaranteed delivery dates. This Beta does not calculate team capacity, staffing levels, or organization-specific work velocity.
       </p>
     </div>
