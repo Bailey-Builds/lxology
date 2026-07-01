@@ -199,3 +199,71 @@
     }
   }
 }
+
+/* ── Hero motion ─────────────────────────────────────────────── */
+@keyframes lx-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
+
+@keyframes lx-float-soft {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes lx-drift {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  33% {
+    transform: translate(6px, -10px) rotate(4deg);
+  }
+  66% {
+    transform: translate(-5px, -4px) rotate(-3deg);
+  }
+}
+
+@keyframes lx-glow {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.75;
+    transform: scale(1.15);
+  }
+}
+
+.lx-float {
+  animation: lx-float 6s ease-in-out infinite;
+}
+.lx-float-soft {
+  animation: lx-float-soft 5s ease-in-out infinite;
+}
+.lx-drift {
+  animation: lx-drift 9s ease-in-out infinite;
+}
+.lx-glow {
+  animation: lx-glow 4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lx-float,
+  .lx-float-soft,
+  .lx-drift,
+  .lx-glow {
+    animation: none;
+  }
+}

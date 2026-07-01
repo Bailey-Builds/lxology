@@ -49,11 +49,41 @@ export default function Hero() {
         </div>
 
         {/* Illustration — capped height on mobile, full bleed on desktop */}
-        <div className="flex-1 flex items-end">
+        <div className="flex-1 flex items-end relative">
+          {/* Floating decorative accents — themed to the illustration */}
+          <div className="pointer-events-none absolute inset-0 z-10" aria-hidden="true">
+            {/* Idea spark glow (over the lightbulb, upper-left) */}
+            <span className="lx-glow absolute left-[18%] top-[8%] h-16 w-16 rounded-full bg-[#FD6A02]/40 blur-md" />
+
+            {/* Play chip (near the video card, upper-right) */}
+            <span className="lx-drift absolute right-[10%] top-[16%] flex h-11 w-11 items-center justify-center rounded-xl bg-[#26006B] shadow-lg">
+              <svg viewBox="0 0 24 24" className="h-5 w-5 translate-x-[1px] fill-white">
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            </span>
+
+            {/* Document lines chip (near the text card, lower-left) */}
+            <span className="lx-float-soft absolute left-[8%] top-[46%] flex h-11 w-11 flex-col items-start justify-center gap-1 rounded-xl bg-white px-2.5 shadow-lg ring-1 ring-black/5">
+              <span className="h-1 w-4 rounded-full bg-[#FD6A02]" />
+              <span className="h-1 w-6 rounded-full bg-[#26006B]/60" />
+              <span className="h-1 w-5 rounded-full bg-[#26006B]/60" />
+            </span>
+
+            {/* Sparkle (upper-mid) */}
+            <svg className="lx-float absolute left-[45%] top-[6%] h-6 w-6 fill-[#FD6A02]" viewBox="0 0 24 24">
+              <path d="M12 0l2.4 7.6L22 10l-7.6 2.4L12 20l-2.4-7.6L2 10l7.6-2.4z" />
+            </svg>
+
+            {/* Floating dots */}
+            <span className="lx-float absolute right-[22%] top-[52%] h-3 w-3 rounded-full bg-[#FD6A02]" />
+            <span className="lx-float-soft absolute right-[6%] top-[40%] h-2.5 w-2.5 rounded-full bg-[#26006B]/50" />
+            <span className="lx-drift absolute left-[30%] top-[62%] h-2 w-2 rounded-full bg-[#26006B]/40" />
+          </div>
+
           <img
             src="/hero-team.png"
             alt="Lxology team illustration"
-            className="w-full h-auto block max-h-[320px] sm:max-h-[420px] lg:max-h-none object-contain object-bottom lg:object-fill"
+            className="lx-float-soft w-full h-auto block max-h-[320px] sm:max-h-[420px] lg:max-h-none object-contain object-bottom lg:object-fill"
           />
         </div>
 
