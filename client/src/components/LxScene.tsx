@@ -1,7 +1,7 @@
 /**
- * Animated "LX" hero scene — a large branded letterform with crisp icon chips
- * (puzzle, timer, people, target, laptop, classroom board) gently drifting
- * around it. Colored in the Lxology palette.
+ * Animated "LX" hero scene — a large branded letterform with crisp, free-floating
+ * icons (puzzle, timer, people, target, laptop, classroom board) gently drifting
+ * around it.
  */
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -17,31 +17,27 @@ import {
 const PURPLE = '#26006B';
 const ORANGE = '#FD6A02';
 
-type ChipProps = {
+// Icon accent palette
+const VIOLET = '#5C2D91';
+const MAGENTA = '#8B2D91';
+const BLUE = '#2D6CDF';
+const GREEN = '#7ED957';
+
+type IconProps = {
   icon: IconDefinition;
+  color: string;
   className: string;
-  variant: 'purple' | 'orange' | 'white';
   delay?: string;
   anim?: string;
 };
 
-function Chip({ icon, className, variant, delay, anim = 'lx-float-soft' }: ChipProps) {
-  const styles =
-    variant === 'purple'
-      ? { background: PURPLE, color: '#fff' }
-      : variant === 'orange'
-        ? { background: ORANGE, color: '#fff' }
-        : { background: '#fff', color: PURPLE };
-
+function Icon({ icon, color, className, delay, anim = 'lx-float-soft' }: IconProps) {
   return (
-    <span
-      className={`${anim} absolute flex items-center justify-center rounded-2xl shadow-lg ${
-        variant === 'white' ? 'ring-1 ring-black/5' : ''
-      } ${className}`}
-      style={{ ...styles, animationDelay: delay }}
-    >
-      <FontAwesomeIcon icon={icon} className="h-1/2 w-1/2" />
-    </span>
+    <FontAwesomeIcon
+      icon={icon}
+      className={`${anim} absolute ${className}`}
+      style={{ color, animationDelay: delay }}
+    />
   );
 }
 
@@ -64,29 +60,29 @@ export default function LxScene() {
         </span>
       </div>
 
-      {/* ── Floating icon chips ─────────────────────────── */}
+      {/* ── Free-floating icons ─────────────────────────── */}
 
       {/* People (top-left) */}
-      <Chip icon={faUsers} variant="white" anim="lx-float" className="left-[2%] top-[20%] h-16 w-16" />
+      <Icon icon={faUsers} color={BLUE} anim="lx-float" className="left-[2%] top-[20%] h-12 w-12" />
 
       {/* Puzzle (top-right) */}
-      <Chip icon={faPuzzlePiece} variant="purple" anim="lx-drift" className="right-[8%] top-[10%] h-14 w-14" />
+      <Icon icon={faPuzzlePiece} color={VIOLET} anim="lx-drift" className="right-[8%] top-[8%] h-12 w-12" />
 
       {/* Target (mid-left) */}
-      <Chip icon={faBullseye} variant="orange" anim="lx-float-soft" delay="0.6s" className="left-[6%] top-[54%] h-14 w-14" />
+      <Icon icon={faBullseye} color={MAGENTA} anim="lx-float-soft" delay="0.6s" className="left-[5%] top-[54%] h-11 w-11" />
 
       {/* Laptop (mid-right) */}
-      <Chip icon={faLaptop} variant="white" anim="lx-float-soft" delay="0.9s" className="right-[3%] top-[46%] h-16 w-16" />
+      <Icon icon={faLaptop} color={BLUE} anim="lx-float-soft" delay="0.9s" className="right-[2%] top-[46%] h-12 w-12" />
 
       {/* Stopwatch (bottom-center-left) */}
-      <Chip icon={faStopwatch} variant="orange" anim="lx-float" delay="1.1s" className="left-[38%] bottom-[6%] h-14 w-14" />
+      <Icon icon={faStopwatch} color={GREEN} anim="lx-float" delay="1.1s" className="left-[38%] bottom-[5%] h-11 w-11" />
 
       {/* Classroom board (bottom-right) */}
-      <Chip icon={faChalkboardUser} variant="purple" anim="lx-drift" delay="0.4s" className="right-[26%] bottom-[10%] h-14 w-14" />
+      <Icon icon={faChalkboardUser} color={VIOLET} anim="lx-drift" delay="0.4s" className="right-[26%] bottom-[8%] h-12 w-12" />
 
       {/* A couple of subtle dots for extra life */}
-      <span className="lx-float absolute left-[30%] top-[28%] h-3 w-3 rounded-full" style={{ background: ORANGE }} />
-      <span className="lx-float-soft absolute right-[20%] top-[34%] h-2.5 w-2.5 rounded-full" style={{ background: `${PURPLE}88`, animationDelay: '0.5s' }} />
+      <span className="lx-float absolute left-[30%] top-[28%] h-3 w-3 rounded-full" style={{ background: GREEN }} />
+      <span className="lx-float-soft absolute right-[20%] top-[34%] h-2.5 w-2.5 rounded-full" style={{ background: MAGENTA, animationDelay: '0.5s' }} />
     </div>
   );
 }
