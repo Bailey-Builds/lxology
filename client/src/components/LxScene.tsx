@@ -1,16 +1,16 @@
 /**
  * Animated "LX" hero scene — a large branded letterform with crisp, free-floating
- * icons (puzzle, timer, people, target, laptop, classroom board) gently drifting
- * around it.
+ * learning icons (graduation cap, lightbulb, rocket, chart, trophy, people)
+ * gently drifting around it.
  */
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faPuzzlePiece,
-  faStopwatch,
-  faUsers,
-  faBullseye,
-  faLaptop,
-  faChalkboardUser,
+  faGraduationCap,
+  faLightbulb,
+  faRocket,
+  faChartLine,
+  faTrophy,
+  faPeopleGroup,
   type IconDefinition,
 } from '@fortawesome/free-solid-svg-icons';
 
@@ -26,17 +26,20 @@ const GREEN = '#7ED957';
 type IconProps = {
   icon: IconDefinition;
   color: string;
+  /** Positioning classes only (e.g. "left-[3%] top-[54%]"). */
   className: string;
+  /** Icon size, e.g. "5rem". Controls scale (FA icons scale by font-size). */
+  size: string;
   delay?: string;
   anim?: string;
 };
 
-function Icon({ icon, color, className, delay, anim = 'lx-float-soft' }: IconProps) {
+function Icon({ icon, color, className, size, delay, anim = 'lx-float-soft' }: IconProps) {
   return (
     <FontAwesomeIcon
       icon={icon}
       className={`${anim} absolute ${className}`}
-      style={{ color, animationDelay: delay }}
+      style={{ color, fontSize: size, animationDelay: delay }}
     />
   );
 }
@@ -60,29 +63,29 @@ export default function LxScene() {
         </span>
       </div>
 
-      {/* ── Free-floating icons ─────────────────────────── */}
+      {/* ── Free-floating learning icons ────────────────── */}
 
-      {/* People (top-left) */}
-      <Icon icon={faUsers} color={BLUE} anim="lx-float" className="left-[2%] top-[20%] h-12 w-12" />
+      {/* Graduation cap (top-left) */}
+      <Icon icon={faGraduationCap} color={BLUE} anim="lx-float" size="5.5rem" className="left-[1%] top-[18%]" />
 
-      {/* Puzzle (top-right) */}
-      <Icon icon={faPuzzlePiece} color={VIOLET} anim="lx-drift" className="right-[8%] top-[8%] h-12 w-12" />
+      {/* Lightbulb (top-right) */}
+      <Icon icon={faLightbulb} color={GREEN} anim="lx-drift" size="5rem" className="right-[8%] top-[4%]" />
 
-      {/* Target (mid-left) */}
-      <Icon icon={faBullseye} color={MAGENTA} anim="lx-float-soft" delay="0.6s" className="left-[5%] top-[54%] h-11 w-11" />
+      {/* Rocket (mid-left) */}
+      <Icon icon={faRocket} color={VIOLET} anim="lx-float-soft" delay="0.6s" size="4.5rem" className="left-[3%] top-[56%]" />
 
-      {/* Laptop (mid-right) */}
-      <Icon icon={faLaptop} color={BLUE} anim="lx-float-soft" delay="0.9s" className="right-[2%] top-[46%] h-12 w-12" />
+      {/* Chart line (mid-right) */}
+      <Icon icon={faChartLine} color={BLUE} anim="lx-float-soft" delay="0.9s" size="5rem" className="right-[1%] top-[46%]" />
 
-      {/* Stopwatch (bottom-center-left) */}
-      <Icon icon={faStopwatch} color={GREEN} anim="lx-float" delay="1.1s" className="left-[38%] bottom-[5%] h-11 w-11" />
+      {/* Trophy (bottom-center-left) */}
+      <Icon icon={faTrophy} color={MAGENTA} anim="lx-float" delay="1.1s" size="4.5rem" className="left-[34%] bottom-[3%]" />
 
-      {/* Classroom board (bottom-right) */}
-      <Icon icon={faChalkboardUser} color={VIOLET} anim="lx-drift" delay="0.4s" className="right-[26%] bottom-[8%] h-12 w-12" />
+      {/* People (bottom-right) */}
+      <Icon icon={faPeopleGroup} color={VIOLET} anim="lx-drift" delay="0.4s" size="5rem" className="right-[22%] bottom-[4%]" />
 
       {/* A couple of subtle dots for extra life */}
       <span className="lx-float absolute left-[30%] top-[28%] h-3 w-3 rounded-full" style={{ background: GREEN }} />
-      <span className="lx-float-soft absolute right-[20%] top-[34%] h-2.5 w-2.5 rounded-full" style={{ background: MAGENTA, animationDelay: '0.5s' }} />
+      <span className="lx-float-soft absolute right-[18%] top-[32%] h-2.5 w-2.5 rounded-full" style={{ background: MAGENTA, animationDelay: '0.5s' }} />
     </div>
   );
 }
