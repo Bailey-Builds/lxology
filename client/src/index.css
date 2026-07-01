@@ -246,6 +246,22 @@
   }
 }
 
+@keyframes lx-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes lx-sway {
+  0%,
+  100% {
+    transform: rotate(-7deg);
+  }
+  50% {
+    transform: rotate(7deg);
+  }
+}
+
 .lx-float {
   animation: lx-float 6s ease-in-out infinite;
 }
@@ -258,12 +274,27 @@
 .lx-glow {
   animation: lx-glow 4s ease-in-out infinite;
 }
+.lx-spin {
+  animation: lx-spin 18s linear infinite;
+  transform-origin: center;
+}
+.lx-spin-rev {
+  animation: lx-spin 22s linear infinite reverse;
+  transform-origin: center;
+}
+.lx-sway {
+  animation: lx-sway 5s ease-in-out infinite;
+  transform-origin: bottom center;
+}
 
 @media (prefers-reduced-motion: reduce) {
   .lx-float,
   .lx-float-soft,
   .lx-drift,
-  .lx-glow {
+  .lx-glow,
+  .lx-spin,
+  .lx-spin-rev,
+  .lx-sway {
     animation: none;
   }
 }
