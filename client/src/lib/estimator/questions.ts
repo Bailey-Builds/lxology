@@ -1,4 +1,4 @@
-import { Question } from './types';
+import { Question, Responses } from './types';
 
 export const UNIVERSAL_QUESTIONS: Question[] = [
   {
@@ -1118,4 +1118,13 @@ export function getQuestionsForInitiative(type: string): Question[] {
     change: CHANGE_QUESTIONS,
   };
   return [...UNIVERSAL_QUESTIONS, ...(pathMap[type] ?? [])];
+}
+
+/** Whether a conditional question should be shown given the current responses. */
+export function isQuestionVisible(q: Question, responses: Responses): boolean {
+  if (q.required !== 'conditional' || !q.showWhen || q.showWhen.length === 0) return true;
+  return q.showWhen.some(({ questionId, answerIndices }) => {
+    const val = responses[questionId];
+    return typeof val === 'number' && answerIndices.includes(val);
+  });
 }

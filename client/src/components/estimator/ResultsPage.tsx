@@ -1,29 +1,42 @@
-import { useState } from 'react';
+import { useId, useState } from 'react';
+import { Link } from 'wouter';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircle } from '@fortawesome/free-solid-svg-icons';
-import { ScoringResult } from '@/lib/estimator/types';
+import { Question, Responses, ScoringResult } from '@/lib/estimator/types';
 import { PHASE_ALLOCATIONS } from '@/lib/estimator/phases';
+import { UNIVERSAL_QUESTIONS, getQuestionsForInitiative, isQuestionVisible } from '@/lib/estimator/questions';
+import { ADJUSTMENT_MULTIPLIERS } from '@/lib/estimator/scoring';
 import PhaseBar from './PhaseBar';
 import DownloadButtons from './DownloadButtons';
 import CommunityCapture from './CommunityCapture';
 
 interface ResultsPageProps {
   result: ScoringResult;
+  responses: Responses;
   onReset: () => void;
+  onEditUniversal: () => void;
+  onEditPath: () => void;
 }
 
 function ExpandableSection({ title, children }: { title: string; children: React.ReactNode }) {
   const [open, setOpen] = useState(false);
+  const contentId = useId();
   return (
     <div className="border border-gray-200" style={{ borderRadius: '8px', overflow: 'hidden' }}>
       <button
         className="w-full flex items-center justify-between px-5 py-4 text-left hover:bg-gray-50 transition-colors"
         onClick={() => setOpen((v) => !v)}
+        aria-expanded={open}
+        aria-controls={contentId}
       >
         <span className="font-semibold text-[#26006B]">{title}</span>
-        <span className="text-gray-400 text-lg">{open ? '−' : '+'}</span>
+        <span className="text-gray-400 text-lg" aria-hidden="true">{open ? '−' : '+'}</span>
       </button>
-      {open && <div className="px-5 pb-5 space-y-2 border-t border-gray-100">{children}</div>}
+      {open && (
+        <div id={contentId} className="px-5 pb-5 space-y-2 border-t border-gray-100">
+          {children}
+        </div>
+      )}
     </div>
   );
 }
@@ -51,7 +64,114 @@ function typeLabel(type: string): string {
   return labels[type] ?? type;
 }
 
-export default function ResultsPage({ result, onReset }: ResultsPageProps) {
+// Free-tier answer review: shows the current answers that produced this
+// estimate and lets the user jump back to that section to change one. This is
+// NOT scenario comparison or saved history — there is exactly one live set of
+// responses, and editing recalculates the same estimate in place.
+function AnswerGroup({
+  title,
+  questions,
+  responses,
+  onEdit,
+}: {
+  title: string;
+  questions: Question[];
+  responses: Responses;
+  onEdit: () => void;
+}) {
+  const answered = questions.filter(
+    (q) =>
+      q.fieldType !== 'text' &&
+      isQuestionVisible(q, responses) &&
+      typeof responses[q.id] === 'number',
+  );
+
+  if (answered.length === 0) return null;
+
+  return (
+    <div className="space-y-3">
+      <div className="flex items-center justify-between">
+        <h3 className="text-xs font-bold text-[#26006B] uppercase tracking-wide">{title}</h3>
+        <button
+          onClick={onEdit}
+          className="text-xs font-semibold text-[#FD6A02] hover:text-[#e55a00] transition-colors"
+        >
+          Edit
+        </button>
+      </div>
+      <div className="space-y-2.5">
+        {answered.map((q) => {
+          const idx = responses[q.id] as number;
+          const label = q.options?.[idx]?.label;
+          if (!label) return null;
+          return (
+            <div key={q.id}>
+              <p className="text-xs text-gray-500">{q.question}</p>
+              <p className="text-sm font-semibold text-[#26006B]">{label}</p>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+// Free-tier methodology explanation: a concise, plain-language walkthrough of
+// how THIS estimate was produced, built entirely from existing ScoringResult
+// fields. This is not a detailed scoring breakdown, scenario comparison, or
+// stakeholder-ready methodology appendix — those are reserved for Pro.
+function buildMethodologyLines(result: ScoringResult): string[] {
+  const lines: string[] = [];
+
+  if (result.isVerySmallLearning) {
+    lines.push(
+      'This initiative matched the very-small learning profile, so a 2–5 business day range is shown instead of the standard band.',
+    );
+  }
+
+  lines.push(
+    `Your answers were scored across complexity factors: ${result.totalScore} of ${result.maxScore} points (${Math.round(result.scorePercent * 100)}%).`,
+  );
+  lines.push(
+    `That places this ${typeLabel(result.initiativeType)} in the ${result.complexityLevel} complexity band, with a base planning range of ${result.baseRange[0]}–${result.baseRange[1]} weeks.`,
+  );
+
+  if (result.topDrivers.length > 0) {
+    lines.push(`The biggest contributors to this score: ${result.topDrivers.slice(0, 2).join(' ')}`);
+  }
+
+  if (result.adjustmentTier !== 'none') {
+    const criticalNote =
+      result.criticalRiskCount > 0 ? ` (including ${result.criticalRiskCount} critical)` : '';
+    lines.push(
+      `${result.riskFlagCount} risk factor(s)${criticalNote} triggered a ${result.adjustmentTier} adjustment, extending the upper bound by ×${ADJUSTMENT_MULTIPLIERS[result.adjustmentTier]} to ${result.adjustedRange[0]}–${result.adjustedRange[1]} weeks.`,
+    );
+  } else {
+    lines.push('No risk adjustment was applied — your answers did not trigger any flagged risk categories.');
+  }
+
+  lines.push(
+    `Planning confidence is ${result.confidenceLevel}, based on ${result.lowerConfidenceCount} lower-confidence answer(s) and ${result.unknownCount} unknown(s).`,
+  );
+
+  if (result.postLaunchWindow) {
+    lines.push(
+      `Post-launch support scored ${result.postLaunchScore} points, adding a recommended ${result.postLaunchWindow}.`,
+    );
+  }
+
+  lines.push('This is planning guidance to support your conversations, not a guaranteed delivery date.');
+
+  return lines;
+}
+
+export default function ResultsPage({
+  result,
+  responses,
+  onReset,
+  onEditUniversal,
+  onEditPath,
+}: ResultsPageProps) {
   const phases = PHASE_ALLOCATIONS[result.initiativeType];
   const isLowConfidence = result.confidenceLevel === 'Low' || result.confidenceLevel === 'Low-Moderate';
   const isHighRisk = result.riskFlagCount >= 6 || result.criticalRiskCount >= 2;
@@ -146,6 +266,30 @@ export default function ResultsPage({ result, onReset }: ResultsPageProps) {
         </ExpandableSection>
       </div>
 
+      {/* Your Answers — review and edit the current estimate's inputs */}
+      <ExpandableSection title="Your Answers">
+        <div className="space-y-6 pt-2">
+          <p className="text-xs text-gray-500">
+            Review what you answered. Edit a section to change your answers and
+            recalculate this estimate.
+          </p>
+          <AnswerGroup
+            title="Shared questions"
+            questions={UNIVERSAL_QUESTIONS.filter((q) => q.id !== 'UQ1' && q.id !== 'UQ2')}
+            responses={responses}
+            onEdit={onEditUniversal}
+          />
+          <AnswerGroup
+            title={`${typeLabel(result.initiativeType)} questions`}
+            questions={getQuestionsForInitiative(result.initiativeType).filter((q) =>
+              q.initiativeTypes?.includes(result.initiativeType),
+            )}
+            responses={responses}
+            onEdit={onEditPath}
+          />
+        </div>
+      </ExpandableSection>
+
       {/* Phase bar — full width */}
       <div className="bg-white border border-gray-200 p-6 space-y-4" style={{ borderRadius: '8px' }}>
         <div>
@@ -162,6 +306,16 @@ export default function ResultsPage({ result, onReset }: ResultsPageProps) {
         )}
       </div>
 
+      {/* How this estimate was calculated — free-tier methodology transparency */}
+      <ExpandableSection title="How this estimate was calculated">
+        <div className="space-y-4 pt-2">
+          <BulletList items={buildMethodologyLines(result)} />
+          <p className="text-xs text-gray-400 border-t border-gray-100 pt-3">
+            Lxology Timeline Methodology · {result.methodologyVersion}
+          </p>
+        </div>
+      </ExpandableSection>
+
       {/* Downloads */}
       <div className="bg-white border border-gray-200 p-6 space-y-4" style={{ borderRadius: '8px' }}>
         <div>
@@ -171,6 +325,24 @@ export default function ResultsPage({ result, onReset }: ResultsPageProps) {
           </p>
         </div>
         <DownloadButtons result={result} />
+      </div>
+
+      {/* Pro upgrade CTA — waitlist only, no purchase or functional Pro access */}
+      <div className="bg-[#26006B]/5 border border-[#26006B]/20 p-6 space-y-3" style={{ borderRadius: '8px' }}>
+        <h2 className="font-bold text-[#26006B] text-lg">Planning more than one initiative?</h2>
+        <p className="text-sm text-gray-600">
+          You're using the free Timeline Calculator. Workplace Capability Tools Pro adds Timeline
+          Calculator Pro — saved projects, richer stakeholder-ready reports, and the full
+          planning toolkit — plus six more workplace planning tools.
+        </p>
+        <Link href="/pricing" asChild>
+          <a
+            className="inline-block bg-[#FD6A02] text-white px-6 py-3 font-semibold hover:bg-[#e55a00] transition-colors duration-200"
+            style={{ borderRadius: '4px' }}
+          >
+            See plans & join the waitlist
+          </a>
+        </Link>
       </div>
 
       {/* Community CTA */}

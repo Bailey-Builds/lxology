@@ -35,10 +35,10 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
-    <script
-      defer
-      src="%VITE_ANALYTICS_ENDPOINT%/umami"
-      data-website-id="%VITE_ANALYTICS_WEBSITE_ID%"></script>
+    <!-- TODO(owner): add a real analytics snippet (Plausible or Umami) once a
+         provider and site ID are chosen. The previous tag referenced Vite env
+         placeholders that were never configured and 404'd on every page load,
+         so it was removed rather than shipped broken. -->
   </body>
 
 </html>

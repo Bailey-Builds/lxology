@@ -55,19 +55,21 @@ export default function InitiativeTypeSelect({
   return (
     <div className="space-y-6">
       <div className="space-y-2 max-w-2xl">
-        <h2 className="text-2xl font-bold text-[#26006B]">What type of timeline do you need to estimate?</h2>
+        <h2 id="initiative-type-label" className="text-2xl font-bold text-[#26006B]">What type of timeline do you need to estimate?</h2>
         <p className="text-sm text-gray-500">
           Select the option that best describes the work you are planning. Each path uses different
           timeline factors to create a more relevant estimate.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div role="radiogroup" aria-labelledby="initiative-type-label" className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {TYPES.map(({ type, label, question, examples, icon }) => {
           const isSelected = selected === type;
           return (
             <button
               key={type}
+              role="radio"
+              aria-checked={isSelected}
               onClick={() => onSelect(type)}
               className={`w-full text-left p-5 border-2 transition-all duration-150 group ${
                 isSelected
@@ -88,9 +90,12 @@ export default function InitiativeTypeSelect({
                   <p className="text-sm text-gray-600 italic">{question}</p>
                   <p className="text-xs text-gray-400 mt-1">{examples}</p>
                 </div>
-                <div className={`flex-shrink-0 w-5 h-5 rounded-full border-2 mt-0.5 ${
-                  isSelected ? 'border-[#FD6A02] bg-[#FD6A02]' : 'border-gray-300'
-                }`}>
+                <div
+                  aria-hidden="true"
+                  className={`flex-shrink-0 w-5 h-5 rounded-full border-2 mt-0.5 ${
+                    isSelected ? 'border-[#FD6A02] bg-[#FD6A02]' : 'border-gray-300'
+                  }`}
+                >
                   {isSelected && (
                     <svg className="w-full h-full text-white" viewBox="0 0 20 20" fill="currentColor">
                       <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />

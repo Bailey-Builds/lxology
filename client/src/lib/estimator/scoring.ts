@@ -8,8 +8,15 @@ import {
 } from './types';
 import { getQuestionsForInitiative, ALL_QUESTIONS } from './questions';
 
-const UNIVERSAL_MAX = 37;
-const PATH_MAX: Record<InitiativeType, number> = {
+/**
+ * Identifier for the scoring methodology that produced a result. Bump this
+ * whenever question scores, bands, ranges, or adjustment rules change, so
+ * stored or downloaded results can be traced to the logic that made them.
+ */
+export const METHODOLOGY_VERSION = 'timeline-estimator-v1';
+
+export const UNIVERSAL_MAX = 37;
+export const PATH_MAX: Record<InitiativeType, number> = {
   learning: 53,
   project: 51,
   program: 53,
@@ -51,13 +58,14 @@ const BASE_RANGES: Record<InitiativeType, [number, number][]> = {
   ],
 };
 
-const COMPLEXITY_BANDS: [number, number, ComplexityLevel][] = [
-  [0, 0.2, 'Low'],
-  [0.21, 0.4, 'Low-Moderate'],
-  [0.41, 0.6, 'Moderate'],
-  [0.61, 0.75, 'Medium-High'],
-  [0.76, 0.9, 'High'],
-  [0.91, 1.01, 'Very High'],
+// Contiguous inclusive upper bounds — every percent (including fractional
+// values between old band edges) maps to exactly one level.
+export const COMPLEXITY_THRESHOLDS: [number, ComplexityLevel][] = [
+  [0.2, 'Low'],
+  [0.4, 'Low-Moderate'],
+  [0.6, 'Moderate'],
+  [0.75, 'Medium-High'],
+  [0.9, 'High'],
 ];
 
 const COMPLEXITY_INDEX: Record<ComplexityLevel, number> = {
@@ -69,14 +77,14 @@ const COMPLEXITY_INDEX: Record<ComplexityLevel, number> = {
   'Very High': 5,
 };
 
-function getComplexityLevel(pct: number): ComplexityLevel {
-  for (const [lo, hi, level] of COMPLEXITY_BANDS) {
-    if (pct >= lo && pct <= hi) return level;
+export function getComplexityLevel(pct: number): ComplexityLevel {
+  for (const [upperBound, level] of COMPLEXITY_THRESHOLDS) {
+    if (pct <= upperBound) return level;
   }
   return 'Very High';
 }
 
-function getConfidenceLevel(count: number): ConfidenceLevel {
+export function getConfidenceLevel(count: number): ConfidenceLevel {
   if (count <= 1) return 'High';
   if (count <= 3) return 'Moderate-High';
   if (count <= 5) return 'Moderate';
@@ -84,26 +92,27 @@ function getConfidenceLevel(count: number): ConfidenceLevel {
   return 'Low';
 }
 
-function getAdjustmentTier(flagCount: number, criticalCount: number): AdjustmentTier {
+export function getAdjustmentTier(flagCount: number, criticalCount: number): AdjustmentTier {
   if (flagCount === 0) return 'none';
   // Major: 6+ flags OR 2+ critical OR 4+ flags and 1 critical
   if (flagCount >= 6 || criticalCount >= 2 || (flagCount >= 4 && criticalCount >= 1)) return 'Major';
   // Moderate: 3-5 flags and 0-1 critical
   if (flagCount >= 3 && flagCount <= 5 && criticalCount <= 1) return 'Moderate';
-  // Minor: 1-2 flags and 0 critical
-  if (flagCount <= 2 && criticalCount === 0) return 'Minor';
+  // Minor: 1-2 flags; a critical flag always triggers at least Minor
+  if (flagCount <= 2) return 'Minor';
   return 'none';
 }
 
-function applyAdjustment(baseRange: [number, number], tier: AdjustmentTier): [number, number] {
+export const ADJUSTMENT_MULTIPLIERS: Record<AdjustmentTier, number> = {
+  none: 1,
+  Minor: 1.1,
+  Moderate: 1.2,
+  Major: 1.35,
+};
+
+export function applyAdjustment(baseRange: [number, number], tier: AdjustmentTier): [number, number] {
   const [lo, hi] = baseRange;
-  const multipliers: Record<AdjustmentTier, number> = {
-    none: 1,
-    Minor: 1.1,
-    Moderate: 1.2,
-    Major: 1.35,
-  };
-  const adjustedHi = Math.round(hi * multipliers[tier]);
+  const adjustedHi = Math.round(hi * ADJUSTMENT_MULTIPLIERS[tier]);
   return [lo, adjustedHi];
 }
 
@@ -149,11 +158,12 @@ const CATEGORY_TO_RISK: Record<string, string> = {
 };
 
 /** Driver categories -> user-facing plain language */
-const DRIVER_LABELS: Record<string, string> = {
+export const DRIVER_LABELS: Record<string, string> = {
   'Scope size': 'Scope size and volume may require more planning and development time.',
   'Complexity level': 'Overall complexity may add coordination, design, and review time.',
   'Content / materials readiness risk': 'Content readiness may affect how much work is needed before development can begin.',
   'Stakeholder and review complexity': 'Multiple stakeholders and review cycles may increase coordination, feedback, and revision effort.',
+  'Review / approval risk': 'Review and approval cycles may add scheduling, feedback, and revision time.',
   'SME / decision-maker availability risk': 'Limited decision-maker availability may create scheduling delays and slow down approvals.',
   'Delivery or production effort': 'Delivery format and production needs may significantly affect development time.',
   'Platform or technology requirements': 'Platform and technology requirements may add publishing, testing, and integration time.',
@@ -507,5 +517,6 @@ export function calculateScore(responses: Responses, type: InitiativeType): Scor
     isVerySmallLearning,
     initiativeName,
     initiativeType: type,
+    methodologyVersion: METHODOLOGY_VERSION,
   };
 }

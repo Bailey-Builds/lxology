@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { InitiativeType, Responses, ScoringResult } from '@/lib/estimator/types';
@@ -10,6 +10,66 @@ import QuestionStep from './QuestionStep';
 import ResultsPage from './ResultsPage';
 
 type Step = 'welcome' | 'type' | 'universal' | 'path' | 'results';
+
+// ─── In-progress draft persistence (Free Timeline Calculator only) ─────────
+// Single temporary localStorage draft for resuming an in-progress estimate
+// after a refresh. This is NOT account-based saved projects and is not a Pro
+// feature — it is cleared the moment the estimate completes (results shown)
+// or the user intentionally starts over.
+const DRAFT_KEY = 'lxology-estimator-draft-v1';
+const DRAFT_MAX_AGE_MS = 14 * 24 * 60 * 60 * 1000; // 14 days
+
+interface EstimatorDraft {
+  version: 1;
+  step: Step;
+  initiativeType: InitiativeType | null;
+  responses: Responses;
+  savedAt: number;
+}
+
+function clearDraft() {
+  try {
+    localStorage.removeItem(DRAFT_KEY);
+  } catch {
+    // Private browsing / storage disabled — nothing to clear.
+  }
+}
+
+function readDraft(): EstimatorDraft | null {
+  let raw: string | null = null;
+  try {
+    raw = localStorage.getItem(DRAFT_KEY);
+  } catch {
+    return null;
+  }
+  if (!raw) return null;
+
+  try {
+    const parsed = JSON.parse(raw);
+    const isValid =
+      parsed &&
+      parsed.version === 1 &&
+      typeof parsed.savedAt === 'number' &&
+      Date.now() - parsed.savedAt <= DRAFT_MAX_AGE_MS &&
+      parsed.responses &&
+      typeof parsed.responses === 'object' &&
+      typeof parsed.step === 'string';
+    if (isValid) return parsed as EstimatorDraft;
+    clearDraft();
+    return null;
+  } catch {
+    clearDraft();
+    return null;
+  }
+}
+
+function writeDraft(draft: EstimatorDraft) {
+  try {
+    localStorage.setItem(DRAFT_KEY, JSON.stringify(draft));
+  } catch {
+    // Private browsing / storage full — autosave silently no-ops.
+  }
+}
 
 const STEP_LABELS: Record<Step, string> = {
   welcome: 'Welcome',
@@ -24,12 +84,12 @@ const PROGRESS_STEPS: Step[] = ['type', 'universal', 'path', 'results'];
 function StepProgress({ current }: { current: Step }) {
   const idx = PROGRESS_STEPS.indexOf(current);
   return (
-    <div className="flex items-center gap-1 mb-10 max-w-lg">
+    <div className="flex items-center gap-1 mb-10 max-w-lg" aria-label="Estimate progress">
       {PROGRESS_STEPS.map((step, i) => {
         const done = i < idx;
         const active = i === idx;
         return (
-          <div key={step} className="flex items-center gap-1">
+          <div key={step} className="flex items-center gap-1" aria-current={active ? 'step' : undefined}>
             <div
               className={`flex items-center justify-center w-7 h-7 rounded-full text-xs font-bold transition-colors flex-shrink-0 ${
                 active
@@ -39,9 +99,15 @@ function StepProgress({ current }: { current: Step }) {
                     : 'bg-gray-100 text-gray-400'
               }`}
             >
-              {done ? <FontAwesomeIcon icon={faCheck} className="text-xs" /> : i + 1}
+              {done ? <FontAwesomeIcon icon={faCheck} className="text-xs" aria-hidden="true" /> : i + 1}
+              <span className="sr-only">
+                {' '}
+                {STEP_LABELS[step]}
+                {done ? ' (completed)' : active ? ' (current step)' : ''}
+              </span>
             </div>
             <span
+              aria-hidden="true"
               className={`text-xs font-medium hidden sm:inline ${
                 active ? 'text-[#26006B]' : done ? 'text-[#FD6A02]' : 'text-gray-400'
               }`}
@@ -66,39 +132,55 @@ export default function EstimatorWizard() {
   const [initiativeType, setInitiativeType] = useState<InitiativeType | null>(null);
   const [responses, setResponses] = useState<Responses>({});
   const [result, setResult] = useState<ScoringResult | null>(null);
-  const [pendingTypeChange, setPendingTypeChange] = useState<InitiativeType | null>(null);
+  const [resumeDraft, setResumeDraft] = useState<EstimatorDraft | null>(null);
+
+  // Check once on mount for a resumable in-progress draft. Drafts saved at
+  // 'welcome' (nothing answered yet) or 'results' (already completed) are not
+  // resumable and are cleared rather than offered.
+  useEffect(() => {
+    const draft = readDraft();
+    if (draft && draft.step !== 'welcome' && draft.step !== 'results') {
+      setResumeDraft(draft);
+    } else if (draft) {
+      clearDraft();
+    }
+  }, []);
+
+  // Autosave the in-progress draft. Nothing is persisted at 'welcome' (no
+  // progress yet) or 'results' (estimate is complete — draft is cleared
+  // explicitly in handlePathSubmit instead).
+  useEffect(() => {
+    if (step === 'welcome' || step === 'results') return;
+    writeDraft({ version: 1, step, initiativeType, responses, savedAt: Date.now() });
+  }, [step, initiativeType, responses]);
+
+  function handleResumeDraft() {
+    if (!resumeDraft) return;
+    setResponses(resumeDraft.responses);
+    setInitiativeType(resumeDraft.initiativeType);
+    // Guard against a saved 'universal'/'path' step with no initiative type
+    // (should not happen in practice, but fall back safely rather than crash).
+    const canResumeAtSavedStep =
+      resumeDraft.step === 'type' || resumeDraft.initiativeType !== null;
+    setStep(canResumeAtSavedStep ? resumeDraft.step : 'type');
+    setResumeDraft(null);
+  }
+
+  function handleStartFresh() {
+    clearDraft();
+    setResumeDraft(null);
+  }
 
   function updateResponse(id: string, value: number | string) {
     setResponses((prev) => ({ ...prev, [id]: value }));
   }
 
   function handleTypeSelect(type: InitiativeType) {
-    if (initiativeType && type !== initiativeType && step !== 'type') {
-      // Warn about resetting path questions
-      setPendingTypeChange(type);
-    } else {
-      setInitiativeType(type);
-      updateResponse('UQ2', INITIATIVE_TYPE_INDEX[type]);
-    }
-  }
-
-  function confirmTypeChange() {
-    if (!pendingTypeChange) return;
-    // Clear path-specific responses
-    const pathPrefix = { learning: 'LQ', project: 'PQ', program: 'PRQ', change: 'CQ' };
-    const clearedResponses: Responses = { ...responses };
-    for (const key of Object.keys(clearedResponses)) {
-      for (const prefix of Object.values(pathPrefix)) {
-        if (key.startsWith(prefix)) {
-          delete clearedResponses[key];
-          break;
-        }
-      }
-    }
-    setResponses(clearedResponses);
-    setInitiativeType(pendingTypeChange);
-    updateResponse('UQ2', INITIATIVE_TYPE_INDEX[pendingTypeChange]);
-    setPendingTypeChange(null);
+    // Answers for other types' path questions are intentionally retained:
+    // scoring and the answers review only read the current type's questions,
+    // and retained answers restore if the user switches back to that type.
+    setInitiativeType(type);
+    updateResponse('UQ2', INITIATIVE_TYPE_INDEX[type]);
   }
 
   function handleUniversalSubmit() {
@@ -110,14 +192,16 @@ export default function EstimatorWizard() {
     const scored = calculateScore(responses, initiativeType);
     setResult(scored);
     setStep('results');
+    clearDraft();
   }
 
   function handleReset() {
+    clearDraft();
     setStep('welcome');
     setInitiativeType(null);
     setResponses({});
     setResult(null);
-    setPendingTypeChange(null);
+    setResumeDraft(null);
   }
 
   const pathQuestions = initiativeType
@@ -128,35 +212,19 @@ export default function EstimatorWizard() {
 
   return (
     <div>
-      {/* Type change confirmation dialog */}
-      {pendingTypeChange && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40">
-          <div className="bg-white rounded-2xl p-6 max-w-md w-full shadow-xl space-y-4">
-            <h3 className="font-bold text-[#26006B] text-lg">Change initiative type?</h3>
-            <p className="text-sm text-gray-600">
-              Changing the initiative type will reset the path-specific questions. Your shared
-              responses will remain saved.
-            </p>
-            <div className="flex gap-3">
-              <button
-                onClick={() => setPendingTypeChange(null)}
-                className="flex-1 px-4 py-2 border border-gray-300 rounded-xl text-sm font-medium text-gray-600 hover:bg-gray-50"
-              >
-                Cancel
-              </button>
-              <button
-                onClick={confirmTypeChange}
-                className="flex-1 px-4 py-2 bg-[#26006B] text-white rounded-xl text-sm font-semibold hover:bg-[#3d0099]"
-              >
-                Yes, change type
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-
       {step === 'welcome' && (
-        <WelcomeScreen onStart={() => setStep('type')} />
+        <WelcomeScreen
+          onStart={() => setStep('type')}
+          resumePrompt={
+            resumeDraft
+              ? {
+                  savedAt: resumeDraft.savedAt,
+                  onResume: handleResumeDraft,
+                  onStartFresh: handleStartFresh,
+                }
+              : undefined
+          }
+        />
       )}
 
       {step === 'type' && (
@@ -209,7 +277,13 @@ export default function EstimatorWizard() {
       {step === 'results' && result && (
         <>
           <StepProgress current="results" />
-          <ResultsPage result={result} onReset={handleReset} />
+          <ResultsPage
+            result={result}
+            responses={responses}
+            onReset={handleReset}
+            onEditUniversal={() => setStep('universal')}
+            onEditPath={() => setStep('path')}
+          />
         </>
       )}
     </div>

@@ -73,6 +73,8 @@ export interface ScoringResult {
   isVerySmallLearning: boolean;
   initiativeName: string;
   initiativeType: InitiativeType;
+  /** Identifier of the scoring methodology that produced this result. */
+  methodologyVersion: string;
 }
 
 export interface Phase {

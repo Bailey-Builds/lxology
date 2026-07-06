@@ -1,8 +1,15 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 
+interface ResumePrompt {
+  savedAt: number;
+  onResume: () => void;
+  onStartFresh: () => void;
+}
+
 interface WelcomeScreenProps {
   onStart: () => void;
+  resumePrompt?: ResumePrompt;
 }
 
 const WHAT_LEFT = [
@@ -19,7 +26,7 @@ const WHAT_RIGHT = [
   'PDF, PowerPoint, and Word summaries',
 ];
 
-export default function WelcomeScreen({ onStart }: WelcomeScreenProps) {
+export default function WelcomeScreen({ onStart, resumePrompt }: WelcomeScreenProps) {
   return (
     <div className="space-y-10">
       {/* Two-column layout: columns own their outer edges */}
@@ -49,6 +56,40 @@ export default function WelcomeScreen({ onStart }: WelcomeScreenProps) {
             Estimate a realistic planning range for your learning initiative, project,
             program, or change effort before you commit to a deadline.
           </p>
+          {resumePrompt && (
+            <div
+              className="border border-[#26006B]/20 bg-[#D7E7FF]/40 p-4 space-y-3"
+              style={{ borderRadius: '8px', maxWidth: '640px' }}
+            >
+              <p className="text-sm text-[#26006B]">
+                <strong>You have an unfinished estimate</strong> from{' '}
+                {new Date(resumePrompt.savedAt).toLocaleDateString('en-US', {
+                  month: 'long',
+                  day: 'numeric',
+                  year: 'numeric',
+                })}
+                .
+              </p>
+              <div className="flex gap-3">
+                <button
+                  onClick={resumePrompt.onResume}
+                  aria-label="Resume your unfinished estimate"
+                  className="px-4 py-2 bg-[#26006B] text-white text-sm font-semibold hover:bg-[#3d0099] transition-colors duration-200"
+                  style={{ borderRadius: '4px' }}
+                >
+                  Resume
+                </button>
+                <button
+                  onClick={resumePrompt.onStartFresh}
+                  aria-label="Discard the unfinished estimate and start fresh"
+                  className="px-4 py-2 border border-gray-300 text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors duration-200"
+                  style={{ borderRadius: '4px' }}
+                >
+                  Start fresh
+                </button>
+              </div>
+            </div>
+          )}
           <div>
             <button
               onClick={onStart}

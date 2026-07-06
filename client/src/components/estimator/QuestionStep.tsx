@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { Question, Responses, InitiativeType } from '@/lib/estimator/types';
+import { isQuestionVisible } from '@/lib/estimator/questions';
 
 interface QuestionStepProps {
   questions: Question[];
@@ -62,14 +63,6 @@ const HELP_PANELS: Record<string, HelpPanel> = {
   },
 };
 
-function isVisible(q: Question, responses: Responses): boolean {
-  if (q.required !== 'conditional' || !q.showWhen || q.showWhen.length === 0) return true;
-  return q.showWhen.some(({ questionId, answerIndices }) => {
-    const val = responses[questionId];
-    return typeof val === 'number' && answerIndices.includes(val);
-  });
-}
-
 export default function QuestionStep({
   questions,
   responses,
@@ -83,7 +76,7 @@ export default function QuestionStep({
   const [fading, setFading] = useState(false);
 
   const textQ = questions.find((q) => q.fieldType === 'text');
-  const scoredQ = questions.filter((q) => q.fieldType !== 'text' && isVisible(q, responses));
+  const scoredQ = questions.filter((q) => q.fieldType !== 'text' && isQuestionVisible(q, responses));
   const questionsInOrder: Question[] = [...(textQ ? [textQ] : []), ...scoredQ];
 
   const safeIdx = Math.min(currentIdx, questionsInOrder.length - 1);
@@ -135,7 +128,14 @@ export default function QuestionStep({
       <div className="space-y-3 max-w-2xl">
         <h2 className="text-2xl font-bold text-[#26006B]">{sectionTitle}</h2>
         <div className="flex items-center gap-3">
-          <div className="flex-1 bg-gray-100 rounded-full h-1.5 max-w-xs">
+          <div
+            role="progressbar"
+            aria-valuemin={1}
+            aria-valuemax={questionsInOrder.length}
+            aria-valuenow={safeIdx + 1}
+            aria-label="Question progress"
+            className="flex-1 bg-gray-100 rounded-full h-1.5 max-w-xs"
+          >
             <div
               className="bg-[#FD6A02] h-1.5 rounded-full transition-all duration-500"
               style={{ width: `${progress * 100}%` }}
@@ -171,25 +171,31 @@ export default function QuestionStep({
           <div className="space-y-3">
             {/* Question label — always full width, above the options row */}
             <div className="max-w-2xl">
-              <label className="block text-sm font-semibold text-gray-800">
+              <label id={`q-label-${currentQ.id}`} className="block text-sm font-semibold text-gray-800">
                 {currentQ.question}
                 {currentQ.required === 'required' && (
                   <span className="ml-1.5 text-[#FD6A02]">*</span>
                 )}
               </label>
               {error && (
-                <p className="text-xs text-red-500 mt-1">Please select an option to continue.</p>
+                <p role="alert" className="text-xs text-red-500 mt-1">Please select an option to continue.</p>
               )}
             </div>
 
             {/* Options + help panel — panel aligns with first answer choice */}
             <div className={helpPanel ? 'flex flex-col lg:flex-row lg:items-start gap-6 lg:gap-12' : 'max-w-2xl'}>
-              <div className={helpPanel ? 'flex-1 max-w-2xl space-y-2' : 'space-y-2'}>
+              <div
+                role="radiogroup"
+                aria-labelledby={`q-label-${currentQ.id}`}
+                className={helpPanel ? 'flex-1 max-w-2xl space-y-2' : 'space-y-2'}
+              >
                 {currentQ.options?.map((opt, idx) => {
                   const selected = responses[currentQ.id] === idx;
                   return (
                     <button
                       key={idx}
+                      role="radio"
+                      aria-checked={selected}
                       onClick={() => { onUpdateResponse(currentQ.id, idx); setError(false); }}
                       className={`w-full text-left px-4 py-3 border-2 transition-all duration-150 ${
                         selected

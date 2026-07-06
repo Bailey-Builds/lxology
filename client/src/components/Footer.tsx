@@ -41,6 +41,7 @@ export default function Footer({ minimal = false }: { minimal?: boolean }) {
                 { label: 'Products', href: '/#products' },
                 { label: 'Services', href: '/services' },
                 { label: 'Tools', href: '/#tools' },
+                { label: 'Pricing', href: '/pricing' },
               ].map((link) => (
                 <li key={link.label}>
                   <a href={link.href} className="text-gray-300 hover:text-[#FD6A02] transition-colors text-sm">
