@@ -6,7 +6,15 @@ import {
   ScoringResult,
   Responses,
 } from './types';
-import { getQuestionsForInitiative, ALL_QUESTIONS } from './questions';
+import { getQuestionsForInitiative } from './questions';
+import {
+  bandForPercent,
+  levelForCount,
+  applyUpperBoundMultiplier,
+  categoryScoreTotals,
+  topDriverLabels,
+  triggeredCategories,
+} from '../tool-engine/scoring-utils';
 
 /**
  * Identifier for the scoring methodology that produced a result. Bump this
@@ -78,18 +86,19 @@ const COMPLEXITY_INDEX: Record<ComplexityLevel, number> = {
 };
 
 export function getComplexityLevel(pct: number): ComplexityLevel {
-  for (const [upperBound, level] of COMPLEXITY_THRESHOLDS) {
-    if (pct <= upperBound) return level;
-  }
-  return 'Very High';
+  return bandForPercent(COMPLEXITY_THRESHOLDS, 'Very High', pct);
 }
 
+// Timeline confidence policy: how many confidence risks map to each level.
+const CONFIDENCE_THRESHOLDS: [number, ConfidenceLevel][] = [
+  [1, 'High'],
+  [3, 'Moderate-High'],
+  [5, 'Moderate'],
+  [7, 'Low-Moderate'],
+];
+
 export function getConfidenceLevel(count: number): ConfidenceLevel {
-  if (count <= 1) return 'High';
-  if (count <= 3) return 'Moderate-High';
-  if (count <= 5) return 'Moderate';
-  if (count <= 7) return 'Low-Moderate';
-  return 'Low';
+  return levelForCount(CONFIDENCE_THRESHOLDS, 'Low', count);
 }
 
 export function getAdjustmentTier(flagCount: number, criticalCount: number): AdjustmentTier {
@@ -111,9 +120,7 @@ export const ADJUSTMENT_MULTIPLIERS: Record<AdjustmentTier, number> = {
 };
 
 export function applyAdjustment(baseRange: [number, number], tier: AdjustmentTier): [number, number] {
-  const [lo, hi] = baseRange;
-  const adjustedHi = Math.round(hi * ADJUSTMENT_MULTIPLIERS[tier]);
-  return [lo, adjustedHi];
+  return applyUpperBoundMultiplier(baseRange, ADJUSTMENT_MULTIPLIERS[tier]);
 }
 
 /** Risk flag categories (one count per category max). */
@@ -184,48 +191,14 @@ export const DRIVER_LABELS: Record<string, string> = {
 };
 
 function getTopDrivers(responses: Responses, type: InitiativeType): string[] {
-  const questions = getQuestionsForInitiative(type);
-  const categoryScores: Record<string, number> = {};
-
-  for (const q of questions) {
-    if (!q.options || !q.category) continue;
-    const answerIdx = responses[q.id];
-    if (typeof answerIdx !== 'number') continue;
-    const opt = q.options[answerIdx];
-    if (!opt || opt.score <= 0) continue;
-
-    const cat = q.category;
-    categoryScores[cat] = (categoryScores[cat] ?? 0) + opt.score;
-  }
-
-  const sorted = Object.entries(categoryScores)
-    .filter(([, score]) => score > 0)
-    .sort(([, a], [, b]) => b - a)
-    .slice(0, 5)
-    .map(([cat]) => DRIVER_LABELS[cat] ?? cat);
-
-  return sorted;
+  const totals = categoryScoreTotals(getQuestionsForInitiative(type), responses);
+  return topDriverLabels(totals, DRIVER_LABELS, 5);
 }
 
 function getRiskFlagText(responses: Responses, type: InitiativeType): string[] {
   const questions = getQuestionsForInitiative(type);
   const risks: string[] = [];
-  const triggeredCategories = new Set<string>();
-
-  for (const q of questions) {
-    if (!q.options) continue;
-    const idx = responses[q.id];
-    if (typeof idx !== 'number') continue;
-    const opt = q.options[idx];
-    if (!opt) continue;
-
-    if (opt.isRiskFlag || opt.isCriticalRisk) {
-      const riskCat = CATEGORY_TO_RISK[q.category ?? ''];
-      if (riskCat && !triggeredCategories.has(riskCat)) {
-        triggeredCategories.add(riskCat);
-      }
-    }
-  }
+  const triggered = triggeredCategories(questions, responses, CATEGORY_TO_RISK);
 
   const riskMessages: Partial<Record<string, string>> = {
     'Scope / clarity risk': 'Scope or planning clarity gaps may create rework, misalignment, or timeline expansion.',
@@ -242,7 +215,7 @@ function getRiskFlagText(responses: Responses, type: InitiativeType): string[] {
     'Operational disruption risk': 'High operational disruption risk may require more careful rollout coordination and additional stakeholder support.',
   };
 
-  for (const cat of Array.from(triggeredCategories)) {
+  for (const cat of Array.from(triggered)) {
     const msg = riskMessages[cat];
     if (msg) risks.push(msg);
   }
@@ -427,7 +400,6 @@ export function calculateScore(responses: Responses, type: InitiativeType): Scor
   let initiativeScore = 0;
   let lowerConfidenceCount = 0;
   let unknownCount = 0;
-  const triggeredRiskCategories = new Set<string>();
   const triggeredCriticalFlags = new Set<string>();
 
   for (const q of questions) {
@@ -450,14 +422,12 @@ export function calculateScore(responses: Responses, type: InitiativeType): Scor
     if (opt.lowerConfidence) lowerConfidenceCount++;
     if (opt.isUnknown) unknownCount++;
 
-    const riskCat = CATEGORY_TO_RISK[q.category];
-    if ((opt.isRiskFlag || opt.isCriticalRisk) && riskCat) {
-      triggeredRiskCategories.add(riskCat);
-    }
     if (opt.isCriticalRisk) {
       triggeredCriticalFlags.add(`${q.id}:${idx}`);
     }
   }
+
+  const triggeredRiskCategories = triggeredCategories(questions, responses, CATEGORY_TO_RISK);
 
   const maxScore = UNIVERSAL_MAX + PATH_MAX[type];
   const totalScore = universalScore + initiativeScore;

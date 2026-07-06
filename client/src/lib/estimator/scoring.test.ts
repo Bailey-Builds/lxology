@@ -25,7 +25,8 @@ import {
   CHANGE_UNKNOWN_HEAVY,
   LEARNING_VERY_SMALL,
 } from './fixtures';
-import { ComplexityLevel, Question } from './types';
+import { ComplexityLevel } from './types';
+import { maxScoreOf } from '../tool-engine/scoring-utils';
 
 // ─── Complexity band boundaries ─────────────────────────────────────────────
 // Regression guard for the original gap bug: percents between the old band
@@ -123,13 +124,7 @@ describe('getConfidenceLevel', () => {
 // ─── Max-score constants stay in sync with question data ────────────────────
 // UNIVERSAL_MAX / PATH_MAX are hand-maintained. If a question or option score
 // changes, these tests fail so the constants get updated with it.
-
-function maxScoreOf(questions: Question[]): number {
-  return questions.reduce((sum, q) => {
-    if (q.fieldType === 'text' || !q.options) return sum;
-    return sum + Math.max(...q.options.map((o) => o.score));
-  }, 0);
-}
+// (maxScoreOf itself now lives in the tool engine.)
 
 // ─── Driver label completeness ──────────────────────────────────────────────
 // Every scored question category must map to user-facing driver copy;
