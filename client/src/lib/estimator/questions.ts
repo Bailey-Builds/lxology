@@ -1,4 +1,4 @@
-import { Question, Responses } from './types';
+import { Question } from './types';
 
 export const UNIVERSAL_QUESTIONS: Question[] = [
   {
@@ -1120,11 +1120,6 @@ export function getQuestionsForInitiative(type: string): Question[] {
   return [...UNIVERSAL_QUESTIONS, ...(pathMap[type] ?? [])];
 }
 
-/** Whether a conditional question should be shown given the current responses. */
-export function isQuestionVisible(q: Question, responses: Responses): boolean {
-  if (q.required !== 'conditional' || !q.showWhen || q.showWhen.length === 0) return true;
-  return q.showWhen.some(({ questionId, answerIndices }) => {
-    const val = responses[questionId];
-    return typeof val === 'number' && answerIndices.includes(val);
-  });
-}
+// Visibility logic now lives in the tool engine; re-exported here so existing
+// imports keep working until the tool moves to lib/tools/timeline/.
+export { isQuestionVisible } from '../tool-engine/visibility';

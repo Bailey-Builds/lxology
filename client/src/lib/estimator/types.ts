@@ -1,3 +1,18 @@
+// Timeline-specific types. The generic question/answer/result models now
+// live in the tool engine; this module re-exports them so existing imports
+// keep working until the tool moves to lib/tools/timeline/ (extraction
+// Phase 3).
+import type { QuestionBase } from '../tool-engine/types';
+
+export type {
+  AnswerOption,
+  FieldType,
+  RequiredMode,
+  Responses,
+  ShowWhenRule,
+  ToolResultBase,
+} from '../tool-engine/types';
+
 export type InitiativeType = 'learning' | 'project' | 'program' | 'change';
 
 export type ComplexityLevel =
@@ -17,34 +32,9 @@ export type ConfidenceLevel =
 
 export type AdjustmentTier = 'none' | 'Minor' | 'Moderate' | 'Major';
 
-export interface AnswerOption {
-  label: string;
-  helperText?: string;
-  score: number;
-  lowerConfidence?: boolean;
-  isUnknown?: boolean;
-  isRiskFlag?: boolean;
-  isCriticalRisk?: boolean;
-  /** Extra complexity points added to separate category */
-  extraComplexity?: number;
-}
-
-export interface Question {
-  id: string;
-  question: string;
-  fieldType: 'text' | 'single-select';
-  required: 'required' | 'optional' | 'conditional';
+export interface Question extends QuestionBase {
   /** Which initiative types this question applies to (undefined = universal) */
   initiativeTypes?: InitiativeType[];
-  /** Conditional display: show this question if these question IDs have any of these answer indices selected */
-  showWhen?: { questionId: string; answerIndices: number[] }[];
-  options?: AnswerOption[];
-  /** Score category for driver mapping */
-  category?: string;
-}
-
-export interface Responses {
-  [questionId: string]: number | string | undefined;
 }
 
 export interface ScoringResult {
