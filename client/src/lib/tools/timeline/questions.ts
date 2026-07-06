@@ -1122,4 +1122,4 @@ export function getQuestionsForInitiative(type: string): Question[] {
 
 // Visibility logic now lives in the tool engine; re-exported here so existing
 // imports keep working until the tool moves to lib/tools/timeline/.
-export { isQuestionVisible } from '../tool-engine/visibility';
+export { isQuestionVisible } from '../../tool-engine/visibility';

@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { ScoringResult } from '@/lib/estimator/types';
-import { downloadPDF, downloadPPTX, downloadWord } from '@/lib/estimator/downloads';
+import { ScoringResult } from '@/lib/tools/timeline/types';
+import { downloadPDF, downloadPPTX, downloadWord } from '@/lib/tools/timeline/downloads';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { faFilePdf, faFilePowerpoint, faFileWord } from '@fortawesome/free-regular-svg-icons';

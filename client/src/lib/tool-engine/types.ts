@@ -47,3 +47,22 @@ export interface ToolResultBase {
   maxScore: number;
   scorePercent: number;
 }
+
+export type ToolAccess = 'free' | 'pro';
+
+/**
+ * Descriptive metadata about a tool. This is NOT a gating mechanism —
+ * `access` is informational only. Runtime Pro access is decided exclusively
+ * by entitlements.hasProAccess(); nothing may read `access` to gate a route,
+ * a feature, or UI visibility.
+ */
+export interface ToolDefinition {
+  id: string;
+  /** Branded tool name (unrelated to the marketing/category label). */
+  name: string;
+  /** Plain-language marketing label, e.g. "Free Timeline Calculator". */
+  marketingName: string;
+  access: ToolAccess;
+  methodologyVersion: string;
+  route?: string;
+}

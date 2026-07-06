@@ -2,7 +2,7 @@
 // live in the tool engine; this module re-exports them so existing imports
 // keep working until the tool moves to lib/tools/timeline/ (extraction
 // Phase 3).
-import type { QuestionBase } from '../tool-engine/types';
+import type { QuestionBase } from '../../tool-engine/types';
 
 export type {
   AnswerOption,
@@ -11,7 +11,7 @@ export type {
   Responses,
   ShowWhenRule,
   ToolResultBase,
-} from '../tool-engine/types';
+} from '../../tool-engine/types';
 
 export type InitiativeType = 'learning' | 'project' | 'program' | 'change';
 

@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
-import { Question, Responses, InitiativeType } from '@/lib/estimator/types';
-import { isQuestionVisible } from '@/lib/estimator/questions';
+import { Question, Responses, InitiativeType } from '@/lib/tools/timeline/types';
+import { isQuestionVisible } from '@/lib/tools/timeline/questions';
 
 interface QuestionStepProps {
   questions: Question[];

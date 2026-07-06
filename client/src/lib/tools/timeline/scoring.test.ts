@@ -26,7 +26,7 @@ import {
   LEARNING_VERY_SMALL,
 } from './fixtures';
 import { ComplexityLevel } from './types';
-import { maxScoreOf } from '../tool-engine/scoring-utils';
+import { maxScoreOf } from '../../tool-engine/scoring-utils';
 
 // ─── Complexity band boundaries ─────────────────────────────────────────────
 // Regression guard for the original gap bug: percents between the old band

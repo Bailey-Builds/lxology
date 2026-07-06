@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGraduationCap, faClipboard, faLayerGroup, faArrowsRotate, faArrowLeft, IconDefinition } from '@fortawesome/free-solid-svg-icons';
-import { InitiativeType } from '@/lib/estimator/types';
+import { InitiativeType } from '@/lib/tools/timeline/types';
 
 interface InitiativeTypeSelectProps {
   selected: InitiativeType | null;

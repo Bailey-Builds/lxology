@@ -1,4 +1,4 @@
-import { Phase } from '@/lib/estimator/types';
+import { Phase } from '@/lib/tools/timeline/types';
 
 interface PhaseBarProps {
   phases: Phase[];

@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
-import { InitiativeType, Responses, ScoringResult } from '@/lib/estimator/types';
-import { UNIVERSAL_QUESTIONS, getQuestionsForInitiative } from '@/lib/estimator/questions';
-import { calculateScore } from '@/lib/estimator/scoring';
+import { InitiativeType, Responses, ScoringResult } from '@/lib/tools/timeline/types';
+import { UNIVERSAL_QUESTIONS, getQuestionsForInitiative } from '@/lib/tools/timeline/questions';
+import { calculateScore } from '@/lib/tools/timeline/scoring';
 import WelcomeScreen from './WelcomeScreen';
 import InitiativeTypeSelect from './InitiativeTypeSelect';
 import QuestionStep from './QuestionStep';

@@ -14,7 +14,7 @@ import {
   categoryScoreTotals,
   topDriverLabels,
   triggeredCategories,
-} from '../tool-engine/scoring-utils';
+} from '../../tool-engine/scoring-utils';
 
 /**
  * Identifier for the scoring methodology that produced a result. Bump this
