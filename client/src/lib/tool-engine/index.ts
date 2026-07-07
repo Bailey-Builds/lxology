@@ -2,3 +2,4 @@
 export * from './types';
 export { isQuestionVisible } from './visibility';
 export * from './scoring-utils';
+export { TOOL_REGISTRY, getToolDefinition, listToolDefinitions } from './registry';
