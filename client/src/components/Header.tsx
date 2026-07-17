@@ -24,13 +24,9 @@ export default function Header() {
           <a href="/" className="text-gray-700 hover:text-[#FD6A02] transition-colors duration-200 font-medium">Home</a>
           <a href="/#products" className="text-gray-700 hover:text-[#FD6A02] transition-colors duration-200 font-medium">Products</a>
           <a href="/services" className="text-gray-700 hover:text-[#FD6A02] transition-colors duration-200 font-medium">Services</a>
-          <Link href="/timeline-estimator" asChild>
-            <a className="text-gray-700 hover:text-[#FD6A02] transition-colors duration-200 font-medium">Timeline Estimator</a>
+          <Link href="/tools" asChild>
+            <a className="text-gray-700 hover:text-[#FD6A02] transition-colors duration-200 font-medium">Tools</a>
           </Link>
-          <Link href="/pricing" asChild>
-            <a className="text-gray-700 hover:text-[#FD6A02] transition-colors duration-200 font-medium">Pricing</a>
-          </Link>
-          <a href="/about" className="text-gray-700 hover:text-[#FD6A02] transition-colors duration-200 font-medium">About Lxology</a>
           <a href="/contact#topic-request" className="text-gray-700 hover:text-[#FD6A02] transition-colors duration-200 font-medium">Contact</a>
 
         </nav>
@@ -53,13 +49,9 @@ export default function Header() {
             <a href="/" className="text-gray-700 hover:text-[#FD6A02] transition-colors py-2 font-medium" onClick={() => setIsOpen(false)}>Home</a>
             <a href="/#products" className="text-gray-700 hover:text-[#FD6A02] transition-colors py-2 font-medium" onClick={() => setIsOpen(false)}>Products</a>
             <a href="/services" className="text-gray-700 hover:text-[#FD6A02] transition-colors py-2 font-medium" onClick={() => setIsOpen(false)}>Services</a>
-            <Link href="/timeline-estimator" asChild onClick={() => setIsOpen(false)}>
-              <a className="text-gray-700 hover:text-[#FD6A02] transition-colors py-2 font-medium">Timeline Estimator</a>
+            <Link href="/tools" asChild onClick={() => setIsOpen(false)}>
+              <a className="text-gray-700 hover:text-[#FD6A02] transition-colors py-2 font-medium">Tools</a>
             </Link>
-            <Link href="/pricing" asChild onClick={() => setIsOpen(false)}>
-              <a className="text-gray-700 hover:text-[#FD6A02] transition-colors py-2 font-medium">Pricing</a>
-            </Link>
-            <a href="/about" className="text-gray-700 hover:text-[#FD6A02] transition-colors py-2 font-medium" onClick={() => setIsOpen(false)}>About Lxology</a>
             <a href="/contact#topic-request" className="text-gray-700 hover:text-[#FD6A02] transition-colors py-2 font-medium" onClick={() => setIsOpen(false)}>Contact</a>
           </nav>
         </div>

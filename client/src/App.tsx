@@ -11,6 +11,7 @@ import Contact from "./pages/Contact";
 import Privacy from "./pages/Privacy";
 import TimelineEstimator from "./pages/TimelineEstimator";
 import Pricing from "./pages/Pricing";
+import Tools from "./pages/Tools";
 
 function Router() {
   return (
@@ -23,6 +24,7 @@ function Router() {
       <Route path={"/privacy-policy"} component={Privacy} />
       <Route path={"/timeline-estimator"} component={TimelineEstimator} />
       <Route path={"/pricing"} component={Pricing} />
+      <Route path={"/tools"} component={Tools} />
       <Route path={"/404"} component={NotFound} />
       <Route component={NotFound} />
     </Switch>

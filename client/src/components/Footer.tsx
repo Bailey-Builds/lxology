@@ -40,7 +40,7 @@ export default function Footer({ minimal = false }: { minimal?: boolean }) {
               {[
                 { label: 'Products', href: '/#products' },
                 { label: 'Services', href: '/services' },
-                { label: 'Tools', href: '/#tools' },
+                { label: 'Tools', href: '/tools' },
                 { label: 'Pricing', href: '/pricing' },
               ].map((link) => (
                 <li key={link.label}>
