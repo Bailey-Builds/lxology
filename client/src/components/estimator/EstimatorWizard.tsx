@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useSearch } from 'wouter';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { InitiativeType, Responses, ScoringResult } from '@/lib/estimator/types';
@@ -133,16 +134,27 @@ export default function EstimatorWizard() {
   const [responses, setResponses] = useState<Responses>({});
   const [result, setResult] = useState<ScoringResult | null>(null);
   const [resumeDraft, setResumeDraft] = useState<EstimatorDraft | null>(null);
+  const search = useSearch();
 
   // Check once on mount for a resumable in-progress draft. Drafts saved at
   // 'welcome' (nothing answered yet) or 'results' (already completed) are not
   // resumable and are cleared rather than offered.
+  //
+  // If there's nothing to resume, honor a "quick start" entry point: the
+  // homepage CTA links here with ?start=1 to skip the welcome screen and
+  // land straight on initiative-type selection (one click instead of two).
+  // The nav menu and any direct/bookmarked visit never carry this marker, so
+  // they always see the normal welcome screen — unchanged from today.
   useEffect(() => {
     const draft = readDraft();
     if (draft && draft.step !== 'welcome' && draft.step !== 'results') {
       setResumeDraft(draft);
+      return;
     } else if (draft) {
       clearDraft();
+    }
+    if (new URLSearchParams(search).get('start') === '1') {
+      setStep('type');
     }
   }, []);
 
