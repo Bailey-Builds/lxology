@@ -136,25 +136,22 @@ export default function EstimatorWizard() {
   const [resumeDraft, setResumeDraft] = useState<EstimatorDraft | null>(null);
   const search = useSearch();
 
-  // Check once on mount for a resumable in-progress draft. Drafts saved at
-  // 'welcome' (nothing answered yet) or 'results' (already completed) are not
-  // resumable and are cleared rather than offered.
-  //
-  // If there's nothing to resume, honor a "quick start" entry point: the
-  // homepage CTA links here with ?start=1 to skip the welcome screen and
-  // land straight on initiative-type selection (one click instead of two).
-  // The nav menu and any direct/bookmarked visit never carry this marker, so
-  // they always see the normal welcome screen — unchanged from today.
+  // Honor the "quick start" entry point unconditionally: the homepage CTA
+  // links here with ?start=1 to skip the welcome screen and land straight on
+  // initiative-type selection, every time, with no detour — even if a
+  // pending draft exists. The nav menu and any direct/bookmarked visit never
+  // carry this marker, so they always see the normal welcome screen with
+  // draft-resume prompting — unchanged from today.
   useEffect(() => {
+    if (new URLSearchParams(search).get('start') === '1') {
+      setStep('type');
+      return;
+    }
     const draft = readDraft();
     if (draft && draft.step !== 'welcome' && draft.step !== 'results') {
       setResumeDraft(draft);
-      return;
     } else if (draft) {
       clearDraft();
-    }
-    if (new URLSearchParams(search).get('start') === '1') {
-      setStep('type');
     }
   }, []);
 
